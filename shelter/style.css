@@ -1,0 +1,19 @@
+html {
+    box-sizing: border-box;
+}
+
+.wrapper{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header-wrapper {
+    margin-top: 30px;
+}
+.logo-text{
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 110%;
+}
