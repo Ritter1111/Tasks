@@ -82,7 +82,7 @@
 
         <div class="layout-5-column our-friends-container">
           <div class="btn-adjust">
-            <button class="button-arrow"></button>
+            <button class="button-arrow"><img src="img/Arrow.svg" alt=""></button>
           </div>
           <div class="card">
             <img src="img/pets-katrine.png" alt="" />
@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="btn-adjust">
-            <button class="button-arrow"></button>
+            <button class="button-arrow"><img src="img/Arrow.svg" alt="" class="rotate-btn"></button>
           </div>
         </div>
         <div class="button-rest-container">
@@ -125,40 +125,60 @@
           </div>
           <div class="help-list-content">
             <div class="help-list">
-              <img src="img/icon-pet-food.svg" alt="" />
-              <p>Pet food</p>
+              <img src="img/icon-pet-food.svg" alt="" class="help-list-image" />
+              <p class="help-list-description">Pet food</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-transportation.svg" alt="" />
-              <p>Transportation</p>
+              <img
+                src="img/icon-transportation.svg"
+                alt=""
+                class="help-list-image"
+              />
+              <p class="help-list-description">Transportation</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-toys.svg" alt="" />
-              <p>Toys</p>
+              <img src="img/icon-toys.svg" alt="" class="help-list-image" />
+              <p class="help-list-description">Toys</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-bowls-and-cups.svg" alt="" />
-              <p>bBwls-and-cups</p>
+              <img
+                src="img/icon-bowls-and-cups.svg"
+                alt=""
+                class="help-list-image"
+              />
+              <p class="help-list-description">Bowls-and-cups</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-shampoos.svg" alt="" />
-              <p>Shampoos</p>
+              <img src="img/icon-shampoos.svg" alt="" class="help-list-image" />
+              <p class="help-list-description">Shampoos</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-vitamins.svg" alt="" />
-              <p>Vitamins</p>
+              <img src="img/icon-vitamins.svg" alt="" class="help-list-image" />
+              <p class="help-list-description">Vitamins</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-medicines.svg" alt="" />
-              <p>Medicines</p>
+              <img
+                src="img/icon-medicines.svg"
+                alt=""
+                class="help-list-image"
+              />
+              <p class="help-list-description">Medicines</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-collars-leashes.svg" alt="" />
-              <p>Collars / leashes</p>
+              <img
+                src="img/icon-collars-leashes.svg"
+                alt=""
+                class="help-list-image"
+              />
+              <p class="help-list-description">Collars / leashes</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-sleeping-area.svg" alt="" />
-              <p>Sleeping areas</p>
+              <img
+                src="img/icon-sleeping-area.svg"
+                alt=""
+                class="help-list-image"
+              />
+              <p class="help-list-description">Sleeping areas</p>
             </div>
           </div>
         </div>
@@ -166,12 +186,21 @@
     </section>
     <section class="in-addition">
       <div class="wrapper donation-wrapper">
-        <img src="img/donation-dog.png" alt="" />
+        <img src="img/donation-dog.png" alt="" class="donation-image" />
         <div class="donation-content">
-          <h2 class="donation-content-title">You can also make a donation</h2>
-          <p>Name of the bank / Type of bank account</p>
-          <span class="ico donation-card"></span>
-          <span class="donation-card-number">8380 2880 8028 8791 7435</span>
+          <h2 class="donation-content-title">
+            You can also <br />
+            make a donation
+          </h2>
+          <p class="donation-type-bank">
+            Name of the bank / Type of bank account
+          </p>
+          <button class="donation-card">
+            <img src="img/credit-card.svg" alt="" class="credit-card"/>
+            8380 2880 8028 8791 7435
+          </button>
+          <!-- <span class="ico donation-card"></span>
+          <span class="donation-card-number">8380 2880 8028 8791 7435</span> -->
           <p class="donation-description">
             Legal information and lorem ipsum dolor sit amet, consectetur
             adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed
@@ -179,24 +208,40 @@
             malesuada fames ac ante ipsum primis in faucibus.
           </p>
         </div>
-        
       </div>
     </section>
     <footer class="footer">
       <div class="wrapper footer-wrapper">
         <div class="layout-3-column">
+            <div class="footer-column">
+              <h2 class="title-navigation">For questions and suggestions</h2>
+              <div class="ico ico-email hhh">
+                <img src="img/mail.svg" alt="" class="ico" />
+                <span class="text-ico"> email@shelter.com</span>
+              </div>
+
+              <div class="ico ico-phone hhh">
+                <img src="img/phone.svg" alt="" class="ico" />
+                <span class="text-ico"> +13 674 567 75 54</span>
+              </div>
+            </div>
+            <div class="footer-column">
+              <h2 class="title-navigation">We are waiting for your visit</h2>
+              <div class="ico ico-city hhh">
+                <img src="img/pin.svg" alt="" class="ico" />
+                <span class="text-ico"
+                  >1 Central Street, Boston (entrance from the store)</span
+                >
+              </div>
+
+              <div class="ico ico-address hhh">
+                <img src="img/pin.svg" alt="" class="ico" />
+                <span class="text-ico">18 South Park, London </span>
+              </div>
+            </div>
+
           <div class="footer-column">
-            <h2 class="title-navigation">For questions and suggestions</h2>
-            <span class="ico ico-email"></span>
-            <span class="ico ico-phone"></span>
-          </div>
-          <div class="footer-column">
-            <h2 class="title-navigation">We are waiting for your visit</h2>
-            <span class=""></span>
-            <span class=""></span>
-          </div>
-          <div class="footer-column">
-            <img src="img/footer-puppy.png" alt="" />
+            <img src="img/footer-puppy.png" alt="" class="footer-puppy"/>
           </div>
         </div>
       </div>
