@@ -9,25 +9,31 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="main">
     <header class="header">
       <div class="wrapper header-wrapper">
         <div class="logo">
-          <h2 class="logo-text">Cozy House</h2>
-          <p class="logo-text-bottom">Shelter for pets in Boston</p>
+          <a href="#" class="link-none-decor">
+            <h2 class="logo-text">Cozy House</h2>
+            <p class="logo-text-bottom">Shelter for pets in Boston</p>
+          </a>
         </div>
         <nav class="nav-header">
           <ul class="nav-menu">
             <li class="header-item">
-              <a href="#" class="header-link">About the shelter</a>
+              <a href="#" class="header-link no-interactive"
+                >About the shelter</a
+              >
+              <hr class="br" />
             </li>
             <li class="header-item">
-              <a href="#" class="header-link">Our pets</a>
+              <a href="../pets/index.html" class="header-link">Our pets</a>
             </li>
             <li class="header-item">
-              <a href="#" class="header-link">Help the shelter</a>
+              <a href="#help" class="header-link">Help the shelter</a>
             </li>
             <li class="header-item">
-              <a href="#" class="header-link">Contacts</a>
+              <a href="#footer" class="header-link">Contacts</a>
             </li>
           </ul>
         </nav>
@@ -42,14 +48,18 @@
             extremely wide and open heart. He or she will love you more than
             anybody else in the world, you will see!
           </p>
-          <button class="not-only-button">Make a friend</button>
+          <a href="#our-friends" class="not-only-button-colored">
+            <button class="not-only-button">Make a friend</button>
+          </a>
         </div>
-        <img src="img/start-screen-puppy.png" alt="" class="puppy" />
+
+        <img src="img/start-screen-puppy.png" alt="Puppy" class="puppy" />
       </div>
     </section>
+  </div>
     <section class="about">
       <div class="wrapper about-wrapper">
-        <img src="img/about-pets.png" alt="" class="about-image" />
+        <img src="img/about-pets.png" alt="About Pets" class="about-image" />
         <div class="about-content">
           <h2 class="about-content-title">About the shelter “Cozy House”</h2>
           <div class="">
@@ -71,7 +81,7 @@
         </div>
       </div>
     </section>
-    <section class="our-friends">
+    <section class="our-friends" id="our-friends">
       <div class="wrapper our-friends-wrapper">
         <div class="our">
           <h2 class="our-friends-title">
@@ -82,39 +92,43 @@
 
         <div class="layout-5-column our-friends-container">
           <div class="btn-adjust">
-            <button class="button-arrow"><img src="img/Arrow.svg" alt=""></button>
+            <button class="button-arrow">
+              <img src="img/Arrow.svg" alt="arrow" />
+            </button>
           </div>
           <div class="card">
-            <img src="img/pets-katrine.png" alt="" />
+            <img src="img/pets-katrine.png" alt="Kathrine" />
             <p class="name-pet">Kathrine</p>
             <div class="pet-button">
               <button class="our-friends-button btn">Learn more</button>
             </div>
           </div>
           <div class="card">
-            <img src="img/pets-jennifer.png" alt="" />
+            <img src="img/pets-jennifer.png" alt="Jennifer" />
             <p class="name-pet">Jennifer</p>
             <div class="pet-button">
               <button class="our-friends-button btn">Learn more</button>
             </div>
           </div>
           <div class="card">
-            <img src="img/pets-woody.png" alt="" />
+            <img src="img/pets-woody.png" alt="Woody" />
             <p class="name-pet">Woody</p>
             <div class="pet-button">
               <button class="our-friends-button btn">Learn more</button>
             </div>
           </div>
           <div class="btn-adjust">
-            <button class="button-arrow"><img src="img/Arrow.svg" alt="" class="rotate-btn"></button>
+            <button class="button-arrow">
+              <img src="img/Arrow.svg" alt="arrow" class="rotate-btn" />
+            </button>
           </div>
         </div>
-        <div class="button-rest-container">
+        <form action="../pets/index.html" class="button-rest-container">
           <button class="button-rest btn">Get to know the rest</button>
-        </div>
+        </form>
       </div>
     </section>
-    <section class="help">
+    <section class="help" id="help">
       <div class="wrapper">
         <div class="help-content">
           <div class="help-title-wrapper">
@@ -125,41 +139,53 @@
           </div>
           <div class="help-list-content">
             <div class="help-list">
-              <img src="img/icon-pet-food.svg" alt="" class="help-list-image" />
+              <img
+                src="img/icon-pet-food.svg"
+                alt="Pet food"
+                class="help-list-image"
+              />
               <p class="help-list-description">Pet food</p>
             </div>
             <div class="help-list">
               <img
                 src="img/icon-transportation.svg"
-                alt=""
+                alt="Transportation"
                 class="help-list-image"
               />
               <p class="help-list-description">Transportation</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-toys.svg" alt="" class="help-list-image" />
+              <img src="img/icon-toys.svg" alt="Toys" class="help-list-image" />
               <p class="help-list-description">Toys</p>
             </div>
             <div class="help-list">
               <img
                 src="img/icon-bowls-and-cups.svg"
-                alt=""
+                alt="Bowls-and-cups"
                 class="help-list-image"
               />
               <p class="help-list-description">Bowls-and-cups</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-shampoos.svg" alt="" class="help-list-image" />
+              <img
+                src="img/icon-shampoos.svg"
+                alt="icon-shampoos"
+                class="help-list-image"
+              />
               <p class="help-list-description">Shampoos</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-vitamins.svg" alt="" class="help-list-image" />
+              <img
+                src="img/icon-vitamins.svg"
+                alt="Vitamins"
+                class="help-list-image"
+              />
               <p class="help-list-description">Vitamins</p>
             </div>
             <div class="help-list">
               <img
                 src="img/icon-medicines.svg"
-                alt=""
+                alt="Medicines"
                 class="help-list-image"
               />
               <p class="help-list-description">Medicines</p>
@@ -167,7 +193,7 @@
             <div class="help-list">
               <img
                 src="img/icon-collars-leashes.svg"
-                alt=""
+                alt="Collars"
                 class="help-list-image"
               />
               <p class="help-list-description">Collars / leashes</p>
@@ -175,7 +201,7 @@
             <div class="help-list">
               <img
                 src="img/icon-sleeping-area.svg"
-                alt=""
+                alt="Sleeping"
                 class="help-list-image"
               />
               <p class="help-list-description">Sleeping areas</p>
@@ -186,7 +212,7 @@
     </section>
     <section class="in-addition">
       <div class="wrapper donation-wrapper">
-        <img src="img/donation-dog.png" alt="" class="donation-image" />
+        <img src="img/donation-dog.png" alt="dogs" class="donation-image" />
         <div class="donation-content">
           <h2 class="donation-content-title">
             You can also <br />
@@ -196,11 +222,13 @@
             Name of the bank / Type of bank account
           </p>
           <button class="donation-card">
-            <img src="img/credit-card.svg" alt="" class="credit-card"/>
+            <img
+              src="img/credit-card.svg"
+              alt="credit-card"
+              class="credit-card"
+            />
             8380 2880 8028 8791 7435
           </button>
-          <!-- <span class="ico donation-card"></span>
-          <span class="donation-card-number">8380 2880 8028 8791 7435</span> -->
           <p class="donation-description">
             Legal information and lorem ipsum dolor sit amet, consectetur
             adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed
@@ -210,38 +238,62 @@
         </div>
       </div>
     </section>
-    <footer class="footer">
+    <footer class="footer" id="footer">
       <div class="wrapper footer-wrapper">
         <div class="layout-3-column">
-            <div class="footer-column">
-              <h2 class="title-navigation">For questions and suggestions</h2>
-              <div class="ico ico-email hhh">
-                <img src="img/mail.svg" alt="" class="ico" />
+          <div class="footer-column">
+            <h2 class="title-navigation">For questions and suggestions</h2>
+            <div class="ico ico-email ">
+              <a
+                target="_blank"
+                href="https://www.google.com/gmail/about/"
+                class="link-none-decor hhh"
+              >
+                <img src="img/mail.svg" alt="mail" class="ico" />
                 <span class="text-ico"> email@shelter.com</span>
-              </div>
-
-              <div class="ico ico-phone hhh">
-                <img src="img/phone.svg" alt="" class="ico" />
-                <span class="text-ico"> +13 674 567 75 54</span>
-              </div>
+              </a>
             </div>
-            <div class="footer-column">
-              <h2 class="title-navigation">We are waiting for your visit</h2>
-              <div class="ico ico-city hhh">
-                <img src="img/pin.svg" alt="" class="ico" />
+
+            <div class="ico ico-phone ">
+              <a href=”tel: +13 674 567 75 54” class="link-none-decor hhh">
+              <img src="img/phone.svg" alt="phone" class="ico" />
+              <span class="text-ico"> +13 674 567 75 54</span>
+            </a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h2 class="title-navigation">We are waiting for your visit</h2>
+            <div class="ico ico-city">
+              <a
+                target="_blank"
+                href="https://www.google.com/maps/place/CoreTech+Bulgaria/@42.6567186,23.3207462,17z/data=!3m1!4b1!4m6!3m5!1s0x40aa85b90d3cd2b9:0x421aec2713b4df69!8m2!3d42.6567186!4d23.3229349!16s%2Fg%2F11rfdb41w_"
+                class="link-none-decor hhh"
+              >
+                <img src="img/pin.svg" alt="pin" class="ico" />
                 <span class="text-ico"
                   >1 Central Street, Boston (entrance from the store)</span
                 >
-              </div>
-
-              <div class="ico ico-address hhh">
-                <img src="img/pin.svg" alt="" class="ico" />
-                <span class="text-ico">18 South Park, London </span>
-              </div>
+              </a>
             </div>
 
+            <div class="ico ico-address ">
+              <a
+              target="_blank"
+              href="https://www.google.com/maps/place/CoreTech+Bulgaria/@42.6567186,23.3207462,17z/data=!3m1!4b1!4m6!3m5!1s0x40aa85b90d3cd2b9:0x421aec2713b4df69!8m2!3d42.6567186!4d23.3229349!16s%2Fg%2F11rfdb41w_"
+              class="link-none-decor hhh"
+            >
+              <img src="img/pin.svg" alt="pin" class="ico" />
+              <span class="text-ico">18 South Park, London </span>
+              </a>
+            </div>
+          </div>
+
           <div class="footer-column">
-            <img src="img/footer-puppy.png" alt="" class="footer-puppy"/>
+            <img
+              src="img/footer-puppy.png"
+              alt="footer-puppy"
+              class="footer-puppy"
+            />
           </div>
         </div>
       </div>
