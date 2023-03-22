@@ -12,7 +12,7 @@ html {
 }
 
 .header-wrapper {
-  padding-top: 30px;
+  padding-top: 32px;
   display: flex;
   justify-content: space-between;
 }
@@ -229,7 +229,7 @@ html {
 }
 
 .name-pet {
-  margin: 30px 0;
+  margin: 27px 0;
   font-family: "Georgia";
   font-style: normal;
   font-weight: 400;
@@ -279,7 +279,7 @@ html {
 .button-rest-container {
   display: flex;
   justify-content: center;
-  padding: 55px 0 100px 0;
+  padding: 63px 0 100px 0;
   padding-right: 8px;
 }
 
@@ -303,6 +303,10 @@ html {
 
 .rotate-btn {
   transform: rotate(-180deg);
+}
+
+.jeniffer {
+  margin: 0 44px 0 44px;
 }
 
 /* Start help*/
@@ -362,7 +366,7 @@ html {
   justify-content: center;
   align-items: center;
   padding-top: 80px;
-  padding-bottom: 80px;
+  padding-bottom: 77px;
 }
 
 .donation-content {
@@ -372,6 +376,10 @@ html {
 
 .donation-content > * {
   margin-bottom: 20px;
+}
+
+.donation-image {
+  margin-bottom: 23px;
 }
 
 .donation-content-title {
