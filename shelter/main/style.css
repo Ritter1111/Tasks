@@ -105,8 +105,8 @@ html {
 }
 
 .not-only-button {
-  width: 207px;
-  height: 52px;
+  padding: 15px 45px 15px 45px;
+  text-decoration: none;
   background: #f1cdb3;
   border-radius: 100px;
   border: none;
@@ -116,9 +116,6 @@ html {
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.06em;
-}
-
-.not-only-button-colored {
   color: #292929;
 }
 
