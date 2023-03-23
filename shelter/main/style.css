@@ -34,7 +34,7 @@ html {
 }
 
 .header-item:not(:last-child) {
-  margin-right: 35px;
+  margin-right: 36px;
 }
 
 .header-link {
@@ -100,12 +100,12 @@ html {
   font-size: 15px;
   line-height: 160%;
   max-width: 460px;
-  margin: 42px 0;
+  margin: 44px 0;
   color: #cdcdcd;
 }
 
 .puppy {
-  padding-top: 90px;
+  padding-top: 88px;
   max-width: 100%;
 }
 
@@ -150,7 +150,7 @@ html {
   width: 90%;
   letter-spacing: 0.06em;
   color: #545454;
-  padding-top: 14px;
+  padding-top: 19px;
 }
 
 .about-wrapper {
@@ -169,7 +169,7 @@ html {
   font-size: 15px;
   line-height: 160%;
   color: #4c4c4c;
-  margin: 25px 0;
+  margin: 23px 0;
 }
 
 /* Start our friends*/
@@ -185,7 +185,7 @@ html {
   font-size: 35px;
   line-height: 130%;
   color: #545454;
-  margin: 80px 0px 60px 0;
+  margin: 81px 0px 60px 0;
   letter-spacing: 0.06em;
   padding-right: 6px;
 }
@@ -306,7 +306,7 @@ html {
 }
 
 .jeniffer {
-  margin: 0 44px 0 44px;
+  margin: 0 44px 0 40px;
 }
 
 /* Start help*/
@@ -324,7 +324,7 @@ html {
   font-size: 35px;
   line-height: 130%;
   color: #545454;
-  padding-top: 80px;
+  padding-top: 77px;
   padding-bottom: 60px;
   letter-spacing: 0.06em;
 }
@@ -371,7 +371,8 @@ html {
 
 .donation-content {
   max-width: 32%;
-  margin-left: 30px;
+  margin-left: 24px;
+  padding-left: 6px;
 }
 
 .donation-content > * {
@@ -428,14 +429,14 @@ html {
 }
 
 .credit-card {
-  padding: 0 12px;
+  padding: 0 14px 0 8px;
 }
 
 /*Start Footer*/
 
 .layout-3-column {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 462px 299px;
   align-items: center;
 }
 
@@ -465,7 +466,7 @@ html {
 }
 
 .footer-column {
-  max-width: 300px;
+  max-width: 313px;
 }
 
 .footer-puppy {
@@ -473,7 +474,7 @@ html {
 }
 
 .ico-email {
-  padding: 40px 0;
+  padding: 41px 0 43px 0;
 }
 
 .ico-city {
@@ -486,5 +487,5 @@ html {
 }
 
 .ico {
-  padding-right: 11px;
+  padding-right: 19px;
 }
