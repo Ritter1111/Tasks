@@ -45,11 +45,11 @@ html {
   font-size: 15px;
   line-height: 160%;
   color: #cdcdcd;
+  transition: 0.5s ease-in-out;
 }
 
 .header-link:hover {
   color: #fafafa;
-  transition: 0.5s ease-in-out;
 }
 
 .no-interactive {
@@ -122,10 +122,10 @@ html {
   font-weight: 400;
   letter-spacing: 0.06em;
   color: #292929;
+  transition: 0.5s ease-out;
 }
 
 .not-only-button:hover {
-  transition: 0.5s ease-out;
   background: #fddcc4;
 }
 
@@ -214,10 +214,11 @@ html {
   background: #fafafa;
   border-radius: 9px;
   cursor: pointer;
+  transition: all 0.5s ease-out;
 }
 
 .card:hover .pet-button .our-friends-button {
-  transition: 0.5s ease-out;
+ 
   background-color: #fddcc4;
   border: 2px solid #fddcc4;
 }
@@ -246,6 +247,8 @@ html {
   width: 187px;
   height: 52px;
   background-color: #fafafa;
+  transition: 0.5s ease-out;
+
 }
 
 .btn {
@@ -261,6 +264,7 @@ html {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+  transition: 0.5s ease-out;
 }
 
 .button-rest {
@@ -269,10 +273,10 @@ html {
   width: 261px;
   height: 52px;
   border: none;
+  transition: 0.5s ease-out;
 }
 
 .button-rest:hover {
-  transition: 0.5s ease-out;
   background: #fddcc4;
 }
 
@@ -289,11 +293,11 @@ html {
   width: 52px;
   height: 52px;
   background: #fafafa;
+  transition: 0.5s ease-in-out;
 }
 
 .button-arrow:hover {
   background: #fddcc4;
-  transition: 0.5s ease-in-out;
 }
 
 .btn-adjust {
@@ -426,6 +430,7 @@ html {
   display: flex;
   align-items: center;
   color: #545454;
+  border: none;
 }
 
 .credit-card {
@@ -488,4 +493,28 @@ html {
 
 .ico {
   padding-right: 19px;
+}
+
+@media (max-width: 575px) {
+  .layout-3-column {
+    display: block;
+    text-align: center;
+  }
+
+  .donation-wrapper, .about-wrapper, .not-only-wrapper, .our-friends-container {
+    display: block;
+  }
+  .donation-image, .footer-puppy,.about-image, img {
+    max-width: 100%;
+  }
+  .nav-header{
+    display: none;
+  }
+
+  .donation-card, .donation-content, .about-content, .not-only-title  {
+    max-width: 100%;
+
+  }
+
+  
 }
