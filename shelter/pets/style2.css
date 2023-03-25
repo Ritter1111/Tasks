@@ -1,6 +1,7 @@
 body {
     margin: 0;
 }
+
 .br {
   width: 59px;
   height: 3px;
@@ -12,32 +13,19 @@ body {
 }
 
 .logo-text-bottom {
-  font-family: "Arial";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
   line-height: 15px;
-  letter-spacing: 0.1em;
+  margin-top: 9px;
   color: #292929;
 }
 
 .logo-text {
   margin: 0;
-  font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
   font-size: 32px;
-  line-height: 110%;
   letter-spacing: 0.06em;
   color: #545454;
 }
 
 .header-link {
-  font-family: "Arial";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 160%;
   color: #545454;
 }
 
@@ -46,14 +34,14 @@ body {
 }
 
 .our-friends-title {
-  margin: 80px 0 30px 0;
-  padding-left: 10px;
+  margin: 85px 0 30px 0;
+  padding-left: 4px;
 }
 
 .pagination {
   display: flex;
   justify-content: center;
-  padding: 62px 0 100px 0;;
+  padding: 62px 0 96px 0;;
 }
 
 .header-wrapper {
@@ -64,7 +52,6 @@ body {
   margin: 0 10px 0 10px;
   cursor: pointer;
 }
-
 
 .colored {
   background-color: #f1cdb3;
@@ -80,7 +67,6 @@ body {
   pointer-events: none;
 }
 
-
 .title-navigation {
     margin: 0;
 }
@@ -88,4 +74,8 @@ body {
 .header-link:hover {
     color: #292929;
     transition: 0.5s ease-in-out;
+}
+
+.chose-link {
+  color: #292929;
 }
