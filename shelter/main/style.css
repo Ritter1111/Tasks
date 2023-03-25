@@ -1,9 +1,61 @@
-* {
+@font-face {
+  font-family: "Georgia";
+  src: url("./fonts/georgia-bold.woff2") format("woff2"),
+    url("./fonts/georgia-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arial";
+  src: url("./fonts/arial-regular.woff2") format("woff2"),
+    url("./fonts/arial-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Arial";
+  src: url("./fonts/arial-italic.woff2") format("woff2"),
+    url("./fonts/arial-italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Georgia";
+  src: url("./fonts/georgia-regular.woff2") format("woff2"),
+    url("./fonts/georgia-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* > {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body,
+a,
+h2,
+p,
+h1 {
+  font-weight: 400;
+  font-style: normal;
+}
+
+.title {
+  font-family: "Georgia";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
 }
 
 .wrapper {
@@ -16,9 +68,9 @@ html {
   display: flex;
   justify-content: space-between;
 }
+
 .logo-text {
   font-family: "Georgia";
-  font-weight: 400;
   font-size: 35px;
   line-height: 110%;
   color: #f1cdb3;
@@ -31,6 +83,7 @@ html {
 .nav-menu {
   display: flex;
   list-style: none;
+  flex-wrap: wrap;
 }
 
 .header-item:not(:last-child) {
@@ -40,8 +93,6 @@ html {
 .header-link {
   text-decoration: none;
   font-family: "Arial";
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
   line-height: 160%;
   color: #cdcdcd;
@@ -85,18 +136,14 @@ html {
 
 .not-only-title {
   font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
   font-size: 44px;
   line-height: 130%;
   color: #ffffff;
-  width: 310px;
+  max-width: 310px;
 }
 
 .not-only-description {
   font-family: "Arial";
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
   line-height: 160%;
   max-width: 460px;
@@ -105,7 +152,7 @@ html {
 }
 
 .puppy {
-  padding-top: 88px;
+  padding-top: 85px;
   max-width: 100%;
 }
 
@@ -118,8 +165,6 @@ html {
   font-size: 17px;
   line-height: 130%;
   font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
   letter-spacing: 0.06em;
   color: #292929;
   transition: 0.5s ease-out;
@@ -142,10 +187,6 @@ html {
 }
 
 .about-content-title {
-  font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 35px;
   line-height: 130%;
   width: 90%;
   letter-spacing: 0.06em;
@@ -156,7 +197,6 @@ html {
 .about-wrapper {
   display: flex;
   justify-content: center;
-  justify-content: center;
   align-items: center;
   margin-top: 75px;
   margin-bottom: 90px;
@@ -164,12 +204,14 @@ html {
 
 .about-content-description {
   font-family: "Arial";
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
   line-height: 160%;
   color: #4c4c4c;
-  margin: 23px 0;
+  margin: 24px 0;
+}
+
+.image-pets {
+  max-width: 100%;
 }
 
 /* Start our friends*/
@@ -179,22 +221,16 @@ html {
 }
 
 .our-friends-title {
-  font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 35px;
   line-height: 130%;
   color: #545454;
   margin: 81px 0px 60px 0;
   letter-spacing: 0.06em;
-  padding-right: 6px;
 }
 
 .our {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin-top: 80px;
 }
 
 .our-friends-container {
@@ -218,7 +254,6 @@ html {
 }
 
 .card:hover .pet-button .our-friends-button {
- 
   background-color: #fddcc4;
   border: 2px solid #fddcc4;
 }
@@ -230,15 +265,13 @@ html {
 }
 
 .name-pet {
-  margin: 27px 0;
   font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
   font-size: 20px;
   line-height: 23px;
   letter-spacing: 0.06em;
   color: #545454;
   text-align: center;
+  margin: 24px 0 31px 0;
 }
 
 .our-friends-button {
@@ -248,21 +281,17 @@ html {
   height: 52px;
   background-color: #fafafa;
   transition: 0.5s ease-out;
-
 }
 
 .btn {
   font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
   font-size: 17px;
   line-height: 130%;
   letter-spacing: 0.06em;
 }
 
 .pet-button {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   margin-bottom: 30px;
   transition: 0.5s ease-out;
 }
@@ -274,6 +303,7 @@ html {
   height: 52px;
   border: none;
   transition: 0.5s ease-out;
+  max-width: 100%;
 }
 
 .button-rest:hover {
@@ -281,10 +311,8 @@ html {
 }
 
 .button-rest-container {
-  display: flex;
-  justify-content: center;
-  padding: 63px 0 100px 0;
-  padding-right: 8px;
+  text-align: center;
+  padding: 60px 0 102px 0;
 }
 
 .button-arrow {
@@ -316,16 +344,10 @@ html {
 /* Start help*/
 
 .help-title-wrapper {
-  display: flex;
-  justify-content: center;
   text-align: center;
 }
 
 .help-title {
-  font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 35px;
   line-height: 130%;
   color: #545454;
   padding-top: 77px;
@@ -351,8 +373,6 @@ html {
 
 .help-list-description {
   font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
   font-size: 20px;
   line-height: 115%;
   letter-spacing: 0.06em;
@@ -370,13 +390,11 @@ html {
   justify-content: center;
   align-items: center;
   padding-top: 80px;
-  padding-bottom: 77px;
+  padding-bottom: 78px;
 }
 
 .donation-content {
   max-width: 32%;
-  margin-left: 24px;
-  padding-left: 6px;
 }
 
 .donation-content > * {
@@ -385,13 +403,10 @@ html {
 
 .donation-image {
   margin-bottom: 23px;
+  margin-right: 36px;
 }
 
 .donation-content-title {
-  font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 35px;
   line-height: 130%;
   color: #545454;
   letter-spacing: 0.06em;
@@ -399,8 +414,6 @@ html {
 
 .donation-type-bank {
   font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
   line-height: 110%;
   letter-spacing: 0.06em;
@@ -410,23 +423,20 @@ html {
 .donation-description {
   font-family: "Arial";
   font-style: italic;
-  font-weight: 400;
   font-size: 12px;
   line-height: 18px;
   color: #b2b2b2;
 }
 
 .donation-card {
-  background: #f1cdb3;
-  border-radius: 9px;
-  width: 349px;
-  height: 43px;
   font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
   font-size: 20px;
   line-height: 115%;
   letter-spacing: 0.06em;
+  background: #f1cdb3;
+  border-radius: 9px;
+  max-width: 349px;
+  padding: 10px 0;
   display: flex;
   align-items: center;
   color: #545454;
@@ -434,14 +444,16 @@ html {
 }
 
 .credit-card {
-  padding: 0 14px 0 8px;
+  padding: 0 15px 0 15px;
 }
 
 /*Start Footer*/
 
 .layout-3-column {
-  display: grid;
-  grid-template-columns: 1fr 462px 299px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* grid-template-columns: 1fr 462px 299px; */
   align-items: center;
 }
 
@@ -451,10 +463,6 @@ html {
 }
 
 .title-navigation {
-  font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 35px;
   line-height: 130%;
   letter-spacing: 0.06em;
   color: #ffffff;
@@ -462,8 +470,6 @@ html {
 
 .text-ico {
   font-family: "Georgia";
-  font-style: normal;
-  font-weight: 400;
   font-size: 20px;
   line-height: 115%;
   letter-spacing: 0.06em;
@@ -476,6 +482,7 @@ html {
 
 .footer-puppy {
   padding-top: 40px;
+  margin-left: 13px;
 }
 
 .ico-email {
@@ -495,26 +502,71 @@ html {
   padding-right: 19px;
 }
 
-@media (max-width: 575px) {
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 768px) {
+  .donation-wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .donation-content {
+    max-width: 380px;
+  }
+
+  .donation-image {
+    max-width: 100%;
+  }
+
   .layout-3-column {
-    display: block;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+  .footer-puppy {
+    padding-top: 70px;
+  }
+
+  .woody {
+    display: none;
+  }
+  .jeniffer {
+    margin: 0;
+  }
+
+  .about-wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .about-content {
+    max-width: 430px;
+  }
+
+  .about-image {
+    margin-right: 0;
+    max-width: 100%;
+  }
+  .not-only-wrapper {
+    flex-direction: column;
+  }
+
+  .not-only-btn {
     text-align: center;
   }
 
-  .donation-wrapper, .about-wrapper, .not-only-wrapper, .our-friends-container {
-    display: block;
+  .help-list {
+    padding: 0;
+    padding-bottom: 70px;
   }
-  .donation-image, .footer-puppy,.about-image, img {
-    max-width: 100%;
-  }
-  .nav-header{
+}
+
+@media (max-width: 320px) {
+  .nav-menu {
     display: none;
   }
 
-  .donation-card, .donation-content, .about-content, .not-only-title  {
+  .footer-puppy {
     max-width: 100%;
-
+    margin-left: 0;
   }
-
-  
 }
