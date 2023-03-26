@@ -42,6 +42,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background: url(img/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%);
+}
+
 body,
 a,
 h2,
@@ -71,9 +75,11 @@ h1 {
 
 .logo-text {
   font-family: "Georgia";
-  font-size: 35px;
+  font-size: 32px;
   line-height: 110%;
   color: #f1cdb3;
+  letter-spacing: 0.06em;
+  padding-bottom: 4px;
 }
 
 .link-none-decor {
@@ -117,11 +123,6 @@ h1 {
 }
 
 /* Styles for header end*/
-
-.main {
-  background: url(img/start-screen-gradient-background.png) no-repeat;
-  background-size: cover;
-}
 
 .not-only-wrapper {
   display: flex;
@@ -176,6 +177,10 @@ h1 {
 
 /* Styles for not only end*/
 
+.about {
+  background-color: #FFFFFF;
+}
+
 .about-content {
   max-width: 36%;
   flex-wrap: wrap;
@@ -198,8 +203,8 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 75px;
-  margin-bottom: 90px;
+  padding-top: 75px;
+  padding-bottom: 90px;
 }
 
 .about-content-description {
@@ -240,10 +245,15 @@ h1 {
 }
 
 .br {
-  width: 111px;
-  height: 1px;
+  width: 114px;
+  height: 3px;
+  border: none;
   margin: 0;
-  background: #f1cdb3;
+  background: #F1CDB3;
+}
+
+.header-item ~ .no-interactive {
+  color: #FAFAFA;;
 }
 
 .card {
@@ -326,6 +336,7 @@ h1 {
 
 .button-arrow:hover {
   background: #fddcc4;
+  border: 2px solid #fddcc4;
 }
 
 .btn-adjust {
@@ -343,6 +354,10 @@ h1 {
 
 /* Start help*/
 
+.help {
+  background: #FFFFFF;
+}
+
 .help-title-wrapper {
   text-align: center;
 }
@@ -359,7 +374,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 51px;
+  padding-bottom: 51px;
 }
 
 .help-list {
@@ -458,8 +473,9 @@ h1 {
 }
 
 .footer {
-  background: url(img/start-screen-gradient-background.png) no-repeat;
-  background-size: cover;
+  /* background: url(img/start-screen-gradient-background.png) no-repeat;
+  background-size: cover; */
+  background: url(img/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 70%)
 }
 
 .title-navigation {
@@ -486,7 +502,7 @@ h1 {
 }
 
 .ico-email {
-  padding: 41px 0 43px 0;
+  padding: 41px 0 44px 0;
 }
 
 .ico-city {
