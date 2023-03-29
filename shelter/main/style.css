@@ -520,8 +520,7 @@ h1 {
 }
 
 @media all and (max-width: 1279px) {
-  .header-wrapper,
-  .not-only-content {
+  .header-wrapper {
     margin-left: 30px;
   }
   .nav-header {
@@ -530,7 +529,7 @@ h1 {
 }
 
 @media all and (max-width: 1200px) {
-  .layout-3-column,
+  /* .layout-3-column, */
   .not-only-wrapper {
     justify-content: center;
   }
@@ -564,6 +563,7 @@ h1 {
 
   .layout-3-column {
     padding-top: 30px;
+    justify-content: space-evenly;
   }
 
   .footer-puppy {
@@ -625,9 +625,25 @@ h1 {
   }
 }
 
+@media all and (max-width: 768px) {
+  .layout-3-column{
+    justify-content: center;
+  }
+}
+
 @media all and (max-width: 767px) {
   .nav-menu {
     display: none;
+  }
+}
+
+@media (max-width: 673px) {
+  .layout-3-column {
+    flex-direction: column;
+  }
+  
+  .title-navigation-second {
+    margin: 39px 0 7px 0;
   }
 }
 
@@ -635,23 +651,17 @@ h1 {
   .jeniffer {
     display: none;
   }
+
 }
 
 @media all and (max-width: 644px) {
-  .jeniffer {
-    display: none;
-  }
-
   .puppy {
     padding-left: 0;
   }
 
-  .title-navigation-second {
-    margin: 39px 0 7px 0;
-  }
-
+ 
   .button-arrow {
-    margin: 0 10px;
+    margin: 0 7px;
   }
 }
 
