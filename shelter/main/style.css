@@ -442,6 +442,7 @@ h1 {
   font-size: 12px;
   line-height: 18px;
   color: #b2b2b2;
+  margin-top: 20px;
 }
 
 .donation-card {
@@ -453,7 +454,6 @@ h1 {
   border-radius: 9px;
   max-width: 349px;
   padding: 10px 0;
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   color: #545454;
