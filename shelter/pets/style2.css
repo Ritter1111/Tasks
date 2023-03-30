@@ -93,6 +93,11 @@ body {
   letter-spacing: 0.06em;
 }
 
+.our-friends-container {
+  flex-wrap: wrap;
+}
+
+
 @media (max-width: 768px) {
   .our-friends-title {
     margin-bottom: 0;
@@ -145,4 +150,7 @@ body {
   .card {
     margin-bottom: 0;
   }
+  .ico-email, .ico-phone {
+    padding-left:  17px;
+}
 }

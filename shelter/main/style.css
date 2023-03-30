@@ -702,9 +702,6 @@ h1 {
     padding-left: 0;
   }
 
-  /* .button-arrow {
-    margin: 0 7px;
-  } */
 }
 
 @media all and (max-width: 462px) {
@@ -738,13 +735,13 @@ h1 {
   .button-arrow-right {
     position: absolute;
     bottom: -51px;
-    left: 62px;
+    left: 66px;
   }
 
   .button-arrow-left {
     position: absolute;
     bottom: -53px;
-    right: 61px;
+    right: 66px;
   }
 
   .help-list-description {
@@ -905,6 +902,9 @@ h1 {
   .help-list-image {
     max-width: 32%;
   }
+  .ico-phone {
+    padding-left:  17px;
+}
 }
 
 @media all and (max-width: 310px) {
