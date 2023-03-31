@@ -129,7 +129,6 @@ h1 {
 
 .not-only-wrapper {
   display: flex;
-  /* flex-wrap: wrap; */
   justify-content: space-between;
   align-items: center;
 }
@@ -245,7 +244,6 @@ h1 {
 .our-friends-container {
   display: flex;
   justify-content: space-between;
-  /* flex-wrap: wrap; */
 }
 
 .br {
@@ -473,7 +471,6 @@ h1 {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  /* grid-template-columns: 1fr 462px 299px; */
   align-items: center;
 }
 
@@ -534,17 +531,22 @@ h1 {
   }
 }
 
-@media all and (max-width: 1200px) {
-  .not-only-wrapper {
-    justify-content: center;
-  }
-}
-
 @media all and (max-width: 1056px) {
   .not-only-wrapper {
     flex-direction: column;
   }
 
+  .not-only-btn {
+    text-align: center;
+  }
+
+  .not-only-content {
+    padding-top: 55px;
+  }
+
+  .not-only-description {
+    margin: 40px 0 46px 0;
+  }
   .not-only-title,
   .not-only-description,
   .not-only-button {
@@ -606,31 +608,19 @@ h1 {
     max-width: 430px;
   }
 
+  .about-content-title {
+    padding-top: 5px;
+  }
+
   .about-image {
     margin-right: 0;
     padding-top: 60px;
   }
 
-  .not-only-btn {
-    text-align: center;
-  }
-
   .help-list {
-    width: 228px;
+    width: 30%;
     padding: 0;
     margin-bottom: 55px;
-  }
-
-  .not-only-content {
-    padding-top: 55px;
-  }
-
-  .not-only-description {
-    margin: 40px 0 46px 0;
-  }
-
-  .about-content-title {
-    padding-top: 5px;
   }
 }
 
@@ -645,7 +635,11 @@ h1 {
     display: none;
   }
 
-  .hamburger-line {
+  .jeniffer {
+    display: none;
+  }
+
+  .burger-line {
     content: "";
     display: inline-block;
     position: absolute;
@@ -654,7 +648,8 @@ h1 {
     top: calc(50% - 1.5px);
     left: 0;
   }
-  .hamburger {
+
+  .burger {
     display: inline-block;
     position: relative;
     width: 28px;
@@ -663,7 +658,7 @@ h1 {
     top: 17px;
   }
 
-  .hamburger::before {
+  .burger::before {
     content: "";
     display: inline-block;
     position: absolute;
@@ -672,7 +667,8 @@ h1 {
     top: 0;
     left: 0;
   }
-  .hamburger::after {
+
+  .burger::after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -695,21 +691,34 @@ h1 {
     margin: 39px 0 7px 0;
   }
 
-  .jeniffer {
-    display: none;
-  }
-
   .puppy {
     padding-left: 0;
   }
 
+  .button-rest-container,
+  .help-title {
+    padding: 43px 0 42px 0;
+  }
+}
+
+@media (max-width: 564px) {
+  .help-list {
+    width: 49%;
+    margin-bottom: 31px;
+  }
+
+  .help-list-image {
+    padding: 0px 47px 15px 55px;
+    max-width: 32%;
+  }
+
+  .help-list-description {
+    font-size: 15px;
+    margin-left: 6px;
+  }
 }
 
 @media all and (max-width: 462px) {
-  .help-list {
-    width: 155px;
-  }
-
   .not-only-description,
   .about-content-description {
     margin: 44px 10px;
@@ -726,9 +735,6 @@ h1 {
 
   .our-friends-container {
     flex-wrap: nowrap;
-  }
-
-  .our-friends-container {
     position: relative;
     margin: 0;
   }
@@ -743,19 +749,6 @@ h1 {
     position: absolute;
     bottom: -53px;
     right: 66px;
-  }
-
-  .help-list-description {
-    margin-left: 8px;
-  }
-
-  .help-list {
-    margin-bottom: 31px;
-  }
-
-  .help-list-image {
-    max-width: 42%;
-    padding: 0px 47px 15px 55px;
   }
 
   .button-rest-container {
@@ -832,11 +825,6 @@ h1 {
     margin: 40px 0;
   }
 
-  .button-rest-container,
-  .help-title {
-    padding: 43px 0 42px 0;
-  }
-
   .help-list-content {
     justify-content: center;
     padding-bottom: 10px;
@@ -866,7 +854,7 @@ h1 {
   }
 
   .donation-description {
-    margin: 0 21px 0 20px;
+    margin: 20px 21px 3px 20px;
     text-align: justify;
   }
 
@@ -890,43 +878,30 @@ h1 {
   .header-wrapper {
     margin-left: 0;
   }
-}
 
-@media all and (max-width: 330px) {
   .help-list-content {
     justify-content: flex-start;
   }
-  .help-list-description {
-    font-size: 15px;
-  }
+}
 
-  .help-list-image {
-    max-width: 32%;
-  }
+@media all and (max-width: 330px) {
   .ico-phone {
-    padding-left:  17px;
-}
-}
-
-@media all and (max-width: 310px) {
-  .help-list-content {
-    justify-content: center;
+    padding-left: 17px;
   }
 
-  .help-list-image {
-    padding: 0;
-  }
-  .card,
   .our-friends-button,
   .not-only-button {
     max-width: 100%;
   }
+}
 
-  .btn-adjust {
-    margin: 20px 25px 0 28px;
+@media all and (max-width: 310px) { 
+  .help-list-content{
+    flex-direction: column;
+    align-content: center;
   }
-
-  .layout-3-column > * {
-    font-size: 15px;
+  .help-list-image{
+    padding: 0;
+    width: 100%;
   }
 }
