@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Georgia";
-  src: url("./fonts/georgia-bold.woff2") format("woff2"),
+  src: url("fonts/georgia-bold.woff2") format("woff2"),
     url("./fonts/georgia-bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
@@ -9,8 +9,8 @@
 
 @font-face {
   font-family: "Arial";
-  src: url("./fonts/arial-regular.woff2") format("woff2"),
-    url("./fonts/arial-regular.woff") format("woff");
+  src: url("fonts/arial-regular.woff2") format("woff2"),
+    url("fonts/arial-regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -18,8 +18,8 @@
 
 @font-face {
   font-family: "Arial";
-  src: url("./fonts/arial-italic.woff2") format("woff2"),
-    url("./fonts/arial-italic.woff") format("woff");
+  src: url("fonts/arial-italic.woff2") format("woff2"),
+    url("fonts/arial-italic.woff") format("woff");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
@@ -27,8 +27,8 @@
 
 @font-face {
   font-family: "Georgia";
-  src: url("./fonts/georgia-regular.woff2") format("woff2"),
-    url("./fonts/georgia-regular.woff") format("woff");
+  src: url("fonts/georgia-regular.woff2") format("woff2"),
+    url("fonts/georgia-regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -40,11 +40,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   background: url(img/noise_transparent@2x.png),
     radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%);
+  overflow-x: hidden;
 }
 
 body,
@@ -127,6 +129,7 @@ h1 {
 
 .not-only-wrapper {
   display: flex;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   align-items: center;
 }
@@ -155,7 +158,7 @@ h1 {
 
 .puppy {
   padding-top: 85px;
-  max-width: 100%;
+  max-width: 74%;
 }
 
 .not-only-button {
@@ -242,7 +245,7 @@ h1 {
 .our-friends-container {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .br {
@@ -475,8 +478,6 @@ h1 {
 }
 
 .footer {
-  /* background: url(img/start-screen-gradient-background.png) no-repeat;
-  background-size: cover; */
   background: url(img/noise_transparent@2x.png),
     radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 70%);
 }
@@ -521,12 +522,43 @@ h1 {
   padding-right: 19px;
 }
 
-@media (max-width: 1200px) {
+@media all and (max-width: 1279px) {
+  .header-wrapper,
+  .not-only-title,
+  .not-only-description,
+  .not-only-button {
+    margin-left: 30px;
+  }
+  .nav-header {
+    margin-right: 30px;
+  }
 }
 
-@media (max-width: 768px) {
+@media all and (max-width: 1200px) {
+  .not-only-wrapper {
+    justify-content: center;
+  }
+}
+
+@media all and (max-width: 1056px) {
+  .not-only-wrapper {
+    flex-direction: column;
+  }
+
+  .not-only-title,
+  .not-only-description,
+  .not-only-button {
+    margin-left: 0;
+  }
+
+  .our-friends-container {
+    justify-content: space-evenly;
+    margin: 0 12px 0 9px;
+  }
+
   .donation-wrapper {
     flex-direction: column-reverse;
+    padding-top: 73px;
   }
 
   .donation-content {
@@ -535,22 +567,35 @@ h1 {
 
   .donation-image {
     max-width: 100%;
+    padding: 42px 0 0 35px;
   }
 
   .layout-3-column {
-    justify-content: center;
     padding-top: 30px;
+    justify-content: space-evenly;
   }
 
   .footer-puppy {
-    padding-top: 70px;
+    padding-top: 63px;
+    margin-left: 0;
+  }
+
+  .footer-column {
+    margin: 0 6px 0 18px;
+  }
+
+  .puppy {
+    padding: 100px 0 0 128px;
+    max-width: 75%;
   }
 
   .woody {
     display: none;
   }
+
   .jeniffer {
     margin: 0;
+    margin-left: 19px;
   }
 
   .about-wrapper {
@@ -563,10 +608,7 @@ h1 {
 
   .about-image {
     margin-right: 0;
-    max-width: 100%;
-  }
-  .not-only-wrapper {
-    flex-direction: column;
+    padding-top: 60px;
   }
 
   .not-only-btn {
@@ -574,18 +616,317 @@ h1 {
   }
 
   .help-list {
+    width: 228px;
     padding: 0;
-    padding-bottom: 70px;
+    margin-bottom: 55px;
+  }
+
+  .not-only-content {
+    padding-top: 55px;
+  }
+
+  .not-only-description {
+    margin: 40px 0 46px 0;
+  }
+
+  .about-content-title {
+    padding-top: 5px;
   }
 }
 
-@media (max-width: 320px) {
+@media all and (max-width: 768px) {
+  .layout-3-column {
+    justify-content: center;
+  }
+}
+
+@media all and (max-width: 767px) {
   .nav-menu {
     display: none;
   }
 
-  .footer-puppy {
-    max-width: 100%;
+  .hamburger-line {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    border: 1px solid #f1cdb3;
+    width: 100%;
+    top: calc(50% - 1.5px);
+    left: 0;
+  }
+  .hamburger {
+    display: inline-block;
+    position: relative;
+    width: 28px;
+    height: 22px;
+    left: 9px;
+    top: 17px;
+  }
+
+  .hamburger::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    border: 1px solid #f1cdb3;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  .hamburger::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    border: 1px solid #f1cdb3;
+    width: 100%;
+    top: calc(100% - 1.5px);
+    bottom: 0;
+    left: 0;
+  }
+}
+
+@media (max-width: 674px) {
+  .layout-3-column {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 663px) {
+  .title-navigation-second {
+    margin: 39px 0 7px 0;
+  }
+
+  .jeniffer {
+    display: none;
+  }
+
+  .puppy {
+    padding-left: 0;
+  }
+
+}
+
+@media all and (max-width: 462px) {
+  .help-list {
+    width: 155px;
+  }
+
+  .not-only-description,
+  .about-content-description {
+    margin: 44px 10px;
+  }
+
+  .not-only-title,
+  .about-content-title,
+  .donation-content-title,
+  .donation-type-bank,
+  .donation-card,
+  .donation-description {
+    margin-left: 10px;
+  }
+
+  .our-friends-container {
+    flex-wrap: nowrap;
+  }
+
+  .our-friends-container {
+    position: relative;
+    margin: 0;
+  }
+
+  .button-arrow-right {
+    position: absolute;
+    bottom: -51px;
+    left: 66px;
+  }
+
+  .button-arrow-left {
+    position: absolute;
+    bottom: -53px;
+    right: 66px;
+  }
+
+  .help-list-description {
+    margin-left: 8px;
+  }
+
+  .help-list {
+    margin-bottom: 31px;
+  }
+
+  .help-list-image {
+    max-width: 42%;
+    padding: 0px 47px 15px 55px;
+  }
+
+  .button-rest-container {
+    margin-top: 52px;
+  }
+
+  .our-friends-container {
+    flex-wrap: wrap;
+  }
+
+  .title {
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .not-only-title {
+    font-size: 25px;
+    letter-spacing: 0.06em;
+    padding: 0 45px 0 45px;
     margin-left: 0;
+  }
+
+  .not-only-description {
+    padding: 0 10px 0 10px;
+    margin: 39px 0 46px 0;
+  }
+
+  .not-only-content {
+    text-align: center;
+    padding-top: 56px;
+    margin-left: 0;
+  }
+
+  .puppy {
+    padding-top: 110px;
+    margin-left: 33px;
+    max-width: 82%;
+  }
+
+  .logo {
+    padding-left: 20px;
+  }
+
+  .about-wrapper {
+    padding: 38px 0 39px 0;
+  }
+
+  .about-content-description {
+    margin: 24px 24px;
+    text-align: justify;
+  }
+
+  .about-content-title {
+    margin: 0px 25px 0 25px;
+    max-width: 85%;
+  }
+
+  .about-image {
+    padding-top: 12px;
+    max-width: 82%;
+  }
+
+  .hhh,
+  .our-friends-container {
+    justify-content: center;
+  }
+
+  .card {
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+
+  .our-friends-title {
+    margin: 40px 0;
+  }
+
+  .button-rest-container,
+  .help-title {
+    padding: 43px 0 42px 0;
+  }
+
+  .help-list-content {
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+
+  .donation-wrapper {
+    padding: 42px 0 16px 0;
+  }
+
+  .donation-card {
+    font-size: 15px;
+    margin: 0 20px 0 20px;
+  }
+
+  .donation-type-bank {
+    letter-spacing: 0;
+    margin-left: 23px;
+  }
+
+  .donation-content > * {
+    margin-bottom: 23px;
+  }
+
+  .donation-image {
+    max-width: 83%;
+    padding: 40px 0 0 35px;
+  }
+
+  .donation-description {
+    margin: 0 21px 0 20px;
+    text-align: justify;
+  }
+
+  .footer-puppy {
+    max-width: 88%;
+    margin-left: 18px;
+    padding-top: 35px;
+  }
+
+  .footer-column {
+    max-width: 294px;
+    margin: 0;
+  }
+
+  .link-gmail {
+    margin-bottom: 7px;
+    justify-content: flex-start;
+  }
+
+  .donation-content-title,
+  .header-wrapper {
+    margin-left: 0;
+  }
+}
+
+@media all and (max-width: 330px) {
+  .help-list-content {
+    justify-content: flex-start;
+  }
+  .help-list-description {
+    font-size: 15px;
+  }
+
+  .help-list-image {
+    max-width: 32%;
+  }
+  .ico-phone {
+    padding-left:  17px;
+}
+}
+
+@media all and (max-width: 310px) {
+  .help-list-content {
+    justify-content: center;
+  }
+
+  .help-list-image {
+    padding: 0;
+  }
+  .card,
+  .our-friends-button,
+  .not-only-button {
+    max-width: 100%;
+  }
+
+  .btn-adjust {
+    margin: 20px 25px 0 28px;
+  }
+
+  .layout-3-column > * {
+    font-size: 15px;
   }
 }
