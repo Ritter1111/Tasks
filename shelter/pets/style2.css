@@ -116,7 +116,7 @@ body {
 }
 
 @media (max-width: 767px) {
-  .hamburger::before, .hamburger-line, .hamburger::after {
+  .burger::before, .burger-line, .burger::after {
     border: 1px solid #000000;
   }
 }
