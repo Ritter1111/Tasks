@@ -532,6 +532,24 @@ h1 {
 }
 
 @media all and (max-width: 1056px) {
+  .not-only-button:hover {
+    background: #f1cdb3;
+  }
+
+  .card:hover,
+  .card:hover .pet-button .our-friends-button,
+  .button-arrow:hover {
+    background: #fafafa;
+  }
+
+  .card:hover {
+    box-shadow: none;
+  }
+
+  .button-rest:hover {
+    background: #f1cdb3;
+  }
+
   .not-only-wrapper {
     flex-direction: column;
   }
@@ -736,12 +754,12 @@ h1 {
   .donation-content > * {
     margin-bottom: 23px;
   }
-  
+
   .donation-description {
     margin: 20px 21px 3px 20px;
     text-align: justify;
   }
-  
+
   .donation-content-title {
     margin-left: 20px;
   }
@@ -769,12 +787,12 @@ h1 {
   .about-content {
     max-width: 100%;
   }
-  
+
   .about-content-description {
     margin: 23px 24px;
     text-align: justify;
   }
-  
+
   .about-content-title {
     margin: 0px 25px 0 25px;
     max-width: 85%;
@@ -782,8 +800,7 @@ h1 {
 }
 
 @media all and (max-width: 462px) {
-  .not-only-description
-  {
+  .not-only-description {
     margin: 44px 10px;
   }
 
