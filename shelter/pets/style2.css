@@ -132,6 +132,12 @@ body {
   }
 }
 
+@media (max-width:462px){
+  .card {
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 320px) {
   .our-friends-title {
     margin: 0;
@@ -163,10 +169,6 @@ body {
 
   .footer-puppy {
     padding-top: 41px;
-  }
-
-  .card {
-    margin-bottom: 0;
   }
 
   .ico-email,
