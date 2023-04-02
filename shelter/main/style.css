@@ -698,14 +698,12 @@ h1 {
 }
 
 @media (max-width: 674px) {
-  .layout-3-column {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 674px) {
   .title-navigation-second {
     margin: 39px 0 7px 0;
+  }
+
+  .layout-3-column {
+    flex-direction: column;
   }
 
   .puppy {
@@ -716,43 +714,9 @@ h1 {
   .help-title {
     padding: 43px 0 42px 0;
   }
-}
-
-@media (max-width: 564px) {
-  .help-list {
-    width: 49%;
-    margin-bottom: 31px;
-  }
-
-  .help-list-image {
-    padding: 0px 47px 15px 55px;
-    max-width: 32%;
-  }
-
-  .help-list-description {
-    margin-left: 6px;
-  }
-
-  .about-wrapper {
-    padding: 38px 0 39px 0;
-  }
-
-  .about-content {
-    max-width: 100%;
-  }
 
   .donation-content {
     max-width: 100%;
-  }
-  
-  .about-content-description {
-    margin: 23px 24px;
-    text-align: justify;
-  }
-  
-  .about-content-title {
-    margin: 0px 25px 0 25px;
-    max-width: 85%;
   }
 
   .donation-wrapper {
@@ -780,6 +744,40 @@ h1 {
   
   .donation-content-title {
     margin-left: 20px;
+  }
+}
+
+@media (max-width: 564px) {
+  .help-list {
+    width: 49%;
+    margin-bottom: 31px;
+  }
+
+  .help-list-image {
+    padding: 0px 47px 15px 55px;
+    max-width: 32%;
+  }
+
+  .help-list-description {
+    margin-left: 6px;
+  }
+
+  .about-wrapper {
+    padding: 38px 0 39px 0;
+  }
+
+  .about-content {
+    max-width: 100%;
+  }
+  
+  .about-content-description {
+    margin: 23px 24px;
+    text-align: justify;
+  }
+  
+  .about-content-title {
+    margin: 0px 25px 0 25px;
+    max-width: 85%;
   }
 }
 
