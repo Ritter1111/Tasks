@@ -95,16 +95,25 @@ body {
 
 .our-friends-container {
   flex-wrap: wrap;
+  column-gap: 10px;
 }
 
+@media (max-width: 1079px) {
+  .our-friends-container {
+    justify-content: space-evenly;
+    margin: 0 12px 0 9px;
+  }
+}
 
 @media (max-width: 768px) {
   .our-friends-title {
     margin-bottom: 0;
   }
+
   .our-friends-container {
-    margin: 0 52px 0 52px;
+    margin: 0 59px 0 59px;
   }
+
   .scarlett,
   .freddie {
     display: none;
@@ -116,7 +125,9 @@ body {
 }
 
 @media (max-width: 767px) {
-  .burger::before, .burger-line, .burger::after {
+  .burger::before,
+  .burger-line,
+  .burger::after {
     border: 1px solid #000000;
   }
 }
@@ -127,30 +138,39 @@ body {
     margin-top: 43px;
     margin-bottom: 11px;
   }
+
   .sophia,
   .timmy,
   .charly {
     display: none;
   }
+
   .button-arrow {
     margin: 0 5px 0 5px;
   }
+
   .pagination {
     padding: 43px 0 44px 0;
   }
+
   .title-navigation-second {
     margin: 39px 0 7px 0;
   }
+
   .ico-city {
     padding: 33px 0 40px 0;
   }
+
   .footer-puppy {
     padding-top: 41px;
   }
+
   .card {
     margin-bottom: 0;
   }
-  .ico-email, .ico-phone {
-    padding-left:  17px;
-}
+
+  .ico-email,
+  .ico-phone {
+    padding-left: 17px;
+  }
 }
