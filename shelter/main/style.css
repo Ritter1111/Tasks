@@ -532,6 +532,24 @@ h1 {
 }
 
 @media all and (max-width: 1056px) {
+  .not-only-button:hover {
+    background: #f1cdb3;
+  }
+
+  .card:hover,
+  .card:hover .pet-button .our-friends-button,
+  .button-arrow:hover {
+    background: #fafafa;
+  }
+
+  .card:hover {
+    box-shadow: none;
+  }
+
+  .button-rest:hover {
+    background: #f1cdb3;
+  }
+
   .not-only-wrapper {
     flex-direction: column;
   }
@@ -542,6 +560,7 @@ h1 {
 
   .not-only-content {
     padding-top: 55px;
+    max-width: 61%;
   }
 
   .not-only-description {
@@ -560,11 +579,11 @@ h1 {
 
   .donation-wrapper {
     flex-direction: column-reverse;
-    padding-top: 73px;
+    padding-top: 71px;
   }
 
   .donation-content {
-    max-width: 380px;
+    max-width: 50%;
   }
 
   .donation-image {
@@ -617,6 +636,10 @@ h1 {
     padding-top: 60px;
   }
 
+  .about-content {
+    max-width: 56%;
+  }
+
   .help-list {
     width: 30%;
     padding: 0;
@@ -627,6 +650,18 @@ h1 {
 @media all and (max-width: 768px) {
   .layout-3-column {
     justify-content: center;
+  }
+
+  .not-only-title {
+    font-size: calc(25px + 37 * (100vw - 320px) / 880);
+  }
+
+  .title {
+    font-size: calc(25px + 20 * (100vw - 320px) / 880);
+  }
+
+  .help-list-description {
+    font-size: calc(15px + 10 * (100vw - 320px) / 880);
   }
 }
 
@@ -681,14 +716,12 @@ h1 {
 }
 
 @media (max-width: 674px) {
-  .layout-3-column {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 663px) {
   .title-navigation-second {
     margin: 39px 0 7px 0;
+  }
+
+  .layout-3-column {
+    flex-direction: column;
   }
 
   .puppy {
@@ -698,6 +731,37 @@ h1 {
   .button-rest-container,
   .help-title {
     padding: 43px 0 42px 0;
+  }
+
+  .donation-content {
+    max-width: 100%;
+  }
+
+  .donation-wrapper {
+    padding: 42px 0 16px 0;
+  }
+
+  .donation-card {
+    font-size: 15px;
+    margin: 0 20px 0 20px;
+  }
+
+  .donation-type-bank {
+    letter-spacing: 0;
+    margin-left: 23px;
+  }
+
+  .donation-content > * {
+    margin-bottom: 23px;
+  }
+
+  .donation-description {
+    margin: 20px 21px 3px 20px;
+    text-align: justify;
+  }
+
+  .donation-content-title {
+    margin-left: 20px;
   }
 }
 
@@ -713,24 +777,31 @@ h1 {
   }
 
   .help-list-description {
-    font-size: 15px;
     margin-left: 6px;
+  }
+
+  .about-wrapper {
+    padding: 38px 0 39px 0;
+  }
+
+  .about-content {
+    max-width: 100%;
+  }
+
+  .about-content-description {
+    margin: 23px 24px;
+    text-align: justify;
+  }
+
+  .about-content-title {
+    margin: 0px 25px 0 25px;
+    max-width: 85%;
   }
 }
 
 @media all and (max-width: 462px) {
-  .not-only-description,
-  .about-content-description {
+  .not-only-description {
     margin: 44px 10px;
-  }
-
-  .not-only-title,
-  .about-content-title,
-  .donation-content-title,
-  .donation-type-bank,
-  .donation-card,
-  .donation-description {
-    margin-left: 10px;
   }
 
   .our-friends-container {
@@ -760,12 +831,10 @@ h1 {
   }
 
   .title {
-    font-size: 25px;
     text-align: center;
   }
 
   .not-only-title {
-    font-size: 25px;
     letter-spacing: 0.06em;
     padding: 0 45px 0 45px;
     margin-left: 0;
@@ -780,6 +849,7 @@ h1 {
     text-align: center;
     padding-top: 56px;
     margin-left: 0;
+    max-width: 100%;
   }
 
   .puppy {
@@ -790,20 +860,6 @@ h1 {
 
   .logo {
     padding-left: 20px;
-  }
-
-  .about-wrapper {
-    padding: 38px 0 39px 0;
-  }
-
-  .about-content-description {
-    margin: 24px 24px;
-    text-align: justify;
-  }
-
-  .about-content-title {
-    margin: 0px 25px 0 25px;
-    max-width: 85%;
   }
 
   .about-image {
@@ -822,7 +878,7 @@ h1 {
   }
 
   .our-friends-title {
-    margin: 40px 0;
+    margin: 41px 0;
   }
 
   .help-list-content {
@@ -830,32 +886,9 @@ h1 {
     padding-bottom: 10px;
   }
 
-  .donation-wrapper {
-    padding: 42px 0 16px 0;
-  }
-
-  .donation-card {
-    font-size: 15px;
-    margin: 0 20px 0 20px;
-  }
-
-  .donation-type-bank {
-    letter-spacing: 0;
-    margin-left: 23px;
-  }
-
-  .donation-content > * {
-    margin-bottom: 23px;
-  }
-
   .donation-image {
     max-width: 83%;
-    padding: 40px 0 0 35px;
-  }
-
-  .donation-description {
-    margin: 20px 21px 3px 20px;
-    text-align: justify;
+    padding: 39px 0 0 35px;
   }
 
   .footer-puppy {
@@ -895,12 +928,12 @@ h1 {
   }
 }
 
-@media all and (max-width: 310px) { 
-  .help-list-content{
+@media all and (max-width: 310px) {
+  .help-list-content {
     flex-direction: column;
     align-content: center;
   }
-  .help-list-image{
+  .help-list-image {
     padding: 0;
     width: 100%;
   }
