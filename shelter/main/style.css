@@ -52,10 +52,17 @@ body {
 body,
 a,
 h2,
+h3,
 p,
 h1 {
   font-weight: 400;
   font-style: normal;
+}
+
+.body-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 
 .title {
@@ -520,6 +527,102 @@ h1 {
   padding-right: 19px;
 }
 
+/* Start popap*/
+
+.popap-our-friends {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(41, 41, 41, 0.6);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s ease-in-out;
+}
+
+.popap-our-friends.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popap-window {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-popap {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  left: 898px;
+  top: -48px;
+  border: 2px solid #f1cdb3;
+  border-radius: 100px;
+  background: none;
+  transition: 0.5s ease;
+}
+
+.close-popap:hover {
+  background: #fddcc4;
+  border: 2px solid #fddcc4;
+}
+
+.content-popap {
+  position: absolute;
+  background-color: #fafafa;
+  width: 900px;
+  height: 500px;
+  border-radius: 9px;
+  display: flex;
+}
+
+.description-popap {
+  width: 100%;
+  color: #000000;
+  letter-spacing: 0.06em;
+  margin: 50px 20px 88px 29px;
+}
+
+.popap-name-pets {
+  line-height: 130%;
+  margin-bottom: 10px;
+}
+
+.breed-dog {
+  font-family: "Georgia";
+  font-size: 20px;
+  line-height: 115%;
+}
+
+.desc-dog-popap {
+  font-family: "Georgia";
+  font-size: 15px;
+  line-height: 110%;
+  margin: 40px 0 40px 0;
+}
+
+.link-popap {
+  padding-left: 16px;
+}
+
+.link-popap > * {
+  list-style: none;
+  margin-bottom: 11px;
+}
+
+.link-characteristics::before {
+  content: "•";
+  color: #f1cdb3;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* End popap*/
+
 @media all and (max-width: 1279px) {
   .header-wrapper,
   .not-only-title,
@@ -668,7 +771,40 @@ h1 {
 
 @media all and (max-width: 767px) {
   .nav-menu {
-    display: none;
+    position: absolute;
+    height: 100vh;
+    right: -320px;
+    top: 0;
+    margin-top: 0;
+    display: block;
+    background: #292929;
+    text-align: center;
+    transition: 0.5s ease-out;
+  }
+
+  .header-link {
+    font-size: 32px;
+  }
+
+  .header-item:first-child {
+    padding-top: 248px;
+  }
+
+  .header-item {
+    margin-bottom: 40px;
+    margin-right: 36px;
+  }
+
+  .br {
+    width: 243px;
+  }
+
+  .header.open .burger-reverse {
+    transform: rotate(90deg);
+  }
+
+  .header.open .nav-menu {
+    transform: translateX(-100%);
   }
 
   .jeniffer {
@@ -692,6 +828,8 @@ h1 {
     height: 22px;
     left: 9px;
     top: 17px;
+    z-index: 2;
+    transition: 0.5s ease;
   }
 
   .burger::before {
