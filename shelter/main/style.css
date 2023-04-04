@@ -805,6 +805,7 @@ h1 {
 
   .header.open .nav-menu {
     transform: translateX(-100%);
+    box-shadow: 0 0 0 9999px rgba(41, 41, 41, 0.6);
   }
 
   .jeniffer {
