@@ -131,7 +131,14 @@ body {
   .burger::after {
     border: 1px solid #000000;
   }
-  
+
+  .nav-menu {
+    background: #f6f6f6;
+  }
+
+  .br {
+    width: 241px;
+}
 }
 
 @media (max-width: 674px) {

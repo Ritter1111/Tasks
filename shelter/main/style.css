@@ -557,8 +557,8 @@ h1 {
   position: absolute;
   width: 52px;
   height: 52px;
-  left: 898px;
-  top: -48px;
+  left: 887px;
+  top: -51px;
   border: 2px solid #f1cdb3;
   border-radius: 100px;
   background: none;
@@ -601,7 +601,8 @@ h1 {
   font-family: "Georgia";
   font-size: 15px;
   line-height: 110%;
-  margin: 40px 0 40px 0;
+  letter-spacing: 0.06em;
+  margin: 42px 0 40px 0;
 }
 
 .link-popap {
@@ -619,6 +620,14 @@ h1 {
   display: inline-block;
   width: 1em;
   margin-left: -1em;
+}
+
+.img-popap {
+  width: 143%;
+}
+
+.image-pets-popap {
+  width: 100%;
 }
 
 /* End popap*/
