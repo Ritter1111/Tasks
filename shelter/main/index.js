@@ -12,6 +12,7 @@ const burger = document.querySelector(".burger");
 const header = document.querySelector(".header");
 const linkItem = document.querySelectorAll(".header-item");
 const popap = document.querySelector("#popap-our-friends");
+const navMenu = document.querySelector(".nav-menu");
 const popapName = popap.querySelector(".popap-name-pets");
 const popapImg = popap.querySelector(".image-pets-popap");
 const popapBreed = popap.querySelector(".breed-dog");
@@ -22,9 +23,32 @@ const popapDiseases = popap.querySelector(".link-characteristics:nth-child(3)");
 const popapParasites = popap.querySelector(
   ".link-characteristics:nth-child(4)"
 );
+let Data = {};
 
 /*Popup*/
+function showPopap(petName) {
+    const petData = Data.find((pet) => pet.name === petName);
+  
+    popapName.textContent = petData.name;
+    popapImg.src = petData.img;
+    popapBreed.textContent = `${petData.type} - ${petData.breed}`;
+    popapDescription.textContent = petData.description;
+    popapAge.innerHTML ='<strong>Age: </strong>' + ` ${petData.age}`;
+    popapInoculations.innerHTML ='<strong>Inoculations: </strong>' + `${petData.inoculations.join(", ")}`;
+    popapDiseases.innerHTML ='<strong>Diseases: </strong>' + `${petData.diseases.join(", ")}`;
+    popapParasites.innerHTML ='<strong>Parasites: </strong>' +  `${petData.parasites.join(", ")}`;
+  }
 
+
+fetch("../pets.json")
+  .then((response) => response.json())
+  .then((data) => {
+   Data = data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+  
 card.forEach((div) => {
   div.addEventListener("click", (e) => {
     console.log(div.dataset);
@@ -49,30 +73,6 @@ content.addEventListener("click", (event) => {
   event.stopPropagation();
 });
 
-let Data = {};
-
-fetch("../pets.json")
-  .then((response) => response.json())
-  .then((data) => {
-   Data = data;
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
-function showPopap(petName) {
-  const petData = Data.find((pet) => pet.name === petName);
-
-  popapName.textContent = petData.name;
-  popapImg.src = petData.img;
-  popapBreed.textContent = `${petData.type} - ${petData.breed}`;
-  popapDescription.textContent = petData.description;
-  popapAge.innerHTML ='<strong>Age: </strong>' + ` ${petData.age}`;
-  popapInoculations.innerHTML ='<strong>Inoculations: </strong>' + `${petData.inoculations.join(", ")}`;
-  popapDiseases.innerHTML ='<strong>Diseases: </strong>' + `${petData.diseases.join(", ")}`;
-  popapParasites.innerHTML ='<strong>Parasites: </strong>' +  `${petData.parasites.join(", ")}`;
-}
-
 /* End Popup*/
 
 /*Burger*/
@@ -87,9 +87,9 @@ burger.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (event) => {
-  if (!event.target.closest(".burger") && !event.target.closest(".header")) {
+  if (header.classList.contains("open") && !event.target.closest(".burger") && !event.target.closest(".nav-menu")) {
     header.classList.remove("open");
-    document.documentElement.style.overflow = "auto";
+    document.documentElement.style.overflow = "";
   }
 });
 
