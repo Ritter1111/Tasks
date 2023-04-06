@@ -1,6 +1,6 @@
-console.log(
-  "Все пункты выполнены (100/100) \nВёрстка страницы Main соответствует макету при ширине экрана 1280px: +14 \n Вёрстка страницы Main соответствует макету при ширине экрана 768px: +14  \nВёрстка страницы Main соответствует макету при ширине экрана 320px: +14\n Вёрстка страницы Pets соответствует макету при ширине экрана 1280px: +6\n Вёрстка страницы Pets соответствует макету при ширине экрана 768px: +6 \n 6Вёрстка страницы Pets соответствует макету при ширине экрана 320px: +6 \nНи на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки, справа от отдельных блоков не появляются белые поля. Весь контент страницы при этом сохраняется: не обрезается и не удаляется: +20\n Верстка резиновая: при плавном изменении размера экрана от 1280px до 320px верстка подстраивается под этот размер, элементы верстки меняют свои размеры и расположение, не наезжают друг на друга, изображения могут менять размер, но сохраняют правильные пропорции (Примеры неправильной и правильной реализации): +8\n При ширине экрана меньше 768px на обеих страницах меню в хедере скрывается, появляется иконка бургер-меню: +4\n Верстка обеих страниц валидная: для проверки валидности вёрстки используйте сервис https://validator.w3.org/ : +8"
-);
+// console.log(
+//   "Все пункты выполнены (100/100) \nВёрстка страницы Main соответствует макету при ширине экрана 1280px: +14 \n Вёрстка страницы Main соответствует макету при ширине экрана 768px: +14  \nВёрстка страницы Main соответствует макету при ширине экрана 320px: +14\n Вёрстка страницы Pets соответствует макету при ширине экрана 1280px: +6\n Вёрстка страницы Pets соответствует макету при ширине экрана 768px: +6 \n 6Вёрстка страницы Pets соответствует макету при ширине экрана 320px: +6 \nНи на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки, справа от отдельных блоков не появляются белые поля. Весь контент страницы при этом сохраняется: не обрезается и не удаляется: +20\n Верстка резиновая: при плавном изменении размера экрана от 1280px до 320px верстка подстраивается под этот размер, элементы верстки меняют свои размеры и расположение, не наезжают друг на друга, изображения могут менять размер, но сохраняют правильные пропорции (Примеры неправильной и правильной реализации): +8\n При ширине экрана меньше 768px на обеих страницах меню в хедере скрывается, появляется иконка бургер-меню: +4\n Верстка обеих страниц валидная: для проверки валидности вёрстки используйте сервис https://validator.w3.org/ : +8"
+// );
 // const data = require("./pets.json");
 // import data from "./pets.json" assert {type: 'json'};
 // console.log(data);
@@ -18,40 +18,47 @@ const popapImg = popap.querySelector(".image-pets-popap");
 const popapBreed = popap.querySelector(".breed-dog");
 const popapDescription = popap.querySelector(".desc-dog-popap");
 const popapAge = popap.querySelector(".link-characteristics:nth-child(1)");
-const popapInoculations = popap.querySelector(".link-characteristics:nth-child(2)");
+const popapInoculations = popap.querySelector(
+  ".link-characteristics:nth-child(2)"
+);
 const popapDiseases = popap.querySelector(".link-characteristics:nth-child(3)");
 const popapParasites = popap.querySelector(
   ".link-characteristics:nth-child(4)"
 );
 let Data = {};
 
+
 /*Popup*/
 function showPopap(petName) {
-    const petData = Data.find((pet) => pet.name === petName);
-  
-    popapName.textContent = petData.name;
-    popapImg.src = petData.img;
-    popapBreed.textContent = `${petData.type} - ${petData.breed}`;
-    popapDescription.textContent = petData.description;
-    popapAge.innerHTML ='<strong>Age: </strong>' + ` ${petData.age}`;
-    popapInoculations.innerHTML ='<strong>Inoculations: </strong>' + `${petData.inoculations.join(", ")}`;
-    popapDiseases.innerHTML ='<strong>Diseases: </strong>' + `${petData.diseases.join(", ")}`;
-    popapParasites.innerHTML ='<strong>Parasites: </strong>' +  `${petData.parasites.join(", ")}`;
-  }
+  const petData = Data.find((pet) => pet.name === petName);
 
+  popapName.textContent = petData.name;
+  popapImg.src = petData.img;
+  popapBreed.textContent = `${petData.type} - ${petData.breed}`;
+  popapDescription.textContent = petData.description;
+  popapAge.innerHTML = "<strong>Age: </strong>" + ` ${petData.age}`;
+  popapInoculations.innerHTML =
+    "<strong>Inoculations: </strong>" + `${petData.inoculations.join(", ")}`;
+  popapDiseases.innerHTML =
+    "<strong>Diseases: </strong>" + `${petData.diseases.join(", ")}`;
+  popapParasites.innerHTML =
+    "<strong>Parasites: </strong>" + `${petData.parasites.join(", ")}`;
+}
 
 fetch("../pets.json")
   .then((response) => response.json())
   .then((data) => {
-   Data = data;
+    Data = data;
   })
   .catch((error) => {
     console.log(error);
   });
-  
+
+
+
 card.forEach((div) => {
   div.addEventListener("click", (e) => {
-    console.log(div.dataset);
+    console.log('svgshsh');
     showPopap(div.dataset.name);
     e.preventDefault();
     popup.classList.add("active");
@@ -87,7 +94,11 @@ burger.addEventListener("click", () => {
 });
 
 document.addEventListener("click", (event) => {
-  if (header.classList.contains("open") && !event.target.closest(".burger") && !event.target.closest(".nav-menu")) {
+  if (
+    header.classList.contains("open") &&
+    !event.target.closest(".burger") &&
+    !event.target.closest(".nav-menu")
+  ) {
     header.classList.remove("open");
     document.documentElement.style.overflow = "";
   }

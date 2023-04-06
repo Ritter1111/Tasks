@@ -12,7 +12,6 @@
       type="image/svg"
       href="../main/img/start-screen-puppy.png"
     />
-   
   </head>
   <body class="body-wrapper">
     <header class="header">
@@ -101,41 +100,110 @@
 
         <div class="layout-5-column our-friends-container">
           <div class="btn-adjust">
-            <button class="button-arrow button-arrow-right">
+            <button class="button-arrow button-arrow-right" id="btn-left">
               <img src="icons/Arrow.svg" alt="arrow" />
             </button>
           </div>
-          <div data-name="Katrine" class="card">
-            <img src="img/pets-katrine.png" alt="Kathrine" class="image-pets" />
-            <p class="name-pet">Katrine</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
+          <div class="slider-wrapper">
+            <div class="slider">
+              <div class="cards" id="left"></div>
+              <div class="cards" id="active"></div>
+              <div class="cards" id="right"></div>
             </div>
           </div>
-          <div data-name="Jennifer" class="card jeniffer">
-            <img
-              src="img/pets-jennifer.png"
-              alt="Jennifer"
-              class="image-pets"
-            />
-            <p class="name-pet">Jennifer</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
+
+          <!-- <div class="slider-wrapper">
+          <div class="slider">
+          <div class="cards" id="left">
+            <div data-name="Sophia" class="card sophia">
+              <img src="../pets/img/sohia.png" alt="Woody">
+              <p class="name-pet">Sophia</p>
+              <div class="pet-button">
+                <button class="our-friends-button btn">Learn more</button>
+              </div>
+            </div>
+            <div data-name="Timmy" class="card timmy">
+              <img src="../pets/img/pets-timmy.png" alt="Woody">
+              <p class="name-pet">Timmy</p>
+              <div class="pet-button">
+                <button class="our-friends-button btn">Learn more</button>
+              </div>
+            </div>
+            <div data-name="Charly" class="card charly">
+              <img src="../pets/img/pets-charly.png" alt="Woody">
+              <p class="name-pet">Charly</p>
+              <div class="pet-button">
+                <button class="our-friends-button btn">Learn more</button>
+              </div>
             </div>
           </div>
-          <div data-name="Woody" class="card woody">
-            <img src="img/pets-woody.png" alt="Woody" class="image-pets" />
-            <p class="name-pet">Woody</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
+
+          <div class="cards" id="active">
+            <div data-name="Katrine" class="card">
+              <img
+                src="img/pets-katrine.png"
+                alt="Kathrine"
+                class="image-pets"
+              />
+              <p class="name-pet">Katrine</p>
+              <div class="pet-button">
+                <button class="our-friends-button btn">Learn more</button>
+              </div>
+            </div>
+            <div data-name="Jennifer" class="card jeniffer">
+              <img
+                src="img/pets-jennifer.png"
+                alt="Jennifer"
+                class="image-pets"
+              />
+              <p class="name-pet">Jennifer</p>
+              <div class="pet-button">
+                <button class="our-friends-button btn">Learn more</button>
+              </div>
+            </div>
+            <div data-name="Woody" class="card woody">
+              <img src="img/pets-woody.png" alt="Woody" class="image-pets" />
+              <p class="name-pet">Woody</p>
+              <div class="pet-button">
+                <button class="our-friends-button btn">Learn more</button>
+              </div>
             </div>
           </div>
+
+
+          <div class="cards" id="right">
+            <div data-name="Scarlet" class="card scarlett">
+              <img src="../pets/img/pets-scarlet.png" alt="Woody">
+              <p class="name-pet">Scarlet</p>
+              <div class="pet-button">
+                <button class="our-friends-button btn">Learn more</button>
+              </div>
+            </div>
+            <div data-name="Freddie" class="card freddie">
+              <img src="../pets/img/pets-freddie.png" alt="Woody">
+              <p class="name-pet">Freddie</p>
+              <div class="pet-button">
+                <button class="our-friends-button btn">Learn more</button>
+              </div>
+            </div> 
+            <div data-name="Woody" class="card woody">
+              <img src="img/pets-woody.png" alt="Woody" class="image-pets" />
+              <p class="name-pet">Woody</p>
+              <div class="pet-button">
+                <button class="our-friends-button btn">Learn more</button>
+              </div>
+            </div> -->
+          <!-- </div>
+        </div>
+      </div> -->
+
           <div class="btn-adjust">
-            <button class="button-arrow button-arrow-left">
+            <button class="button-arrow button-arrow-left" id="btn-right">
               <img src="icons/Arrow.svg" alt="arrow" class="rotate-btn" />
             </button>
           </div>
         </div>
+
         <form action="../pets/index.html" class="button-rest-container">
           <button class="button-rest btn">Get to know the rest</button>
         </form>
@@ -325,7 +393,7 @@
       <div class="popap-window">
         <div class="content-popap">
           <button class="close-popap">
-            <img src="icons/close.svg" alt="">
+            <img src="icons/close.svg" alt="" />
           </button>
           <div class="img-popap">
             <img
@@ -344,15 +412,24 @@
               a storm in the house if she has all of her favorite toys.
             </p>
             <ul class="link-popap">
-              <li class="link-characteristics"><strong>Age:</strong> 2 months</li>
-              <li class="link-characteristics"><strong>Inoculations:</strong> none</li>
-              <li class="link-characteristics"><strong>Diseases:</strong> none</li>
-              <li class="link-characteristics"><strong>Parasites:</strong> none</li>
+              <li class="link-characteristics">
+                <strong>Age:</strong> 2 months
+              </li>
+              <li class="link-characteristics">
+                <strong>Inoculations:</strong> none
+              </li>
+              <li class="link-characteristics">
+                <strong>Diseases:</strong> none
+              </li>
+              <li class="link-characteristics">
+                <strong>Parasites:</strong> none
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
     <script src="index.js"></script>
+    <script src="slider.js"></script>
   </body>
 </html>

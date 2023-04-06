@@ -225,13 +225,41 @@ h1 {
   margin: 24px 0;
 }
 
-.image-pets {
-  /* max-width: 100%; */
+.cards, .slider{
+  display: flex;
+  margin: 0 5px;
 }
 
-/* .card, .wrapp, .foo {
-display: flex;
-} */
+.slider-wrapper{
+  width: 957px;
+  overflow: hidden;
+  margin: 0 20px;
+}
+
+.slider{
+  position: relative;
+    /* left: -957px; */
+}
+
+@keyframes move-right {
+  from {left: -640px;}
+  to {left: -1280px;}
+}
+
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 5s;
+}
+
+@keyframes move-left {
+  from {left: -640px;}
+  to {left: 0px;}
+}
+
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 5s;
+}
 
 /* Start our friends*/
 
@@ -274,6 +302,7 @@ display: flex;
   border-radius: 9px;
   cursor: pointer;
   transition: all 0.5s ease-out;
+  margin: 0 20px;
 }
 
 .card-wrapper {
