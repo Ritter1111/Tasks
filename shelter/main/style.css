@@ -224,26 +224,54 @@ h1 {
   color: #4c4c4c;
   margin: 24px 0;
 }
-
-.cards, .slider{
+/* 
+ .cards,
+.slider {
   display: flex;
   margin: 0 5px;
 }
 
-.slider-wrapper{
+.slider-wrapper {
   width: 957px;
   overflow: hidden;
   margin: 0 20px;
 }
 
-.slider{
+.slider {
   position: relative;
-    /* left: -957px; */
+  transform: translateX(-930px); 
+  transition: transform 0.5s ease;
+}
+
+.cards {
+  flex: 1;
+  width: 964px;
+  transition: transform 0.5s ease;
+
+}  */
+.cards,
+.slider {
+  display: flex;
+  margin: 0 5px;
+}
+
+.slider-wrapper {
+  width: 957px;
+  overflow: hidden;
+  margin: 0 20px;
+}
+
+.slider {
+  position: relative;
 }
 
 @keyframes move-right {
-  from {left: -640px;}
-  to {left: -1280px;}
+  from {
+    left: -640px;
+  }
+  to {
+    left: -1280px;
+  }
 }
 
 .transition-right {
@@ -252,14 +280,18 @@ h1 {
 }
 
 @keyframes move-left {
-  from {left: -640px;}
-  to {left: 0px;}
-}
+  from {
+    left: -640px;
+  }
+  to {
+    left: 0px;
+  }
+} 
 
 .transition-left {
   animation-name: move-left;
   animation-duration: 5s;
-}
+} 
 
 /* Start our friends*/
 
@@ -686,6 +718,27 @@ h1 {
 }
 
 @media all and (max-width: 1056px) {
+  .content-popap {
+    width: 630px;
+    height: 360px;
+  }
+
+  .description-popap {
+    margin: 8px 2px 21px 0px;
+  }
+
+  .desc-dog-popap {
+    margin: 10px 0 10px 0;
+  }
+
+  .image-pets-popap {
+    width: 96%;
+  }
+
+  .close-popap {
+    left: 627px;
+  }
+
   .not-only-button:hover {
     background: #f1cdb3;
   }
@@ -820,6 +873,31 @@ h1 {
 }
 
 @media all and (max-width: 767px) {
+  .content-popap {
+    width: 240px;
+    height: 341px;
+  }
+
+  .image-pets-popap {
+    display: none;
+  }
+
+  .close-popap {
+    left: 220px;
+  }
+
+  .link-popap > * {
+    margin-bottom: 6px;
+  }
+
+  .desc-dog-popap {
+    font-size: 13px;
+  }
+
+  .img-popap {
+    width: 0;
+  }
+
   .nav-menu {
     position: absolute;
     height: 100vh;

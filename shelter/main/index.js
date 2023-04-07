@@ -27,7 +27,6 @@ const popapParasites = popap.querySelector(
 );
 let Data = {};
 
-
 /*Popup*/
 function showPopap(petName) {
   const petData = Data.find((pet) => pet.name === petName);
@@ -54,11 +53,11 @@ fetch("../pets.json")
     console.log(error);
   });
 
-
-
 card.forEach((div) => {
   div.addEventListener("click", (e) => {
-    console.log('svgshsh');
+    const name = e.currentTarget.dataset.name;
+    console.log(name);
+    console.log("svgshsh");
     showPopap(div.dataset.name);
     e.preventDefault();
     popup.classList.add("active");
