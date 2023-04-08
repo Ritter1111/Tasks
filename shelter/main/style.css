@@ -224,8 +224,8 @@ h1 {
   color: #4c4c4c;
   margin: 24px 0;
 }
-/* 
- .cards,
+
+ /* .cards,
 .slider {
   display: flex;
   margin: 0 5px;
@@ -263,34 +263,35 @@ h1 {
 
 .slider {
   position: relative;
+  left: -920px;
 }
 
 @keyframes move-right {
   from {
-    left: -640px;
+    left: 0px;
   }
   to {
-    left: -1280px;
+    left: -920px;
   }
 }
 
 .transition-right {
   animation-name: move-right;
-  animation-duration: 5s;
+  animation-duration: 1s;
 }
 
 @keyframes move-left {
   from {
-    left: -640px;
+    left: -1840px;
   }
   to {
-    left: 0px;
+    left: -920px;
   }
 } 
 
 .transition-left {
   animation-name: move-left;
-  animation-duration: 5s;
+  animation-duration: 1s;
 } 
 
 /* Start our friends*/
@@ -718,6 +719,9 @@ h1 {
 }
 
 @media all and (max-width: 1056px) {
+  .slider-wrapper {
+    width: 640px;
+  }
   .content-popap {
     width: 630px;
     height: 360px;
@@ -855,6 +859,12 @@ h1 {
 }
 
 @media all and (max-width: 768px) {
+  .cards {
+    gap: 18px;
+  }
+  .slider-wrapper {
+    width: 297px;
+}
   .layout-3-column {
     justify-content: center;
   }

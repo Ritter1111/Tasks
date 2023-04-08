@@ -4,6 +4,7 @@
 // const data = require("./pets.json");
 // import data from "./pets.json" assert {type: 'json'};
 // console.log(data);
+const cards = document.querySelectorAll(".cards");
 const card = document.querySelectorAll(".card");
 const popup = document.querySelector(".popap-our-friends");
 const content = document.querySelector(".content-popap");
@@ -53,8 +54,9 @@ fetch("../pets.json")
     console.log(error);
   });
 
-card.forEach((div) => {
+cards.forEach((div) => {
   div.addEventListener("click", (e) => {
+    if(e.target.classList.contains('card')){
     const name = e.currentTarget.dataset.name;
     console.log(name);
     console.log("svgshsh");
@@ -62,6 +64,7 @@ card.forEach((div) => {
     e.preventDefault();
     popup.classList.add("active");
     document.documentElement.style.overflow = "hidden";
+    }
   });
 });
 

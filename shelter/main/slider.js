@@ -16,13 +16,31 @@
       console.log(error);
     });
 
+  // let count = 0;
+  // if(window.innerWidth > 1060) {
+  //     count = 3;
+  // }else if(window.innerWidth <= 1060){
+  //     count = 2;
+  // }
+
   let sliderData = [];
 
-  function randomAnimals(count, exclude) {
-    let rand = Math.floor(Math.random() * animalData.length);
-    let dataAnimal = [animalData[rand]];
-    dataAnimal.push(...animalData.filter((d) => !exclude.includes(d.name)));
-    return dataAnimal;
+  function randomAnimals(animals, count, exclude) {
+    let dataAnimal = animals
+      .filter((d) => !exclude.includes(d.name))
+      .sort(() => 0.5 - Math.random());
+
+    if (dataAnimal.length < count) {
+      return [
+        ...dataAnimal,
+        ...randomAnimals(animals, count - dataAnimal.length, [
+          dataAnimal[dataAnimal.length - 1].name,
+          dataAnimal[dataAnimal.length - 2].name,
+        ]),
+      ].slice(0, count);
+    } else {
+      return dataAnimal.slice(0, count);
+    }
   }
 
   function initSlider(direction) {
@@ -33,7 +51,7 @@
         sliderData[4].name,
         sliderData[5].name,
       ];
-      sliderData.push(...randomAnimals(3, excludedNames));
+      sliderData.push(...randomAnimals(animalData, 3, excludedNames));
     }
 
     if (direction === "left" && sliderData.length > 5) {
@@ -42,12 +60,13 @@
         sliderData[1].name,
         sliderData[2].name,
       ];
-      sliderData.unshift(...randomAnimals(3, excludedNames));
+
+      sliderData.unshift(...randomAnimals(animalData, 3, excludedNames));
       sliderData.splice(-3, 3);
     }
 
     if (!direction) {
-      sliderData = randomAnimals(9, []);
+      sliderData = randomAnimals(animalData, 9, []);
     }
 
     let active2 = document.createElement("div");
@@ -59,18 +78,11 @@
 
     const active = document.querySelector("#active");
     active.replaceWith(active2);
-
-    // if (direction === "right") {
-    //   slider.style.transform = "translateX(-930px)";
-    // }
-
-    // if (direction === "left") {
-    //   slider.style.transform = "translateX(0px)";
-    // }
   }
 
   function generateCard(name, imgUrl) {
     const card = document.createElement("div");
+    card.onclick = `showPopup('${name}')`
     card.className = "card";
     const img1 = document.createElement("img");
     img1.src = imgUrl;
@@ -88,32 +100,43 @@
     btnText.innerText = "Learn more";
     div.appendChild(btnText);
 
+    card.addEventListener("click", (e) => {
+      if (e.target.classList.contains("card")) {
+        const name = card.dataset.name;
+        console.log(name);
+        showPopap(card.dataset.name);
+        e.preventDefault();
+        popup.classList.add("active");
+        document.documentElement.style.overflow = "hidden";
+      }
+    });
+
     return card;
   }
 
   const onlyLeft = () => {
-    slider.classList.add('transition-left');
+    slider.classList.add("transition-left");
     initSlider("left");
   };
 
   const onlyRight = () => {
-    slider.classList.add('transition-right');
+    slider.classList.add("transition-right");
     initSlider("right");
   };
 
   btnLeft.addEventListener("click", onlyLeft);
   btnRight.addEventListener("click", onlyRight);
+
+  slider.addEventListener("animationend", (animationEvent) => {
+    if (animationEvent.animationName === "move-left") {
+      slider.classList.remove("transition-left");
+      //   const items = document.querySelector("#left").innerHTML;
+
+      //   document.querySelector("#active").innerHTML = items;
+    } else {
+      slider.classList.remove("transition-right");
+    }
+    btnLeft.addEventListener("click", onlyLeft);
+    btnRight.addEventListener("click", onlyRight);
+  });
 })();
-
-// slider.addEventListener("animationend", (animationEvent) => {
-//   if (animationEvent.animationName === "move-left") {
-// slider.classList.remove("transition-left");
-// const items = document.querySelector("#left").innerHTML;
-
-// document.querySelector("#active").innerHTML = items;
-//   } else {
-// slider.classList.remove("transition-right");
-//   }
-//   btnLeft.addEventListener("click", onlyLeft);
-//   btnRight.addEventListener("click", onlyRight);
-// });
