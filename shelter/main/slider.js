@@ -3,7 +3,7 @@
   const btnLeft = document.querySelector("#btn-left");
   const slider = document.querySelector(".slider");
   let animalData = [];
-  
+
   /* Carousel*/
   window.onload = function () {};
 
@@ -17,12 +17,12 @@
       console.log(error);
     });
 
-  // let count = 0;
-  // if(window.innerWidth > 1060) {
-  //     count = 3;
-  // }else if(window.innerWidth <= 1060){
-  //     count = 2;
-  // }
+  let count1 = 0;
+  if(window.innerWidth > 1060) {
+      count1 = 3;   
+  }else if(window.innerWidth <= 1060){
+      count1 = 2;
+  }
 
   let sliderData = [];
 

@@ -228,7 +228,7 @@ h1 {
 .cards,
 .slider {
   display: flex;
-  margin: 0 5px;
+  /* margin: 0 5px; */
 }
 
 .slider-wrapper {
@@ -241,7 +241,6 @@ h1 {
   position: relative;
   left: -920px;
 }
-
 @keyframes move-right {
   from {
     left: 0px;
@@ -263,12 +262,12 @@ h1 {
   to {
     left: -920px;
   }
-} 
+}
 
 .transition-left {
   animation-name: move-left;
   animation-duration: 1s;
-} 
+}
 
 /* Start our friends*/
 
@@ -694,7 +693,29 @@ h1 {
   }
 }
 
-@media all and (max-width: 1056px) {
+@media all and (max-width: 1069px) {
+  @keyframes move-right {
+    from {
+      left: 0px;
+    }
+    to {
+      left: -613px;
+    }
+  }
+
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 1s;
+  }
+
+  @keyframes move-left {
+    from {
+      left: -1226px;
+    }
+    to {
+      left: -613px;
+    }
+  }
   .slider-wrapper {
     width: 640px;
   }
@@ -702,9 +723,12 @@ h1 {
     width: 630px;
     height: 360px;
   }
+  .link-popap > * {
+    margin-bottom: 1px;
+  }
 
   .description-popap {
-    margin: 8px 2px 21px 0px;
+    margin: 8px 7px 21px 0px;
   }
 
   .desc-dog-popap {
@@ -834,13 +858,18 @@ h1 {
   }
 }
 
-@media all and (max-width: 768px) {
-  .cards {
-    gap: 18px;
+@media (max-width: 777px) {
+  .cards,
+  .slider {
+    display: flex;
+    margin: 0 -10px;
   }
-  .slider-wrapper {
-    width: 297px;
+  .card {
+    margin: 0 17px;
+  }
 }
+
+@media all and (max-width: 768px) {
   .layout-3-column {
     justify-content: center;
   }
@@ -859,31 +888,6 @@ h1 {
 }
 
 @media all and (max-width: 767px) {
-  .content-popap {
-    width: 240px;
-    height: 341px;
-  }
-
-  .image-pets-popap {
-    display: none;
-  }
-
-  .close-popap {
-    left: 220px;
-  }
-
-  .link-popap > * {
-    margin-bottom: 6px;
-  }
-
-  .desc-dog-popap {
-    font-size: 13px;
-  }
-
-  .img-popap {
-    width: 0;
-  }
-
   .nav-menu {
     position: absolute;
     height: 100vh;
@@ -966,6 +970,65 @@ h1 {
     top: calc(100% - 1.5px);
     bottom: 0;
     left: 0;
+  }
+}
+
+@media (max-width: 729px) {
+  @keyframes move-right {
+    from {
+      left: 0px;
+    }
+    to {
+      left: -306px;
+    }
+  }
+
+  @keyframes move-left {
+    from {
+      left: -630px;
+    }
+    to {
+      left: -306px;
+    }
+  }
+
+  .slider-wrapper {
+    width: 334px;
+  }
+
+  .description-popap {
+    margin: 0px 10px 21px 10px;
+  }
+
+  .cards,
+  .slider {
+    margin: 0 0px;
+    gap: 6px;
+  }
+
+  .content-popap {
+    width: 240px;
+    height: 370px;
+}
+
+  .image-pets-popap {
+    display: none;
+  }
+
+  .close-popap {
+    left: 220px;
+  }
+
+  .link-popap > * {
+    margin-bottom: 6px;
+  }
+
+  .desc-dog-popap {
+    font-size: 13px;
+  }
+
+  .img-popap {
+    width: 0;
   }
 }
 
@@ -1054,6 +1117,10 @@ h1 {
 }
 
 @media all and (max-width: 462px) {
+  .cards {
+    gap: 45px;
+  }
+
   .not-only-description {
     margin: 44px 10px;
   }
@@ -1172,6 +1239,10 @@ h1 {
 }
 
 @media all and (max-width: 330px) {
+  .cards {
+    gap: 37px;
+  }
+
   .ico-phone {
     padding-left: 17px;
   }
