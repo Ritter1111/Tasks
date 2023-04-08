@@ -3,6 +3,7 @@
   const btnLeft = document.querySelector("#btn-left");
   const slider = document.querySelector(".slider");
   let animalData = [];
+  
   /* Carousel*/
   window.onload = function () {};
 
@@ -82,10 +83,21 @@
 
   function generateCard(name, imgUrl) {
     const card = document.createElement("div");
-    card.onclick = `showPopup('${name}')`
+    card.addEventListener("click", (e) => {
+      //   if (e.target.classList.contains("card")) {
+      const name = card.dataset.name;
+      console.log(name);
+      showPopap(card.dataset.name);
+      e.preventDefault();
+      popup.classList.add("active");
+      document.documentElement.style.overflow = "hidden";
+      // }
+    });
     card.className = "card";
     const img1 = document.createElement("img");
     img1.src = imgUrl;
+    img1.width = "270";
+    img1.height = "270";
     card.appendChild(img1);
     const paragraph = document.createElement("p");
     paragraph.innerText = name;
@@ -100,28 +112,21 @@
     btnText.innerText = "Learn more";
     div.appendChild(btnText);
 
-    card.addEventListener("click", (e) => {
-      if (e.target.classList.contains("card")) {
-        const name = card.dataset.name;
-        console.log(name);
-        showPopap(card.dataset.name);
-        e.preventDefault();
-        popup.classList.add("active");
-        document.documentElement.style.overflow = "hidden";
-      }
-    });
-
     return card;
   }
 
   const onlyLeft = () => {
     slider.classList.add("transition-left");
     initSlider("left");
+    btnLeft.removeEventListener("click", onlyLeft);
+    btnRight.removeEventListener("click", onlyRight);
   };
 
   const onlyRight = () => {
     slider.classList.add("transition-right");
     initSlider("right");
+    btnLeft.removeEventListener("click", onlyLeft);
+    btnRight.removeEventListener("click", onlyRight);
   };
 
   btnLeft.addEventListener("click", onlyLeft);
@@ -130,9 +135,6 @@
   slider.addEventListener("animationend", (animationEvent) => {
     if (animationEvent.animationName === "move-left") {
       slider.classList.remove("transition-left");
-      //   const items = document.querySelector("#left").innerHTML;
-
-      //   document.querySelector("#active").innerHTML = items;
     } else {
       slider.classList.remove("transition-right");
     }

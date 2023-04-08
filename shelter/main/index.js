@@ -54,7 +54,18 @@ fetch("../pets.json")
     console.log(error);
   });
 
-cards.forEach((div) => {
+//   card.addEventListener("click", (e) => {
+//     if (e.target.classList.contains("card")) {
+//       const name = card.dataset.name;
+//       console.log(name);
+//       showPopap(card.dataset.name);
+//       e.preventDefault();
+//       popup.classList.add("active");
+//       document.documentElement.style.overflow = "hidden";
+//     }
+//   });
+
+card.forEach((div) => {
   div.addEventListener("click", (e) => {
     if(e.target.classList.contains('card')){
     const name = e.currentTarget.dataset.name;

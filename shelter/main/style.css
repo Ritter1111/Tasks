@@ -225,30 +225,6 @@ h1 {
   margin: 24px 0;
 }
 
- /* .cards,
-.slider {
-  display: flex;
-  margin: 0 5px;
-}
-
-.slider-wrapper {
-  width: 957px;
-  overflow: hidden;
-  margin: 0 20px;
-}
-
-.slider {
-  position: relative;
-  transform: translateX(-930px); 
-  transition: transform 0.5s ease;
-}
-
-.cards {
-  flex: 1;
-  width: 964px;
-  transition: transform 0.5s ease;
-
-}  */
 .cards,
 .slider {
   display: flex;
@@ -338,13 +314,13 @@ h1 {
   margin: 0 20px;
 }
 
-.card-wrapper {
+/* .card-wrapper {
   display: flex;
   grid-gap: 46px;
   width: 900px;
   margin: 0 20px;
   overflow: hidden;
-}
+} */
 
 .card:hover .pet-button .our-friends-button {
   background-color: #fddcc4;
