@@ -61,7 +61,11 @@
           </h1>
         </div>
         <div class="layout-5-column our-friends-container">
-          <div data-name="Katrine" class="card">
+
+              <div class="cards" id="active"></div>
+        
+         
+          <!-- <div data-name="Katrine" class="card">
             <img src="img/pets-katrine.png" alt="Kathrine">
             <p class="name-pet">Katrine</p>
             <div class="pet-button">
@@ -117,20 +121,20 @@
             <div class="pet-button">
               <button class="our-friends-button btn">Learn more</button>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="pagination">
-          <button class="button-arrow btn-no-interactive" disabled>
+          <button class="button-arrow btn-no-interactive" id="btnStart" disabled>
             <span class="arrow">&lt;&lt;</span>
           </button>
-          <button class="button-arrow btn-no-interactive" disabled>
+          <button class="button-arrow btn-no-interactive" id="btnPrevious" disabled>
             <span class="arrow">&lt;</span>
           </button>
-          <button class="button-arrow colored">1</button>
-          <button class="button-arrow rotate">
+          <button class="button-arrow colored" id="numberPage">1</button>
+          <button class="button-arrow rotate " id="btnNext">
             <span class="arrow">&gt;</span>
           </button>
-          <button class="button-arrow rotate">
+          <button class="button-arrow rotate" id="btnEnd">
             <span class="arrow">&gt;&gt;</span>
           </button>
         </div>
@@ -231,5 +235,6 @@
       </div>
     </div>
     <script src="../main/index.js"></script>
+    <script src="pagination.js"></script>
   </body>
 </html>

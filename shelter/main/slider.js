@@ -17,12 +17,17 @@
       console.log(error);
     });
 
-  let count1 = 0;
-  if(window.innerWidth > 1060) {
-      count1 = 3;   
-  }else if(window.innerWidth <= 1060){
-      count1 = 2;
-  }
+  // const count2 = 2;
+  // const count3 = 1;
+
+  // let count = 0;
+  // if(window.innerWidth > 1060) {
+  //     count = 3;
+  // }else if(window.innerWidth <= 1060 && window.innerWidth > 720){
+  //     count = count2;
+  // }else if(window.innerWidth <= 720){
+  //     count = count3;
+  // }
 
   let sliderData = [];
 

@@ -52,6 +52,12 @@ body {
   background: #ffffff;
 }
 
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .button-arrow {
   margin: 0 10px 0 10px;
   cursor: pointer;
@@ -93,6 +99,10 @@ body {
   letter-spacing: 0.06em;
 }
 
+.description-popap {
+  margin: 9px 20px 88px 29px;
+}
+
 .our-friends-container {
   flex-wrap: wrap;
   column-gap: 10px;
@@ -106,10 +116,9 @@ body {
 }
 
 @media (max-width: 1070px) {
-  .popap-name-pets{
+  .popap-name-pets {
     margin-top: 0;
   }
-  
 }
 
 @media (max-width: 768px) {
@@ -129,7 +138,6 @@ body {
   .pagination {
     padding: 43px 0 76px 0;
   }
-  
 }
 
 @media (max-width: 767px) {
@@ -145,7 +153,7 @@ body {
 
   .br {
     width: 241px;
-}
+  }
 }
 
 @media (max-width: 674px) {
