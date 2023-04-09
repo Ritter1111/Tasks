@@ -17,17 +17,21 @@
       console.log(error);
     });
 
-  // const count2 = 2;
-  // const count3 = 1;
+  const count2 = 2;
+  const count3 = 1;
 
-  // let count = 0;
-  // if(window.innerWidth > 1060) {
-  //     count = 3;
-  // }else if(window.innerWidth <= 1060 && window.innerWidth > 720){
-  //     count = count2;
-  // }else if(window.innerWidth <= 720){
-  //     count = count3;
-  // }
+  let count = 0;
+  function resizeWindow() {
+    if(window.innerWidth > 1060) {
+      count = 3;
+  }else if(window.innerWidth <= 1060 && window.innerWidth > 720){
+      count = count2;
+  }else if(window.innerWidth <= 720){
+      count = count3;
+  }
+  }
+  window.addEventListener('resize', resizeWindow)
+
 
   let sliderData = [];
 
@@ -89,14 +93,12 @@
   function generateCard(name, imgUrl) {
     const card = document.createElement("div");
     card.addEventListener("click", (e) => {
-      //   if (e.target.classList.contains("card")) {
       const name = card.dataset.name;
       console.log(name);
       showPopap(card.dataset.name);
       e.preventDefault();
       popup.classList.add("active");
       document.documentElement.style.overflow = "hidden";
-      // }
     });
     card.className = "card";
     const img1 = document.createElement("img");
