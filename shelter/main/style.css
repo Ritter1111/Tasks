@@ -228,7 +228,6 @@ h1 {
 .cards,
 .slider {
   display: flex;
-  /* margin: 0 5px; */
 }
 
 .slider-wrapper {
@@ -312,14 +311,6 @@ h1 {
   transition: all 0.5s ease-out;
   margin: 0 20px;
 }
-
-/* .card-wrapper {
-  display: flex;
-  grid-gap: 46px;
-  width: 900px;
-  margin: 0 20px;
-  overflow: hidden;
-} */
 
 .card:hover .pet-button .our-friends-button {
   background-color: #fddcc4;
@@ -1005,7 +996,7 @@ h1 {
   }
 
   .description-popap {
-    margin: 0px 10px 21px 10px;
+    margin: 0;
   }
 
   .cards,
@@ -1016,7 +1007,7 @@ h1 {
 
   .content-popap {
     width: 240px;
-    height: 370px;
+    height: 341px;
 }
 
   .image-pets-popap {
