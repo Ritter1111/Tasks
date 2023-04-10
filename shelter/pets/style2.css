@@ -113,12 +113,12 @@ body {
     background: #fafafa;
     border: 2px solid #f1cdb3;
   }
-
 }
 
 @media (max-width: 1070px) {
   .popap-name-pets {
     margin-top: 0;
+    font-size: 35px;
   }
 }
 
@@ -170,6 +170,15 @@ body {
 @media (max-width: 674px) {
   .title-navigation-second {
     margin: 39px 0 7px 0;
+  }
+
+  .description-popap {
+    margin: 2px 6px 0px 11px;
+    text-align: center;
+  }
+  
+  .link-popap {
+    text-align: start;
   }
 }
 

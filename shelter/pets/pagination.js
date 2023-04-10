@@ -15,6 +15,7 @@
     .then((response) => response.json())
     .then((data) => {
       animalData = data;
+
       initSlider();
     })
     .catch((error) => {
@@ -29,9 +30,6 @@
     }
     previousWidth = widthPage();
     const array = [];
-    for (let i = 0; i < arr / widthPage(); i++) {
-      array.push(randomAnimals(animalData, widthPage(), []));
-    }
     pagesData = array;
     initSlider();
   });
@@ -39,9 +37,9 @@
   function widthPage() {
     widthWind = document.body.clientWidth;
     let page = 0;
-    if (widthWind > 1060) {
+    if (widthWind > 1080) {
       page = 8;
-    } else if (widthWind <= 1060 && widthWind > 634) {
+    } else if (widthWind <= 1080 && widthWind > 634) {
       page = 6;
     } else if (widthWind <= 634) {
       page = 3;
@@ -210,6 +208,7 @@
   });
 
   btnEnd.addEventListener("click", () => {
+    console.log(pagesData)
     numPage = pagesData.length;
     initSlider("right", numPage);
   });
