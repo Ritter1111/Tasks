@@ -1,3 +1,4 @@
+console.log('Реализация burger menu на обеих страницах: +26 \n ')
 (function () {
   let btnStart = document.querySelector("#btnStart");
   let btnPrev = document.querySelector("#btnPrevious");
@@ -7,8 +8,8 @@
   const arr = 48;
   let animalData = [];
   let numPage = 1;
-  let petsData = [];
   let widthWind;
+  let pagesData = [];
 
   window.onload = function () {};
   fetch("../pets.json")
@@ -23,28 +24,27 @@
 
   widthWind = document.body.clientWidth;
   let previousWidth = widthPage();
-  window.addEventListener('resize', (e) => {
-    if(previousWidth === widthPage()){
-        return
+  window.addEventListener("resize", (e) => {
+    if (previousWidth === widthPage()) {
+      return;
     }
     previousWidth = widthPage();
-    // console.log(e)
     const array = [];
-    for (let i = 0; i < arr/widthPage(); i++) {
-        array.push(randomAnimals(animalData, widthPage(), []))
-      }
+    for (let i = 0; i < arr / widthPage(); i++) {
+      array.push(randomAnimals(animalData, widthPage(), []));
+    }
     pagesData = array;
-   initSlider()
-  })
+    initSlider();
+  });
 
   function widthPage() {
     widthWind = document.body.clientWidth;
     let page = 0;
     if (widthWind > 1060) {
       page = 8;
-    } else if (widthWind <= 1060 && widthWind > 720) {
+    } else if (widthWind <= 1060 && widthWind > 634) {
       page = 6;
-    } else if (widthWind <= 720) {
+    } else if (widthWind <= 634) {
       page = 3;
     }
     return page;
@@ -52,52 +52,30 @@
 
   function randomAnimals(animals, count, exclude) {
     let dataAnimal = animals.sort(() => 0.5 - Math.random());
-
-    // if (dataAnimal.length < count) {
-    //   return [
-    //     ...dataAnimal,
-    //     ...randomAnimals(animals, count - dataAnimal.length, [
-    //       dataAnimal[dataAnimal.length - 1].name,
-    //       dataAnimal[dataAnimal.length - 2].name,
-    //     ]),
-    //   ].slice(0, count);
-    // } else {
-    //   return dataAnimal.slice(0, count);
-    // }
-      return dataAnimal.slice(0, count);
-
+    return dataAnimal.slice(0, count);
   }
 
-  let pagesData = [];
-
   function initSlider(direction, page = 1) {
-    // if (direction === "right" ) {
-    // //   sliderData.splice(0, 8);
-    // //   sliderData.push(...randomAnimals(animalData, 8));
-    // }
-
-    // if (direction === "left" && sliderData.length > 5) {
-
-    // //   sliderData.unshift(...randomAnimals(animalData, 8));
-    // //   sliderData.splice(0, 8);
-    // }
-
     if (!direction) {
-      for (let i = 0; i < arr/widthPage(); i++) {
-        pagesData.push(randomAnimals(animalData, widthPage(), []))
+      for (let i = 0; i < arr / widthPage(); i++) {
+        pagesData.push(randomAnimals(animalData, widthPage(), []));
       }
-      //   sliderData = randomAnimals(animalData, , []);
     }
 
     let active2 = document.createElement("div");
     active2.id = "active";
     active2.className = "cards";
     active2.append(
-      ...pagesData[page - 1].map((animal) => generateCard(animal.name, animal.img))
+      ...pagesData[page - 1].map((animal) =>
+        generateCard(animal.name, animal.img)
+      )
     );
 
     const active = document.querySelector("#active");
     active.replaceWith(active2);
+
+    numPage = page;
+    updatePagination();
   }
 
   function generateCard(name, imgUrl) {
@@ -133,7 +111,6 @@
   }
 
   function updatePagination() {
-    console.log(widthWind);
     numberPage.innerHTML = numPage;
     if (numPage === 1) {
       btnStart.classList.add("btn-no-interactive");
@@ -147,7 +124,7 @@
     }
 
     if (widthWind >= 768) {
-      if (numPage === 6) {
+      if (numPage >= 6) {
         btnStart.classList.remove("btn-no-interactive");
         btnPrev.classList.remove("btn-no-interactive");
         btnNext.classList.add("btn-no-interactive");
@@ -168,7 +145,7 @@
         btnEnd.disabled = false;
       }
     } else if (widthWind >= 664) {
-      if (numPage === 8) {
+      if (numPage >= 8) {
         btnStart.classList.remove("btn-no-interactive");
         btnPrev.classList.remove("btn-no-interactive");
         btnNext.classList.add("btn-no-interactive");
@@ -188,8 +165,8 @@
         btnNext.disabled = false;
         btnEnd.disabled = false;
       }
-    } else if (widthWind >= 320) {
-      if (numPage === 16) {
+    } else if (widthWind < 664) {
+      if (numPage >= 16) {
         btnStart.classList.remove("btn-no-interactive");
         btnPrev.classList.remove("btn-no-interactive");
         btnNext.classList.add("btn-no-interactive");
@@ -211,7 +188,7 @@
       }
     }
 
-    if (numPage === animalData.length) {
+    if (numPage === pagesData.length) {
       btnNext.classList.add("btn-no-interactive");
       btnEnd.classList.add("btn-no-interactive");
       btnStart.classList.remove("btn-no-interactive");
@@ -225,61 +202,21 @@
 
   btnNext.addEventListener("click", () => {
     numPage++;
-    updatePagination();
     initSlider("right", numPage);
   });
 
   btnPrev.addEventListener("click", () => {
     numPage--;
-    updatePagination();
     initSlider("right", numPage);
   });
 
   btnEnd.addEventListener("click", () => {
     numPage = pagesData.length;
-    updatePagination();
     initSlider("right", numPage);
   });
 
   btnStart.addEventListener("click", () => {
     numPage = 1;
-    updatePagination();
     initSlider("right", numPage);
   });
-
-  //   btnNext.addEventListener("click", () => {
-  //     numberPage.innerHTML = numPage++;
-  //   if (widthWind > 768) {
-  //     if (numPage > 6) {
-  //       numberPage.innerHTML = "1";
-  //       numPage = 1;
-  //       btnStart.classList.remove("btn-no-interactive");
-  //       btnStart.disabled = false;
-  //       btnPrev.classList.remove("btn-no-interactive");
-  //       btnPrev.disabled = false;
-  //       btnNext.classList.add("btn-no-interactive");
-  //       btnEnd.classList.add("btn-no-interactive");
-  //       btnNext.disabled = true;
-  //       btnEnd.disabled = true;
-  //     }
-  //   }else if(widthWind >= 664) {
-  //     if (numPage > 8) {
-  //         numberPage.innerHTML = "1";
-  //         numPage = 1;
-  //         btnStart.classList.remove("btn-no-interactive");
-  //         btnPrev.classList.remove("btn-no-interactive");
-  //         btnNext.classList.add("btn-no-interactive");
-  //         btnEnd.classList.add("btn-no-interactive");
-  //       }
-  //   }else if(widthWind >= 320){
-  //     if (numPage > 16) {
-  //         numberPage.innerHTML = "1";
-  //         numPage = 1;
-  //         btnStart.classList.remove("btn-no-interactive");
-  //         btnPrev.classList.remove("btn-no-interactive");
-  //         btnNext.classList.add("btn-no-interactive");
-  //         btnEnd.classList.add("btn-no-interactive");
-  //       }
-  //   }
-  //   });
 })();

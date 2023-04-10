@@ -70,10 +70,6 @@ body {
   background-color: #f1cdb3;
 }
 
-.rotate {
-  /* color: #292929; */
-}
-
 .btn-no-interactive {
   border: 2px solid #cdcdcd;
   pointer-events: none;
@@ -113,11 +109,22 @@ body {
     justify-content: space-evenly;
     margin: 0 12px 0 9px;
   }
+  .button-arrow:hover {
+    background: #fafafa;
+    border: 2px solid #f1cdb3;
+  }
+
 }
 
 @media (max-width: 1070px) {
   .popap-name-pets {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 830px) {
+  .cards {
+    justify-content: space-evenly;
   }
 }
 
@@ -149,10 +156,14 @@ body {
 
   .nav-menu {
     background: #f6f6f6;
+    z-index: 1;
   }
 
   .br {
     width: 241px;
+  }
+  .header.open .nav-menu {
+    z-index: 1;
   }
 }
 
