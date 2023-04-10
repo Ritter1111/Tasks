@@ -1,4 +1,3 @@
-console.log('Реализация burger menu на обеих страницах: +26 \n ')
 (function () {
   let btnStart = document.querySelector("#btnStart");
   let btnPrev = document.querySelector("#btnPrevious");
