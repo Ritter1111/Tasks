@@ -30,7 +30,7 @@ body {
 }
 
 .card {
-  margin-top: 30px;
+  margin: 30px 0 0 0;
 }
 
 .our-friends-title {
@@ -52,6 +52,12 @@ body {
   background: #ffffff;
 }
 
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .button-arrow {
   margin: 0 10px 0 10px;
   cursor: pointer;
@@ -62,10 +68,6 @@ body {
   font-family: "Georgia";
   font-size: 20px;
   background-color: #f1cdb3;
-}
-
-.rotate {
-  color: #292929;
 }
 
 .btn-no-interactive {
@@ -93,6 +95,10 @@ body {
   letter-spacing: 0.06em;
 }
 
+.description-popap {
+  margin: 9px 20px 88px 29px;
+}
+
 .our-friends-container {
   flex-wrap: wrap;
   column-gap: 10px;
@@ -102,6 +108,23 @@ body {
   .our-friends-container {
     justify-content: space-evenly;
     margin: 0 12px 0 9px;
+  }
+  .button-arrow:hover {
+    background: #fafafa;
+    border: 2px solid #f1cdb3;
+  }
+
+}
+
+@media (max-width: 1070px) {
+  .popap-name-pets {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 830px) {
+  .cards {
+    justify-content: space-evenly;
   }
 }
 
@@ -122,7 +145,6 @@ body {
   .pagination {
     padding: 43px 0 76px 0;
   }
-  
 }
 
 @media (max-width: 767px) {
@@ -131,7 +153,18 @@ body {
   .burger::after {
     border: 1px solid #000000;
   }
-  
+
+  .nav-menu {
+    background: #f6f6f6;
+    z-index: 1;
+  }
+
+  .br {
+    width: 241px;
+  }
+  .header.open .nav-menu {
+    z-index: 1;
+  }
 }
 
 @media (max-width: 674px) {
