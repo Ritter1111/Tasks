@@ -13,7 +13,7 @@
       href="../main/img/start-screen-puppy.png"
     >
   </head>
-  <body>
+  <body class="body-wrapper">
     <header class="header">
       <div class="wrapper header-wrapper">
         <div class="logo">
@@ -23,7 +23,7 @@
           </a>
         </div>
         <nav class="nav-header">
-          <span class="burger">
+          <span class="burger burger-reverse" id="burger">
             <span class="burger-line"></span>
           </span>
           <ul class="nav-menu">
@@ -61,76 +61,20 @@
           </h1>
         </div>
         <div class="layout-5-column our-friends-container">
-          <div class="card">
-            <img src="img/pets-katrine.png" alt="Kathrine">
-            <p class="name-pet">Katrine</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
-          <div class="card">
-            <img src="img/pets-jennifer.png" alt="Jennifer">
-            <p class="name-pet">Jennifer</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
-          <div class="card">
-            <img src="img/pets-woody.png" alt="Woody">
-            <p class="name-pet">Woody</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
-
-          <div class="card sophia">
-            <img src="img/sohia.png" alt="Woody">
-            <p class="name-pet">Sophia</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
-          <div class="card timmy">
-            <img src="img/pets-timmy.png" alt="Woody">
-            <p class="name-pet">Timmy</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
-          <div class="card charly">
-            <img src="img/pets-charly.png" alt="Woody">
-            <p class="name-pet">Charly</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
-          <div class="card scarlett">
-            <img src="img/pets-scarlet.png" alt="Woody">
-            <p class="name-pet">Scarlet</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
-          <div class="card freddie">
-            <img src="img/pets-freddie.png" alt="Woody">
-            <p class="name-pet">Freddie</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
+              <div class="cards" id="active"></div>
         </div>
         <div class="pagination">
-          <button class="button-arrow btn-no-interactive" disabled>
+          <button class="button-arrow btn-no-interactive" id="btnStart" disabled>
             <span class="arrow">&lt;&lt;</span>
           </button>
-          <button class="button-arrow btn-no-interactive" disabled>
+          <button class="button-arrow btn-no-interactive" id="btnPrevious" disabled>
             <span class="arrow">&lt;</span>
           </button>
-          <button class="button-arrow colored">1</button>
-          <button class="button-arrow rotate">
+          <button class="button-arrow colored" id="numberPage">1</button>
+          <button class="button-arrow rotate " id="btnNext">
             <span class="arrow">&gt;</span>
           </button>
-          <button class="button-arrow rotate">
+          <button class="button-arrow rotate" id="btnEnd">
             <span class="arrow">&gt;&gt;</span>
           </button>
         </div>
@@ -149,13 +93,13 @@
                 href="mailto:email@shelter.com"
                 class="link-none-decor hhh"
               >
-                <img src="img/mail.svg" alt="mail" class="ico">
+                <img src="icons/mail.svg" alt="mail" class="ico">
                 <span class="text-ico"> email@shelter.com</span>
               </a>
             </div>
             <div class="ico ico-phone">
               <a href="tel:+136745677554" class="link-none-decor hhh">
-                <img src="img/phone.svg" alt="phone" class="ico">
+                <img src="icons/phone.svg" alt="phone" class="ico">
                 <span class="text-ico"> +13 674 567 75 54</span>
               </a>
             </div>
@@ -170,7 +114,7 @@
                 href="https://www.google.com/maps/place/CoreTech+Bulgaria/@42.6567186,23.3207462,17z/data=!3m1!4b1!4m6!3m5!1s0x40aa85b90d3cd2b9:0x421aec2713b4df69!8m2!3d42.6567186!4d23.3229349!16s%2Fg%2F11rfdb41w_"
                 class="link-none-decor hhh"
               >
-                <img src="img/pin.svg" alt="pin" class="ico">
+                <img src="icons/pin.svg" alt="pin" class="ico">
                 <span class="text-ico"
                   >1 Central Street, Boston (entrance from the store)</span
                 >
@@ -182,7 +126,7 @@
                 href="https://www.google.com/maps/place/CoreTech+Bulgaria/@42.6567186,23.3207462,17z/data=!3m1!4b1!4m6!3m5!1s0x40aa85b90d3cd2b9:0x421aec2713b4df69!8m2!3d42.6567186!4d23.3229349!16s%2Fg%2F11rfdb41w_"
                 class="link-none-decor hhh"
               >
-                <img src="img/pin.svg" alt="pin" class="ico">
+                <img src="icons/pin.svg" alt="pin" class="ico">
                 <span class="text-ico">18 South Park, London </span>
               </a>
             </div>
@@ -197,5 +141,40 @@
         </div>
       </div>
     </footer>
+
+    <div class="popap-our-friends" id="popap-our-friends">
+      <div class="popap-window">
+        <div class="content-popap">
+          <button class="close-popap">
+            <img src="icons/close.svg" alt="">
+          </button>
+          <div class="img-popap">
+            <img
+              src="img/pets-jennifer.png"
+              alt=""
+              class="image-pets-popap"
+            />
+          </div>
+          <div class="description-popap">
+            <h3 class="popap-name-pets title">Jennifer</h3>
+            <p class="breed-dog">Dog - Labrador</p>
+            <p class="desc-dog-popap">
+              Jennifer is a sweet 2 months old Labrador that is patiently
+              waiting to find a new forever home. This girl really enjoys being
+              able to go outside to run and play, but won't hesitate to play up
+              a storm in the house if she has all of her favorite toys.
+            </p>
+            <ul class="link-popap">
+              <li class="link-characteristics"><strong>Age:</strong> 2 months</li>
+              <li class="link-characteristics"><strong>Inoculations:</strong> none</li>
+              <li class="link-characteristics"><strong>Diseases:</strong> none</li>
+              <li class="link-characteristics"><strong>Parasites:</strong> none</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../main/index.js"></script>
+    <script src="pagination.js"></script>
   </body>
 </html>

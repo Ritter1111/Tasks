@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shelter</title>
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/svg" href="../main/img/start-screen-puppy.png">
-    <script src="index.js"></script>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      type="image/svg"
+      href="../main/img/start-screen-puppy.png"
+    />
   </head>
-  <body>
+  <body class="body-wrapper">
     <header class="header">
       <div class="wrapper header-wrapper">
         <div class="logo">
@@ -20,7 +23,7 @@
           </a>
         </div>
         <nav class="nav-header">
-          <span class="burger">
+          <span class="burger burger-reverse" id="burger">
             <span class="burger-line"></span>
           </span>
           <ul class="nav-menu">
@@ -28,7 +31,7 @@
               <a href="#" class="header-link no-interactive"
                 >About the shelter</a
               >
-              <hr class="br">
+              <hr class="br" />
             </li>
             <li class="header-item">
               <a href="../pets/index.html" class="header-link">Our pets</a>
@@ -53,20 +56,20 @@
             anybody else in the world, you will see!
           </p>
           <div class="not-only-btn">
-            <a href="#our-friends" class="not-only-button">
-              Make a friend
-            </a>
+            <a href="#our-friends" class="not-only-button"> Make a friend </a>
           </div>
         </div>
 
-        <img src="img/start-screen-puppy.png" alt="Puppy" class="puppy">
+        <img src="img/start-screen-puppy.png" alt="Puppy" class="puppy" />
       </div>
     </section>
     <section class="about">
       <div class="wrapper about-wrapper">
-        <img src="img/about-pets.png" alt="About Pets" class="about-image">
+        <img src="img/about-pets.png" alt="About Pets" class="about-image" />
         <div class="about-content">
-          <h2 class="about-content-title title">About the shelter “Cozy House”</h2>
+          <h2 class="about-content-title title">
+            About the shelter “Cozy House”
+          </h2>
           <div class="">
             <p class="about-content-description">
               Currently we have 121 dogs and 342 cats on our hands and
@@ -90,44 +93,31 @@
       <div class="wrapper our-friends-wrapper">
         <div class="our">
           <h2 class="our-friends-title title">
-            Our friends who <br>
+            Our friends who <br />
             are looking for a house
           </h2>
         </div>
 
         <div class="layout-5-column our-friends-container">
           <div class="btn-adjust">
-            <button class="button-arrow button-arrow-right">
-              <img src="img/Arrow.svg" alt="arrow">
+            <button class="button-arrow button-arrow-right" id="btn-left">
+              <img src="icons/Arrow.svg" alt="arrow" />
             </button>
           </div>
-          <div class="card">
-            <img src="img/pets-katrine.png" alt="Kathrine" class="image-pets">
-            <p class="name-pet">Katrine</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
+
+          <div class="slider-wrapper">
+            <div class="slider">
+              <div class="cards" id="active"></div>
             </div>
           </div>
-          <div class="card jeniffer">
-            <img src="img/pets-jennifer.png" alt="Jennifer" class="image-pets">
-            <p class="name-pet">Jennifer</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
-          <div class="card woody">
-            <img src="img/pets-woody.png" alt="Woody" class="image-pets">
-            <p class="name-pet">Woody</p>
-            <div class="pet-button">
-              <button class="our-friends-button btn">Learn more</button>
-            </div>
-          </div>
+
           <div class="btn-adjust">
-            <button class="button-arrow button-arrow-left">
-              <img src="img/Arrow.svg" alt="arrow" class="rotate-btn">
+            <button class="button-arrow button-arrow-left" id="btn-right">
+              <img src="icons/Arrow.svg" alt="arrow" class="rotate-btn" />
             </button>
           </div>
         </div>
+
         <form action="../pets/index.html" class="button-rest-container">
           <button class="button-rest btn">Get to know the rest</button>
         </form>
@@ -138,76 +128,81 @@
         <div class="help-content">
           <div class="help-title-wrapper">
             <h2 class="help-title title">
-              How you can help <br>
+              How you can help <br />
               our shelter
             </h2>
           </div>
           <div class="help-list-content">
             <div class="help-list">
               <img
-                src="img/icon-pet-food.svg"
+                src="icons/icon-pet-food.svg"
                 alt="Pet food"
-                class="help-list-image">
+                class="help-list-image"
+              />
               <p class="help-list-description">Pet food</p>
             </div>
             <div class="help-list">
               <img
-                src="img/icon-transportation.svg"
+                src="icons/icon-transportation.svg"
                 alt="Transportation"
                 class="help-list-image"
-              >
+              />
               <p class="help-list-description">Transportation</p>
             </div>
             <div class="help-list">
-              <img src="img/icon-toys.svg" alt="Toys" class="help-list-image">
+              <img
+                src="icons/icon-toys.svg"
+                alt="Toys"
+                class="help-list-image"
+              />
               <p class="help-list-description">Toys</p>
             </div>
             <div class="help-list">
               <img
-                src="img/icon-bowls-and-cups.svg"
+                src="icons/icon-bowls-and-cups.svg"
                 alt="Bowls-and-cups"
                 class="help-list-image"
-              >
+              />
               <p class="help-list-description">Bowls-and-cups</p>
             </div>
             <div class="help-list">
               <img
-                src="img/icon-shampoos.svg"
+                src="icons/icon-shampoos.svg"
                 alt="icon-shampoos"
                 class="help-list-image"
-              >
+              />
               <p class="help-list-description">Shampoos</p>
             </div>
             <div class="help-list">
               <img
-                src="img/icon-vitamins.svg"
+                src="icons/icon-vitamins.svg"
                 alt="Vitamins"
                 class="help-list-image"
-              >
+              />
               <p class="help-list-description">Vitamins</p>
             </div>
             <div class="help-list">
               <img
-                src="img/icon-medicines.svg"
+                src="icons/icon-medicines.svg"
                 alt="Medicines"
                 class="help-list-image"
-              >
+              />
               <p class="help-list-description">Medicines</p>
             </div>
             <div class="help-list">
               <img
-                src="img/icon-collars-leashes.svg"
+                src="icons/icon-collars-leashes.svg"
                 alt="Collars"
                 class="help-list-image"
-              >
+              />
               <p class="help-list-description">Collars / leashes</p>
             </div>
             <div class="help-list">
               <img
-                src="img/icon-sleeping-area.svg"
+                src="icons/icon-sleeping-area.svg"
                 alt="Sleeping"
                 class="help-list-image"
-              >
+              />
               <p class="help-list-description">Sleeping areas</p>
             </div>
           </div>
@@ -216,22 +211,22 @@
     </section>
     <section class="in-addition">
       <div class="wrapper donation-wrapper">
-        <img src="img/donation-dog.png" alt="dogs" class="donation-image">
+        <img src="img/donation-dog.png" alt="dogs" class="donation-image" />
         <div class="donation-content">
           <h2 class="donation-content-title title">
-            You can also <br>
+            You can also <br />
             make a donation
           </h2>
           <p class="donation-type-bank">
             Name of the bank / Type of bank account
           </p>
-          <a href="#noscroll" style="text-decoration: none;"> 
+          <a href="#noscroll" style="text-decoration: none">
             <div class="donation-card">
               <img
-                src="img/credit-card.svg"
+                src="icons/credit-card.svg"
                 alt="credit-card"
                 class="credit-card"
-              >
+              />
               8380 2880 8028 8791 7435
             </div>
           </a>
@@ -248,48 +243,52 @@
       <div class="wrapper footer-wrapper">
         <div class="layout-3-column">
           <div class="footer-column">
-            <h2 class="title-navigation title">For questions and suggestions</h2>
-            <div class="ico-email ">
+            <h2 class="title-navigation title">
+              For questions and suggestions
+            </h2>
+            <div class="ico-email">
               <a
                 target="_blank"
                 href="mailto:email@shelter.com"
                 class="link-none-decor hhh"
               >
-                <img src="img/mail.svg" alt="mail" class="ico">
+                <img src="icons/mail.svg" alt="mail" class="ico" />
                 <span class="text-ico"> email@shelter.com</span>
               </a>
             </div>
 
-            <div class="ico-phone ">
+            <div class="ico-phone">
               <a href="tel:+136745677554" class="ico link-none-decor hhh">
-                <img src="img/phone.svg" alt="phone" class="ico">
-              <span class="text-ico"> +13 674 567 75 54</span>
-            </a>
+                <img src="icons/phone.svg" alt="phone" class="ico" />
+                <span class="text-ico"> +13 674 567 75 54</span>
+              </a>
             </div>
           </div>
           <div class="footer-column">
-            <h2 class="title-navigation title title-navigation-second">We are waiting for your visit</h2>
+            <h2 class="title-navigation title title-navigation-second">
+              We are waiting for your visit
+            </h2>
             <div class="ico-city">
               <a
                 target="_blank"
                 href="https://www.google.com/maps/place/CoreTech+Bulgaria/@42.6567186,23.3207462,17z/data=!3m1!4b1!4m6!3m5!1s0x40aa85b90d3cd2b9:0x421aec2713b4df69!8m2!3d42.6567186!4d23.3229349!16s%2Fg%2F11rfdb41w_"
                 class="link-none-decor hhh link-gmail"
               >
-                <img src="img/pin.svg" alt="pin" class="ico">
+                <img src="icons/pin.svg" alt="pin" class="ico" />
                 <span class="text-ico"
                   >1 Central Street, Boston (entrance from the store)</span
                 >
               </a>
             </div>
 
-            <div class="ico-address ">
+            <div class="ico-address">
               <a
-              target="_blank"
-              href="https://www.google.com/maps/place/CoreTech+Bulgaria/@42.6567186,23.3207462,17z/data=!3m1!4b1!4m6!3m5!1s0x40aa85b90d3cd2b9:0x421aec2713b4df69!8m2!3d42.6567186!4d23.3229349!16s%2Fg%2F11rfdb41w_"
-              class="link-none-decor hhh link-gmail"
-            >
-              <img src="img/pin.svg" alt="pin" class="ico">
-              <span class="text-ico">18 South Park, London </span>
+                target="_blank"
+                href="https://www.google.com/maps/place/CoreTech+Bulgaria/@42.6567186,23.3207462,17z/data=!3m1!4b1!4m6!3m5!1s0x40aa85b90d3cd2b9:0x421aec2713b4df69!8m2!3d42.6567186!4d23.3229349!16s%2Fg%2F11rfdb41w_"
+                class="link-none-decor hhh link-gmail"
+              >
+                <img src="icons/pin.svg" alt="pin" class="ico" />
+                <span class="text-ico">18 South Park, London </span>
               </a>
             </div>
           </div>
@@ -299,10 +298,52 @@
               src="img/footer-puppy.png"
               alt="footer-puppy"
               class="footer-puppy"
-          >
+            />
           </div>
         </div>
       </div>
     </footer>
+    <div class="popap-our-friends" id="popap-our-friends">
+      <div class="popap-window">
+        <div class="content-popap">
+          <button class="close-popap">
+            <img src="icons/close.svg" alt="" />
+          </button>
+          <div class="img-popap">
+            <img
+              src="img/pets-jennifer.png"
+              alt=""
+              class="image-pets-popap"
+            />
+          </div>
+          <div class="description-popap">
+            <h3 class="popap-name-pets title">Jennifer</h3>
+            <p class="breed-dog">Dog - Labrador</p>
+            <p class="desc-dog-popap">
+              Jennifer is a sweet 2 months old Labrador that is patiently
+              waiting to find a new forever home. This girl really enjoys being
+              able to go outside to run and play, but won't hesitate to play up
+              a storm in the house if she has all of her favorite toys.
+            </p>
+            <ul class="link-popap">
+              <li class="link-characteristics">
+                <strong>Age:</strong> 2 months
+              </li>
+              <li class="link-characteristics">
+                <strong>Inoculations:</strong> none
+              </li>
+              <li class="link-characteristics">
+                <strong>Diseases:</strong> none
+              </li>
+              <li class="link-characteristics">
+                <strong>Parasites:</strong> none
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+    <script src="slider.js"></script>
   </body>
 </html>
