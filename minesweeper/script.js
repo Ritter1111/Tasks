@@ -1,15 +1,15 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-undef */
-function timer() {
+const timer = () => {
   let seconds = 0;
   const time = document.querySelector('.seconds');
-  const timerId = setInterval(() => {
+  setInterval(() => {
     seconds++;
     const minutes = Math.floor(seconds / 60);
     const formattedSeconds = seconds % 60 < 10 ? `0${seconds % 60}` : seconds % 60;
     time.innerText = `${minutes}:${formattedSeconds}`;
   }, 1000);
-}
+};
 
 const createBoard = () => {
   const container = document.createElement('div');
@@ -31,16 +31,42 @@ const createBoard = () => {
   board.className = 'board';
   board.innerHTML = '';
   board.addEventListener('click', timer);
-  for (let i = 0; i < 10; i++) {
-    currentrRow = board.insertRow(i);
-    for (let j = 0; j < 10; j++) {
-      currentCell = currentrRow.insertCell(j);
-    }
-  }
+
   container.append(gameBoard);
   gameBoard.append(header, board);
   header.append(clicks, flag, time);
   document.body.append(container);
 };
 
-createBoard();
+const createTable = (count) => {
+  const board = document.querySelector('.board');
+  board.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    currentrRow = board.insertRow(i);
+    for (let j = 0; j < count; j++) {
+      currentCell = currentrRow.insertCell(j);
+    }
+  }
+};
+
+const switchBoard = () => {
+  const butnEasy = document.createElement('button');
+  butnEasy.className = 'butn-easy';
+  butnEasy.innerText = 'Easy';
+  const butnMedium = document.createElement('button');
+  butnMedium.className = 'butn-easy';
+  butnMedium.innerText = 'Medium';
+  const butnHard = document.createElement('button');
+  butnHard.className = 'butn-easy';
+  butnHard.innerText = 'Hard';
+  butnEasy.addEventListener('click', () => createTable(10));
+  butnMedium.addEventListener('click', () => createTable(15));
+  butnHard.addEventListener('click', () => createTable(25));
+  document.body.append(butnEasy, butnMedium, butnHard);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  createBoard();
+  createTable(10);
+  switchBoard();
+});

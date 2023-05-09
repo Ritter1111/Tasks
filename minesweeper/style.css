@@ -40,11 +40,17 @@ h1 {
 .board TR TD {
     border: 1px solid white;
     background: #999999;
-    width: 16px;
-    height: 16px;
+    width: 26px;
+    height: 26px;
     text-align: center;      
 }
 
 .board TR TD.clicked {
     background: #333333;
+}
+
+.butn-easy{
+    width: 70px;
+    margin: 20px;
+    height: 30px;
 }
