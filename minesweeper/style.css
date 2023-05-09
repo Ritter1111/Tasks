@@ -1,0 +1,50 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.flag {
+    width: 40px;
+    height: 40px; 
+}
+
+.game-board {
+    border: 5px solid gray;
+    padding: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: lightgrey;
+}
+
+.clicks, .time {
+    font-size: 21px;
+}
+
+.board TR TD {
+    border: 1px solid white;
+    background: #999999;
+    width: 16px;
+    height: 16px;
+    text-align: center;      
+}
+
+.board TR TD.clicked {
+    background: #333333;
+}
