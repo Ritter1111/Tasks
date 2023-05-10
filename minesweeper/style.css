@@ -46,7 +46,8 @@ h1 {
 }
 
 .board tr td.clicked {
-    background: blueviolet;
+    background: rgb(200, 200, 200);
+    /* border: none; */
 }
 
 .butn-easy{

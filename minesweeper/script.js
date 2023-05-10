@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-undef */
@@ -48,7 +49,6 @@ const renderBoardGame = (count, bombs) => {
     currentrRow = board.insertRow(i);
     for (let j = 0; j < count; j++) {
       currentCell = currentrRow.insertCell(j);
-      // eslint-disable-next-line no-loop-func
       currentCell.addEventListener('click', () => {
         if (!gameOver) {
           audio.play();
@@ -57,16 +57,67 @@ const renderBoardGame = (count, bombs) => {
     }
   }
   const cells = [...board.querySelectorAll('td')];
-  console.log(cells);
+  //   console.log(cells);
   const mines = [...Array((count) * (count)).keys()]
     .sort(() => Math.random() - 0.5)
     .slice(0, bombs);
-  console.log(mines);
+  //   console.log(mines);
+
+  function isValid(row, column) {
+    return row >= 0 && row < count && column >= 0 && column < count;
+  }
 
   function isBomb(row, column) {
+    if (!isValid(row, column)) return false;
     const index = row * count + column;
-    console.log(index);
+    // console.log(index);
     return mines.includes(index);
+  }
+
+  function getCount(row, column) {
+    let sum = 0;
+    for (let x = -1; x <= 1; x++) {
+      for (let y = -1; y <= 1; y++) {
+        if (isBomb(row + y, column + x)) {
+          sum++;
+        }
+      }
+    }
+    return sum;
+  }
+
+  function openBoard(row, column) {
+    if (!isValid(row, column)) return;
+    const audio2 = new Audio('minesweeper/assets/game-over.mp3');
+    const index = row * count + column;
+    const cell = cells[index];
+
+    if (cell.classList.contains('opened')) return;
+    cell.classList.add('opened');
+    // if (cell.classList.contains('clicked')) return;
+    if (isBomb(row, column)) {
+      gameOver = true;
+      cell.classList.add('bomb');
+      cell.innerHTML = '💣';
+      if (cell.classList.contains('bomb')) {
+        const bombMessage = document.createElement('h1');
+        bombMessage.className = 'bomb-message';
+        bombMessage.innerText = 'You Lost!!! Try again';
+        document.body.append(bombMessage);
+        audio2.play();
+      }
+      alert('You lost');
+    }
+    const numbers = getCount(row, column);
+    cell.innerHTML = numbers;
+    cell.classList.add('clicked');
+    if (numbers === 0) {
+      for (let x = -1; x <= 1; x++) {
+        for (let y = -1; y <= 1; y++) {
+          openBoard(row + y, column + x);
+        }
+      }
+    }
   }
 
   board.addEventListener('click', (event) => {
@@ -80,26 +131,19 @@ const renderBoardGame = (count, bombs) => {
       }
       cell.classList.add('clicked');
       const index = cells.indexOf(cell);
-      const audio2 = new Audio('minesweeper/assets/game-over.mp3');
-      console.log(index);
       const column = index % count;
       const row = Math.floor(index / count);
-      if (isBomb(row, column)) {
-        gameOver = true;
-        cell.innerHTML = '💣';
-        cell.classList.remove('clicked');
-        cell.classList.add('bomb');
-        if (cell.classList.contains('bomb')) {
-          const bombMessage = document.createElement('h1');
-          bombMessage.className = 'bomb-message';
-          bombMessage.innerText = 'You Lost!!! Try again';
-          document.body.append(bombMessage);
-          audio2.play();
-        }
-        // alert('You lost');
-      }
+      //   console.log(index);
+      openBoard(row, column);
     }
   });
+};
+
+const resetGame = (count, bombs) => {
+  gameOver = false;
+  document.querySelector('.clicks').innerText = '0:0';
+  document.querySelector('.seconds').innerText = '0:00';
+  renderBoardGame(count, bombs);
 };
 
 const switchDifficulty = () => {
@@ -112,9 +156,9 @@ const switchDifficulty = () => {
   const butnHard = document.createElement('button');
   butnHard.className = 'butn-easy';
   butnHard.innerText = 'Hard';
-  butnEasy.addEventListener('click', () => renderBoardGame(10, 10));
-  butnMedium.addEventListener('click', () => renderBoardGame(15, 50));
-  butnHard.addEventListener('click', () => renderBoardGame(25, 100));
+  butnEasy.addEventListener('click', () => resetGame(10, 10));
+  butnMedium.addEventListener('click', () => resetGame(15, 15));
+  butnHard.addEventListener('click', () => resetGame(25, 25));
   document.body.append(butnEasy, butnMedium, butnHard);
 };
 
