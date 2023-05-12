@@ -27,13 +27,13 @@ const createBoard = () => {
   const resetGame = document.createElement('button');
   resetGame.className = 'reset-game';
   resetGame.innerText = 'Reset';
-
   const time = document.createElement('span');
   time.className = 'seconds';
   time.innerText = '00:00';
   const board = document.createElement('table');
   board.className = 'board';
   board.innerHTML = '';
+
   //   board.addEventListener('click', timer);
 
   container.append(gameBoard);
@@ -43,14 +43,24 @@ const createBoard = () => {
 };
 
 const renderBoardGame = (rows, bombs) => {
-  const audio = new Audio('minesweeper/assets/sound.mp3');
-  const audioWin = new Audio('minesweeper/assets/win.mp3');
-  const audioGameOver = new Audio('minesweeper/assets/game-over.mp3');
+  const board = document.querySelector('.board');
+  console.log(board);
+  const resetGame = () => {
+    const bombMessage = document.querySelector('.bomb-message');
+    if (bombMessage) bombMessage.remove();
+    renderBoardGame(rows, bombs);
+    gameOver = false;
+  };
+  const newGame = document.querySelector('.reset-game');
+  newGame.addEventListener('click', resetGame);
+  const audio = new Audio('assets/sound.mp3');
+  const audioWin = new Audio('assets/win.mp3');
+  const audioGameOver = new Audio('assets/game-over.mp3');
   audio.preload = 'auto';
   audioWin.preload = 'auto';
   audioGameOver.preload = 'auto';
   const count = rows;
-  const board = document.querySelector('.board');
+
   board.innerHTML = '';
   for (let i = 0; i < count; i++) {
     currentrRow = board.insertRow(i);
@@ -66,20 +76,20 @@ const renderBoardGame = (rows, bombs) => {
       });
       currentCell.addEventListener('contextmenu', (event) => {
         event.preventDefault();
-        console.log('dshdh');
         if (!gameOver && !currentCell.classList.contains('opened')) {
           event.target.classList.toggle('flag');
+          audio.play();
         }
       });
     }
   }
   const cells = [...board.querySelectorAll('td')];
   let cellsCount = cells.length;
-  //   console.log(cells);
+  // console.log(cells);
   const mines = [...Array((count) * (count)).keys()]
     .sort(() => Math.random() - 0.5)
     .slice(0, bombs);
-  //   console.log(mines);
+  // console.log(mines);
 
   function isValid(row, column) {
     return row >= 0 && row < count && column >= 0 && column < count;
@@ -88,7 +98,7 @@ const renderBoardGame = (rows, bombs) => {
   function isBomb(row, column) {
     if (!isValid(row, column)) return false;
     const index = row * count + column;
-    // console.log(index);
+    console.log({ index });
     return mines.includes(index);
   }
 
@@ -105,6 +115,7 @@ const renderBoardGame = (rows, bombs) => {
   }
 
   function openBoard(row, column) {
+    console.log('openboard');
     if (!isValid(row, column)) return;
     const index = row * count + column;
     const cell = cells[index];
@@ -123,7 +134,6 @@ const renderBoardGame = (rows, bombs) => {
       return;
     //   alert('You lost');
     }
-
     cellsCount--;
     if (cellsCount <= bombs) {
       audioWin.play();
@@ -133,11 +143,13 @@ const renderBoardGame = (rows, bombs) => {
       document.body.append(bombMessage);
       gameOver = true;
     }
-
+    const currNumberBomb = document.createElement('p');
+    currNumberBomb.innerHTML = 'cellsCount';
     const numbers = getCount(row, column);
     cell.innerHTML = numbers;
     cell.classList.add('clicked');
     cell.classList.add('opened');
+
     const colorDigits = {
       1: 'numberGreen',
       2: 'numberBlue',
@@ -150,6 +162,9 @@ const renderBoardGame = (rows, bombs) => {
     };
     if (numbers in colorDigits) {
       cell.classList.add(colorDigits[numbers]);
+      if (cell.classList.contains('flag')) {
+        cell.classList.remove('flag');
+      }
     }
     if (numbers === 0) {
       cell.setAttribute('disabled', true);
@@ -178,11 +193,20 @@ const renderBoardGame = (rows, bombs) => {
       const index = cells.indexOf(cell);
       const column = index % count;
       const row = Math.floor(index / count);
-      //   console.log(index);
       openBoard(row, column);
     }
   });
 };
+
+function renderNewBoard(row, column) {
+  const body = document.querySelector('body');
+  const game = document.querySelector('.container');
+  if (game) {
+    body.removeChild(game);
+  }
+  createBoard();
+  renderBoardGame(row, column);
+}
 
 function switchDifficulty() {
   const butnEasy = document.createElement('button');
@@ -194,14 +218,21 @@ function switchDifficulty() {
   const butnHard = document.createElement('button');
   butnHard.className = 'butn-easy';
   butnHard.innerText = 'Hard';
-  butnEasy.addEventListener('click', () => renderBoardGame(10, 10));
-  butnMedium.addEventListener('click', () => renderBoardGame(15, 15));
-  butnHard.addEventListener('click', () => renderBoardGame(25, 25));
-  document.body.append(butnEasy, butnMedium, butnHard);
+  const changeTheme = document.createElement('button');
+  changeTheme.className = 'theme';
+  changeTheme.innerText = 'Theme';
+  changeTheme.addEventListener('click', () => {
+    const game = document.querySelector('.game-board');
+    document.body.classList.toggle('dark-theme');
+    game.classList.toggle('change');
+  });
+  butnEasy.addEventListener('click', () => renderNewBoard(10, 10));
+  butnMedium.addEventListener('click', () => renderNewBoard(15, 60));
+  butnHard.addEventListener('click', () => renderNewBoard(25, 60));
+  document.body.append(butnEasy, butnMedium, butnHard, changeTheme);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   switchDifficulty();
-  createBoard();
-  renderBoardGame(10, 10);
+  renderNewBoard(10, 10);
 });
