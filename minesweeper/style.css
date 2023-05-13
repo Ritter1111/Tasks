@@ -33,9 +33,9 @@ h1 {
     /* background: #e4e7e9f6; */
     width: 70px;
     height: 40px;
-    font-size: 19px;
+    font-size: 16px;
     border-radius: 7px;
-    border: 2px solid white;
+    border: 2px solid #999;
     box-shadow: 3px 3px 3px #999;
     color: #121212;
 }
@@ -56,7 +56,7 @@ h1 {
     transition: 0.3s ease-out;
 }
 
-.clicks, .time {
+.seconds, .clicks {
     font-size: 21px;
 }
 
@@ -70,7 +70,6 @@ h1 {
     /* padding: 5px; */
     background-color: #f1eaf1;
     text-align: center;
-    transition: 0.3s ease-in-out;
     box-shadow: inset 2px 2px 4px #ffffff, inset -2px -2px 5px #676666;
 }
 
@@ -137,7 +136,7 @@ h1 {
 
 body.dark-theme {
     color: #eee;
-    background: #121212;
+    background: #323437;
     transition: 0.3s ease-out;
 }
 
@@ -145,4 +144,10 @@ body.dark-theme {
     background-color: #ca6cef;
     border: 3px solid white;
     transition: 0.3s ease-out;
+    color: white;
 }
+
+.butn-easy.change{
+    color: white;
+}
+

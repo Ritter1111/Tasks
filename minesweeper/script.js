@@ -2,40 +2,58 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-undef */
-// const timer = () => {
-//   let seconds = 0;
-//   const time = document.querySelector('.seconds');
-//   setInterval(() => {
-//     seconds++;
-//     const minutes = Math.floor(seconds / 60);
-//     const formattedSeconds = seconds % 60 < 10 ? `0${seconds % 60}` : seconds % 60;
-//     time.innerText = `${minutes}:${formattedSeconds}`;
-//   }, 1000);
-// };
+let intervalId = null;
 let gameOver = false;
+
+const timer = () => {
+  let seconds = 0;
+  if (!intervalId) {
+    const time = document.querySelector('.seconds');
+    intervalId = setInterval(() => {
+      seconds++;
+      const minutes = Math.floor(seconds / 60);
+      const formattedSeconds = seconds % 60 < 10 ? `0${seconds % 60}` : seconds % 60;
+      time.innerText = `${minutes}:${formattedSeconds}`;
+    }, 1000);
+  }
+  return intervalId;
+};
+
+const resetTimer = () => {
+  clearInterval(intervalId);
+  intervalId = null;
+};
+
+let counter = 0;
+function counterClicks() {
+  counter += 1;
+}
 
 const createBoard = () => {
   const container = document.createElement('div');
   container.className = 'container';
+
   const gameBoard = document.createElement('div');
   gameBoard.className = 'game-board';
+
   const header = document.createElement('div');
   header.className = 'header';
+
   const clicks = document.createElement('span');
   clicks.className = 'clicks';
-  clicks.innerText = '00:00';
+  clicks.innerText = '0';
+
   const resetGame = document.createElement('button');
   resetGame.className = 'reset-game';
-  resetGame.innerText = 'Reset';
+  resetGame.innerText = 'New Game';
+
   const time = document.createElement('span');
   time.className = 'seconds';
   time.innerText = '00:00';
+
   const board = document.createElement('table');
   board.className = 'board';
   board.innerHTML = '';
-
-  //   board.addEventListener('click', timer);
-
   container.append(gameBoard);
   gameBoard.append(header, board);
   header.append(clicks, resetGame, time);
@@ -43,25 +61,53 @@ const createBoard = () => {
 };
 
 const renderBoardGame = (rows, bombs) => {
+  const minesCount = document.createElement('input');
+  minesCount.type = 'number';
+  minesCount.id = 'mina';
+  minesCount.className = 'mine-count-input';
+  minesCount.min = 10;
+  minesCount.max = 99;
+  minesCount.value = bombs;
+  minesCount.placeholder = 'Enter mines';
+
   const board = document.querySelector('.board');
-  console.log(board);
+  board.addEventListener('click', timer);
+
+  const game = document.querySelector('.container-buttons');
+
+  const updateGameButton = document.createElement('button');
+  updateGameButton.className = 'update-mines';
+  updateGameButton.innerText = 'Set mines';
+  game.append(minesCount, updateGameButton);
+
   const resetGame = () => {
     const bombMessage = document.querySelector('.bomb-message');
     if (bombMessage) bombMessage.remove();
-    renderBoardGame(rows, bombs);
+    if (minesCount) minesCount.remove();
+    if (updateGameButton) updateGameButton.remove();
+    renderNewBoard(rows, bombs);
     gameOver = false;
   };
+
+  updateGameButton.addEventListener('click', () => {
+    bombs = minesCount.value;
+    resetGame();
+  });
+
   const newGame = document.querySelector('.reset-game');
   newGame.addEventListener('click', resetGame);
+
   const audio = new Audio('assets/sound.mp3');
   const audioWin = new Audio('assets/win.mp3');
   const audioGameOver = new Audio('assets/game-over.mp3');
+
   audio.preload = 'auto';
   audioWin.preload = 'auto';
   audioGameOver.preload = 'auto';
-  const count = rows;
 
+  const count = rows;
   board.innerHTML = '';
+
   for (let i = 0; i < count; i++) {
     currentrRow = board.insertRow(i);
     for (let j = 0; j < count; j++) {
@@ -74,6 +120,13 @@ const renderBoardGame = (rows, bombs) => {
           event.target.classList.remove('flag');
         }
       });
+
+      currentCell.addEventListener('click', () => {
+        counterClicks();
+        const clickedCell = document.querySelector('.clicks');
+        clickedCell.textContent = counter;
+      });
+
       currentCell.addEventListener('contextmenu', (event) => {
         event.preventDefault();
         if (!gameOver && !currentCell.classList.contains('opened')) {
@@ -85,11 +138,10 @@ const renderBoardGame = (rows, bombs) => {
   }
   const cells = [...board.querySelectorAll('td')];
   let cellsCount = cells.length;
-  // console.log(cells);
+
   const mines = [...Array((count) * (count)).keys()]
     .sort(() => Math.random() - 0.5)
     .slice(0, bombs);
-  // console.log(mines);
 
   function isValid(row, column) {
     return row >= 0 && row < count && column >= 0 && column < count;
@@ -98,7 +150,7 @@ const renderBoardGame = (rows, bombs) => {
   function isBomb(row, column) {
     if (!isValid(row, column)) return false;
     const index = row * count + column;
-    console.log({ index });
+    // console.log({ index });
     return mines.includes(index);
   }
 
@@ -115,36 +167,45 @@ const renderBoardGame = (rows, bombs) => {
   }
 
   function openBoard(row, column) {
-    console.log('openboard');
-    if (!isValid(row, column)) return;
     const index = row * count + column;
     const cell = cells[index];
+    if (!isValid(row, column)) return;
+
     if (cell.classList.contains('opened')) return;
+
     if (isBomb(row, column)) {
       audioGameOver.play();
       gameOver = true;
       cell.classList.add('bomb');
       cell.innerHTML = '💣';
+      resetTimer();
+
       if (cell.classList.contains('bomb')) {
         const bombMessage = document.createElement('h1');
         bombMessage.className = 'bomb-message';
         bombMessage.innerText = 'You Lost!!! Try again';
-        document.body.append(bombMessage);
+        const gamesButtons = document.querySelector('.container-buttons');
+        gamesButtons.append(bombMessage);
       }
       return;
     //   alert('You lost');
     }
+
     cellsCount--;
     if (cellsCount <= bombs) {
+      resetTimer();
+      const time = document.querySelector('.seconds').innerHTML;
       audioWin.play();
       const bombMessage = document.createElement('h1');
       bombMessage.className = 'bomb-message';
-      bombMessage.innerText = 'You Won!!!';
+      bombMessage.innerText = `Hooray! You found all mines in ${time} seconds and N moves!" or "Game over. Try again`;
       document.body.append(bombMessage);
       gameOver = true;
     }
+
     const currNumberBomb = document.createElement('p');
     currNumberBomb.innerHTML = 'cellsCount';
+
     const numbers = getCount(row, column);
     cell.innerHTML = numbers;
     cell.classList.add('clicked');
@@ -160,12 +221,14 @@ const renderBoardGame = (rows, bombs) => {
       7: 'numberGold',
       8: 'numberPurple',
     };
+
     if (numbers in colorDigits) {
       cell.classList.add(colorDigits[numbers]);
       if (cell.classList.contains('flag')) {
         cell.classList.remove('flag');
       }
     }
+
     if (numbers === 0) {
       cell.setAttribute('disabled', true);
       cell.innerHTML = '';
@@ -184,8 +247,10 @@ const renderBoardGame = (rows, bombs) => {
     if (gameOver) {
       return;
     }
+
     if (event.target.tagName !== 'BUTTON') {
       const cell = event.target;
+
       if (cell.classList.contains('clicked')) {
         return;
       }
@@ -199,40 +264,65 @@ const renderBoardGame = (rows, bombs) => {
 };
 
 function renderNewBoard(row, column) {
-  const body = document.querySelector('body');
   const game = document.querySelector('.container');
+  counter = 0;
   if (game) {
+    const body = document.querySelector('body');
     body.removeChild(game);
   }
+  const minesInput = document.querySelector('.mine-count-input');
+  const updateMines = document.querySelector('.update-mines');
+  const bombMessage = document.querySelector('.bomb-message');
+
+  if (minesInput) minesInput.remove();
+  if (updateMines) updateMines.remove();
+  if (bombMessage) bombMessage.remove();
+
+  gameOver = false;
   createBoard();
   renderBoardGame(row, column);
 }
 
-function switchDifficulty() {
-  const butnEasy = document.createElement('button');
-  butnEasy.className = 'butn-easy';
-  butnEasy.innerText = 'Easy';
-  const butnMedium = document.createElement('button');
-  butnMedium.className = 'butn-easy';
-  butnMedium.innerText = 'Medium';
-  const butnHard = document.createElement('button');
-  butnHard.className = 'butn-easy';
-  butnHard.innerText = 'Hard';
+function renderColorThemeBtn() {
   const changeTheme = document.createElement('button');
+  const header = document.querySelector('.container-buttons');
   changeTheme.className = 'theme';
   changeTheme.innerText = 'Theme';
+
   changeTheme.addEventListener('click', () => {
     const game = document.querySelector('.game-board');
     document.body.classList.toggle('dark-theme');
     game.classList.toggle('change');
   });
+  header.append(changeTheme);
+}
+
+function rendeModeBtns() {
+  const header = document.createElement('div');
+  header.className = 'container-buttons';
+
+  const butnEasy = document.createElement('button');
+  butnEasy.className = 'butn-easy';
+  butnEasy.innerText = 'Easy';
+
+  const butnMedium = document.createElement('button');
+  butnMedium.className = 'butn-easy';
+  butnMedium.innerText = 'Medium';
+
+  const butnHard = document.createElement('button');
+  butnHard.className = 'butn-easy';
+  butnHard.innerText = 'Hard';
+
   butnEasy.addEventListener('click', () => renderNewBoard(10, 10));
-  butnMedium.addEventListener('click', () => renderNewBoard(15, 60));
-  butnHard.addEventListener('click', () => renderNewBoard(25, 60));
-  document.body.append(butnEasy, butnMedium, butnHard, changeTheme);
+  butnMedium.addEventListener('click', () => renderNewBoard(15, 70));
+  butnHard.addEventListener('click', () => renderNewBoard(25, 99));
+
+  header.append(butnEasy, butnMedium, butnHard);
+  document.body.append(header);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  switchDifficulty();
+  rendeModeBtns();
+  renderColorThemeBtn();
   renderNewBoard(10, 10);
 });
