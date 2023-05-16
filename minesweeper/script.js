@@ -1,7 +1,3 @@
-/* eslint-disable no-loop-func */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-undef */
 let intervalId = null;
 let gameOver = false;
 
@@ -39,28 +35,41 @@ const createBoard = () => {
   const header = document.createElement('div');
   header.className = 'header';
 
+  const clickName = document.createElement('span');
+  clickName.innerText = 'Clicks';
   const clicks = document.createElement('span');
   clicks.className = 'clicks';
   clicks.innerText = '0';
+  clickName.append(clicks);
 
   const resetGame = document.createElement('button');
   resetGame.className = 'reset-game';
   resetGame.innerText = 'New Game';
 
+  const timeName = document.createElement('span');
+  timeName.innerText = 'Time';
   const time = document.createElement('span');
   time.className = 'seconds';
   time.innerText = '00:00';
+  timeName.append(time);
 
   const board = document.createElement('table');
   board.className = 'board';
   board.innerHTML = '';
   container.append(gameBoard);
   gameBoard.append(header, board);
-  header.append(clicks, resetGame, time);
+  header.append(clickName, resetGame, timeName);
   document.body.append(container);
 };
 
 const renderBoardGame = (rows, bombs) => {
+  const containerMine = document.createElement('div');
+  containerMine.className = 'container-mines';
+
+  const nameMine = document.createElement('span');
+  nameMine.innerText = 'Mines: ';
+  nameMine.className = 'mines-name';
+
   const minesCount = document.createElement('input');
   minesCount.type = 'number';
   minesCount.id = 'mina';
@@ -68,7 +77,7 @@ const renderBoardGame = (rows, bombs) => {
   minesCount.min = 10;
   minesCount.max = 99;
   minesCount.value = bombs;
-  minesCount.placeholder = 'Enter mines';
+  minesCount.placeholder = 'mines';
 
   const board = document.querySelector('.board');
   board.addEventListener('click', timer);
@@ -77,8 +86,9 @@ const renderBoardGame = (rows, bombs) => {
 
   const updateGameButton = document.createElement('button');
   updateGameButton.className = 'update-mines';
-  updateGameButton.innerText = 'Set mines';
-  game.append(minesCount, updateGameButton);
+  updateGameButton.innerText = 'Update';
+  containerMine.append(nameMine, minesCount, updateGameButton);
+  game.append(containerMine);
 
   const resetGame = () => {
     const bombMessage = document.querySelector('.bomb-message');
@@ -179,13 +189,16 @@ const renderBoardGame = (rows, bombs) => {
       cell.classList.add('bomb');
       cell.innerHTML = '💣';
       resetTimer();
-
       if (cell.classList.contains('bomb')) {
         const bombMessage = document.createElement('h1');
         bombMessage.className = 'bomb-message';
         bombMessage.innerText = 'You Lost!!! Try again';
-        const gamesButtons = document.querySelector('.container-buttons');
+        const gamesButtons = document.querySelector('body');
         gamesButtons.append(bombMessage);
+
+        const time = document.querySelector('.seconds').innerText;
+        const bom = bombMessage.innerText;
+        saveGameResult(time, bom);
       }
       return;
     //   alert('You lost');
@@ -195,10 +208,11 @@ const renderBoardGame = (rows, bombs) => {
     if (cellsCount <= bombs) {
       resetTimer();
       const time = document.querySelector('.seconds').innerHTML;
+      const clicks = document.querySelector('.clicks').innerHTML;
       audioWin.play();
       const bombMessage = document.createElement('h1');
       bombMessage.className = 'bomb-message';
-      bombMessage.innerText = `Hooray! You found all mines in ${time} seconds and N moves!" or "Game over. Try again`;
+      bombMessage.innerText = `Hooray! You found all mines in ${time} seconds and ${clicks} moves!" or "Game over. Try again`;
       document.body.append(bombMessage);
       gameOver = true;
     }
@@ -263,6 +277,15 @@ const renderBoardGame = (rows, bombs) => {
   });
 };
 
+function saveGameResult(time, bombs) {
+  const savedGame = JSON.parse(localStorage.getItem('Your result')) || [];
+  savedGame.push({ time, bombs });
+  if (savedGame.length > 3) {
+    savedGame.shift();
+  }
+  localStorage.setItem('Your result', JSON.stringify(savedGame));
+}
+
 function renderNewBoard(row, column) {
   const game = document.querySelector('.container');
   counter = 0;
@@ -270,13 +293,16 @@ function renderNewBoard(row, column) {
     const body = document.querySelector('body');
     body.removeChild(game);
   }
+
   const minesInput = document.querySelector('.mine-count-input');
   const updateMines = document.querySelector('.update-mines');
   const bombMessage = document.querySelector('.bomb-message');
+  const minesName = document.querySelector('.container-mines');
 
   if (minesInput) minesInput.remove();
   if (updateMines) updateMines.remove();
   if (bombMessage) bombMessage.remove();
+  if (minesName) minesName.remove();
 
   gameOver = false;
   createBoard();
@@ -285,7 +311,7 @@ function renderNewBoard(row, column) {
 
 function renderColorThemeBtn() {
   const changeTheme = document.createElement('button');
-  const header = document.querySelector('.container-buttons');
+  const dropdownContent = document.querySelector('.dropdown-content');
   changeTheme.className = 'theme';
   changeTheme.innerText = 'Theme';
 
@@ -294,12 +320,15 @@ function renderColorThemeBtn() {
     document.body.classList.toggle('dark-theme');
     game.classList.toggle('change');
   });
-  header.append(changeTheme);
+  dropdownContent.append(changeTheme);
 }
 
 function rendeModeBtns() {
   const header = document.createElement('div');
   header.className = 'container-buttons';
+
+  const logo = document.createElement('h1');
+  logo.innerText = 'Minesweeper';
 
   const butnEasy = document.createElement('button');
   butnEasy.className = 'butn-easy';
@@ -309,17 +338,66 @@ function rendeModeBtns() {
   butnMedium.className = 'butn-easy';
   butnMedium.innerText = 'Medium';
 
+  const optionsContainer = document.createElement('div');
+  optionsContainer.className = 'dropdown';
+
+  const optionsMenu = document.createElement('button');
+  optionsMenu.className = 'menu';
+  optionsMenu.id = 'menu';
+  optionsMenu.innerHTML = 'Options';
+  optionsMenu.onclick = 'myFunction()';
+
+  const dropdownContent = document.createElement('div');
+  dropdownContent.className = 'dropdown-content';
+  dropdownContent.id = 'my-dropdown';
+
   const butnHard = document.createElement('button');
   butnHard.className = 'butn-easy';
   butnHard.innerText = 'Hard';
 
+  optionsMenu.addEventListener('click', () => {
+    document.getElementById('my-dropdown').classList.toggle('show');
+  });
+
+  const gameStatus = document.createElement('span');
+  gameStatus.className = 'status';
+  gameStatus.innerHTML = 'History';
+  const results = JSON.parse(localStorage.getItem('Your result')) || [];
+  let gameResult = null;
+
+  gameStatus.addEventListener('click', () => {
+    if (results.length > 0) {
+      if (!gameResult) {
+        gameResult = document.createElement('span');
+
+        results.forEach((res) => {
+          const resultElem = document.createElement('p');
+          resultElem.innerText = `You result : ${res.time},  ${res.bombs} `;
+          gameResult.append(resultElem);
+        });
+
+        document.body.appendChild(gameResult);
+      }
+    }
+  });
+
   butnEasy.addEventListener('click', () => renderNewBoard(10, 10));
   butnMedium.addEventListener('click', () => renderNewBoard(15, 70));
   butnHard.addEventListener('click', () => renderNewBoard(25, 99));
-
-  header.append(butnEasy, butnMedium, butnHard);
+  dropdownContent.append(butnEasy, butnMedium, butnHard);
+  optionsContainer.append(optionsMenu, dropdownContent);
+  header.append(logo, optionsContainer, gameStatus);
   document.body.append(header);
 }
+
+window.onclick = function (e) {
+  if (!e.target.matches('.menu')) {
+    const myDropdown = document.getElementById('my-dropdown');
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   rendeModeBtns();
