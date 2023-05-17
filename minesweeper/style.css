@@ -14,7 +14,7 @@ span {
 .container {
     display: flex;
     justify-content: center;
-    margin: 20px;
+    margin: 4px;
     flex-shrink: 0;
     /* max-height: calc(100vh - 100px); */
 }
@@ -51,7 +51,7 @@ h1 {
 .game-board {
     border-radius: 3px;
     padding: 10px;
-    background-color: #848386;
+    background-color: #ccc9d1;
     box-shadow: inset 2px 2px 4px #676666, inset -2px -2px 5px #676666;
     transition: 0.3s ease-out;
 }
@@ -61,10 +61,10 @@ h1 {
 }
 
 .board TR TD {
-    width: 33px;
+    width: 25px;
     font-size: 18px;
     font-weight: 600;
-    height: 4vh;
+    height: 25px;
     border: 1px solid #CCC;
     background-color: #f1eaf1;
     text-align: center;
@@ -77,7 +77,7 @@ h1 {
     box-shadow: none;
 }
 
-.butn-easy, .theme, .menu {
+.butn-easy, .theme {
     display: block;
     margin: 0 auto;
     cursor: pointer;
@@ -87,6 +87,11 @@ h1 {
     border-radius: 7px;
     border: 0px solid white;
     background: none;
+}
+
+.menu {
+    font-size: 25px;
+    cursor: pointer;
 }
 
 .status {
@@ -145,7 +150,7 @@ body.dark-theme {
 }
 
 .game-board.change {
-    background-color: #ca6cef;
+    background-color: #626162;
     border: 3px solid white;
     transition: 0.3s ease-out;
     color: white;
@@ -160,6 +165,7 @@ body.dark-theme {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .mine-count-input{
@@ -186,3 +192,29 @@ body.dark-theme {
     height: 30px;
 }
 
+@media (max-width: 800px) {
+    .board TR TD {
+        width: 18px;
+        height: 18px;
+        font-size: 12px;
+        font-weight: 600;
+        border: none;
+    }  
+    .board tr td.bomb {
+        font-size: 10px;
+    }  
+    .game-board {
+        border-radius: 2px;
+        padding: 4px;
+    }
+    .board {
+        margin: 0 auto;
+    }
+
+
+}
+@media (max-width: 560px) {
+    .container-buttons * {
+        margin-bottom: 8px;
+    }
+}
