@@ -95,7 +95,10 @@ const renderBoardGame = (rows, bombs) => {
   minesCount.max = 99;
   minesCount.value = bombs;
   minesCount.placeholder = 'mines';
-
+  minesCount.oninput = function () {
+    this.value = !!this.value && Math.abs(this.value) >= 10 && Math.abs(this.value) <= 99
+      ? Math.abs(this.value) : null;
+  };
   const countFlags = document.createElement('span');
   countFlags.className = 'count-bombs';
   countFlags.innerText = `Flags: ${bombs}`;
@@ -169,17 +172,18 @@ const renderBoardGame = (rows, bombs) => {
       });
 
       currentCell.addEventListener('click', (event) => {
-        if (
-          !gameOver
+        if (!gameOver
           || !currentCell.classList.contains('clicked')
           || !currentCell.classList.contains('opened')
         ) {
           counterClicks(event.target);
-
           if (!gameOver) {
-            audioClick.play();
             const clickedCell = document.querySelector('.clicks');
             clickedCell.textContent = `Steps: ${counter}`;
+          }
+          if (!currentCell.classList.contains('clicked')
+          && !currentCell.classList.contains('opened')) {
+            audioClick.play();
           }
         }
       });
@@ -262,14 +266,6 @@ const renderBoardGame = (rows, bombs) => {
         if (cell.classList.contains('flag')) {
           cell.classList.remove('flag');
         }
-        const bombMessage = document.createElement('h1');
-        bombMessage.className = 'bomb-message';
-        bombMessage.innerText = 'You Lost!!! Try again';
-        const gamesButtons = document.querySelector('body');
-        gamesButtons.append(bombMessage);
-        const bom = 'You Lost!!! Try again';
-        const time = document.querySelector('.seconds').innerText;
-        saveGameResult(time, bom);
       }
       return;
     }
@@ -282,14 +278,11 @@ const renderBoardGame = (rows, bombs) => {
       audioWin.play();
       gameOver = true;
 
-      windowPopup(`Hooray! You found all mines in ${time} seconds and ${clicks} moves!" or "Game over. Try again`);
+      windowPopup(`Hooray! You found all mines in ${time} seconds and ${clicks} moves!`);
       const popupWindow = document.querySelector('.popap-game-result');
       popupWindow.classList.add('active');
-      const bombMessage = document.createElement('h1');
-      bombMessage.className = 'bomb-message';
-      bombMessage.innerText = `Hooray! You found all mines in ${time}
-      seconds and ${clicks} moves!" or "Game over. Try again`;
-      document.body.append(bombMessage);
+      const bom = 'You Won!';
+      saveGameResult(time, clicks, bom);
     }
 
     const currNumberBomb = document.createElement('p');
@@ -360,9 +353,9 @@ const renderBoardGame = (rows, bombs) => {
 //   localStorage.setItem('saveGame', JSON.stringify(data));
 // }
 
-function saveGameResult(time, bombs) {
+function saveGameResult(time, clicks, bombs) {
   const savedGame = JSON.parse(localStorage.getItem('Your result')) || [];
-  savedGame.push({ time, bombs });
+  savedGame.push({ time, clicks, bombs });
   if (savedGame.length > 10) {
     savedGame.shift();
   }
@@ -435,7 +428,7 @@ function updateGameHistory() {
 
     results.forEach((res) => {
       const resultElem = document.createElement('p');
-      resultElem.innerText = `Your result: ${res.time}, ${res.bombs}`;
+      resultElem.innerText = `Your result: ${res.time}, ${res.clicks}, ${res.bombs}`;
       gameResult.appendChild(resultElem);
     });
   }
@@ -447,20 +440,13 @@ function historyGame() {
   const containerButtons = document.querySelector('.container-buttons');
   const gameStatus = document.createElement('span');
   gameStatus.className = 'status';
-  gameStatus.innerHTML = 'History';
+  gameStatus.innerHTML = 'Results';
   const results = JSON.parse(localStorage.getItem('Your result')) || [];
   updateGameHistory();
   gameStatus.addEventListener('click', () => {
     if (results.length > 0) {
       if (!gameResult) {
-        gameResult = document.createElement('span');
-        gameResult.className = 'history-game';
-
-        results.forEach((res) => {
-          const resultElem = document.createElement('p');
-          resultElem.innerText = `You result : ${res.time},  ${res.bombs} `;
-          gameResult.append(resultElem);
-        });
+        renderResultsTable();
 
         document.body.appendChild(gameResult);
       } else {
@@ -475,6 +461,48 @@ const logo = document.createElement('h1');
 logo.innerText = 'Minesweeper';
 logo.className = 'logo';
 document.body.append(logo);
+
+function renderResultsTable() {
+  const results = JSON.parse(localStorage.getItem('Your result')) || [];
+  const table = document.createElement('table');
+  table.className = 'results-table';
+
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+  const timeHeader = document.createElement('th');
+  timeHeader.innerText = 'Time';
+  const clicksHeader = document.createElement('th');
+  clicksHeader.innerText = 'Clicks';
+  const bombsHeader = document.createElement('th');
+  bombsHeader.innerText = 'Message';
+
+  headerRow.append(timeHeader, clicksHeader, bombsHeader);
+  thead.append(headerRow);
+  table.append(thead);
+
+  const tbody = document.createElement('tbody');
+  results.forEach((result) => {
+    const row = document.createElement('tr');
+    const timeCell = document.createElement('td');
+    timeCell.innerText = result.time;
+    timeCell.className = 'table-row';
+    const clicksCell = document.createElement('td');
+    clicksCell.innerText = result.clicks;
+    clicksCell.className = 'table-row';
+    const bombsCell = document.createElement('td');
+    bombsCell.innerText = result.bombs;
+    bombsCell.className = 'table-row';
+
+    row.append(timeCell, clicksCell, bombsCell);
+    tbody.append(row);
+  });
+
+  table.append(tbody);
+
+  gameResult = document.createElement('div');
+  gameResult.className = 'history-game';
+  gameResult.append(table);
+}
 
 function windowPopup(message) {
   const popup = document.createElement('div');
@@ -492,7 +520,7 @@ function windowPopup(message) {
   const closeButton = document.createElement('button');
   closeButton.className = 'close-popap';
   const closeImage = document.createElement('img');
-  closeImage.src = 'icons/close.svg';
+  closeImage.src = 'assets/close.svg';
   closeImage.alt = '';
 
   closeButton.addEventListener('click', () => {
