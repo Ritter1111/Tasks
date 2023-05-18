@@ -2,13 +2,14 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
-    background: #9383e5;
+    background-image: url('assets/image1.jpg');
     transition: 0.3s ease-out;
     margin: 0;
 }
 
-span {
-    margin: 0;
+.logo {
+    font-family: 'Bungee Shade', cursive;
+    color: white;
 }
 
 .container {
@@ -36,9 +37,11 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 70px;
-    height: 40px;
-    font-size: 16px;
+    /* width: 70px; */
+    /* height: 40px; */
+    background: none;
+    border: none;
+    font-size: 30px;
     color: #121212;
 }
 
@@ -51,13 +54,14 @@ h1 {
 .game-board {
     border-radius: 3px;
     padding: 10px;
+    border: 3px solid white;
     background-color: #ccc9d1;
     box-shadow: inset 2px 2px 4px #676666, inset -2px -2px 5px #676666;
     transition: 0.3s ease-out;
 }
 
 .seconds, .clicks {
-    font-size: 21px;
+    font-size: 16px;
 }
 
 .board TR TD {
@@ -145,12 +149,12 @@ h1 {
 
 body.dark-theme {
     color: #eee;
-    background: #323437;
+    background-image: url('assets/image2.jpg');
     transition: 0.3s ease-out;
 }
 
 .game-board.change {
-    background-color: #626162;
+    background-color: #ccc9d1;
     border: 3px solid white;
     transition: 0.3s ease-out;
     color: white;
@@ -161,11 +165,14 @@ body.dark-theme {
 }
 
 .container-buttons {
-    margin: 38px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+
+span {
+    margin: 9px;
 }
 
 .mine-count-input{
@@ -192,6 +199,39 @@ body.dark-theme {
     height: 30px;
 }
 
+.checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+  
+.toggle-label {
+    background-color: #0f0f0f;
+    width: 35px;
+    height: 15px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+.toggle {
+    background-color: #bf9af3;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: -2px;
+    top: -5px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+  }
+  
+  .checkbox:checked + .toggle-label .toggle {
+    transform: translateX(15px);
+  }
+
 @media (max-width: 800px) {
     .board TR TD {
         width: 18px;
@@ -210,11 +250,41 @@ body.dark-theme {
     .board {
         margin: 0 auto;
     }
-
-
-}
-@media (max-width: 560px) {
-    .container-buttons * {
-        margin-bottom: 8px;
+    .reset-game{
+        font-size: 23px;
     }
+}
+
+@media (max-width: 750px) {
+    .toggle-label {
+        background-color: #0f0f0f;
+        width: 25px;
+        height: 10px;
+        border-radius: 50px;
+        position: relative;
+        padding: 5px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+    .toggle {
+        background-color: #bf9af3;
+        width: 13px;
+        height: 13px;
+        position: absolute;
+        left: -5px;
+        top: -6px;
+        border-radius: 50%;
+        transition: transform 0.2s linear;
+      }
+      
+      .checkbox:checked + .toggle-label .toggle {
+        transform: translateX(13px);
+      }
+
+      .reset-game, .seconds, .clicks {
+        margin: 3px;
+      }
 }

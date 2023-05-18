@@ -9,7 +9,7 @@ const timer = () => {
       seconds++;
       const minutes = Math.floor(seconds / 60);
       const formattedSeconds = seconds % 60 < 10 ? `0${seconds % 60}` : seconds % 60;
-      time.innerText = `${minutes}:${formattedSeconds}`;
+      time.innerText = `Time: ${minutes}:${formattedSeconds}`;
     }, 1000);
   }
   return intervalId;
@@ -28,6 +28,18 @@ function counterClicks() {
   }
 }
 
+let countBomb = 0;
+function counterBombs(cell) {
+  // const clickedCell = document.querySelector('.board tr td');
+  if (!cell.classList.contains('clicked')) {
+    if (cell.classList.contains('flag')) {
+      countBomb += 1;
+    } else {
+      countBomb -= 1;
+    }
+  }
+}
+
 const createBoard = () => {
   const container = document.createElement('div');
   container.className = 'container';
@@ -39,7 +51,8 @@ const createBoard = () => {
   header.className = 'header';
 
   const clickName = document.createElement('span');
-  clickName.innerText = 'Clicks';
+  clickName.innerText = 'Steps: ';
+  clickName.className = 'clicks';
   const clicks = document.createElement('span');
   clicks.className = 'clicks';
   clicks.innerText = '0';
@@ -47,10 +60,12 @@ const createBoard = () => {
 
   const resetGame = document.createElement('button');
   resetGame.className = 'reset-game';
-  resetGame.innerText = 'New Game';
+  resetGame.innerText = '↺';
 
   const timeName = document.createElement('span');
-  timeName.innerText = 'Time';
+  timeName.innerText = 'Time: ';
+  timeName.className = 'seconds';
+
   const time = document.createElement('span');
   time.className = 'seconds';
   time.innerText = '00:00';
@@ -61,9 +76,17 @@ const createBoard = () => {
   board.innerHTML = '';
   container.append(gameBoard);
   gameBoard.append(header, board);
-  header.append(clickName, resetGame, timeName);
+  header.append(clickName, timeName, resetGame);
   document.body.append(container);
 };
+
+// function countBomb() {
+//   const containerButtons = document.querySelector('.container-buttons');
+//   const countBombs = document.createElement('span');
+//   countBombs.className = 'count-bombs';
+//   countBombs.innerText = 'Mines: ';
+//   containerButtons.append(countBombs);
+// }
 
 const renderBoardGame = (rows, bombs) => {
   const containerMine = document.createElement('div');
@@ -82,6 +105,10 @@ const renderBoardGame = (rows, bombs) => {
   minesCount.value = bombs;
   minesCount.placeholder = 'mines';
 
+  const countFlags = document.createElement('span');
+  countFlags.className = 'count-bombs';
+  countFlags.innerText = `Flags: ${bombs}`;
+
   const board = document.querySelector('.board');
   board.addEventListener('click', () => {
     if (!gameOver) { timer(); }
@@ -92,7 +119,9 @@ const renderBoardGame = (rows, bombs) => {
   const updateGameButton = document.createElement('button');
   updateGameButton.className = 'update-mines';
   updateGameButton.innerText = 'Update';
-  containerMine.append(nameMine, minesCount, updateGameButton);
+
+  countBomb = bombs;
+  containerMine.append(nameMine, minesCount, updateGameButton, countFlags);
   game.append(containerMine);
 
   const resetGame = () => {
@@ -131,6 +160,9 @@ const renderBoardGame = (rows, bombs) => {
       currentCell.addEventListener('contextmenu', (event) => {
         event.preventDefault();
         if (!gameOver || !currentCell.classList.contains('clicked') || !currentCell.classList.contains('opened')) {
+          counterBombs(event.target);
+          const clickedFlag = document.querySelector('.count-bombs');
+          clickedFlag.textContent = `Flags: ${countBomb}`;
           event.target.classList.toggle('flag');
           audio.play();
         }
@@ -140,7 +172,7 @@ const renderBoardGame = (rows, bombs) => {
         if (!gameOver || !currentCell.classList.contains('clicked') || !currentCell.classList.contains('opened')) {
           counterClicks();
           const clickedCell = document.querySelector('.clicks');
-          clickedCell.textContent = counter;
+          clickedCell.textContent = `Steps: ${counter}`;
         }
       });
     }
@@ -204,6 +236,12 @@ const renderBoardGame = (rows, bombs) => {
     if (!isValid(row, column)) return;
 
     if (cell.classList.contains('opened')) return;
+    if (cell.classList.contains('flag')) {
+      if (cell.classList.contains('clicked')) {
+        cell.classList.remove('clicked');
+      }
+      return;
+    }
 
     if (isBomb(row, column)) {
       audioGameOver.play();
@@ -318,7 +356,7 @@ function saveGameResult(time, bombs) {
   localStorage.setItem('Your result', JSON.stringify(savedGame));
   updateGameHistory();
 }
-
+let checked = false;
 function renderNewBoard(row, column) {
   const game = document.querySelector('.container');
   counter = 0;
@@ -342,20 +380,36 @@ function renderNewBoard(row, column) {
   gameOver = false;
   createBoard();
   renderBoardGame(row, column);
+  renderColorThemeBtn();
+
+  const gameBoard = document.querySelector('.checkbox');
+  gameBoard.checked = checked; // Восстановление значения checked
+  gameBoard.classList.add('checked');
 }
 
 function renderColorThemeBtn() {
-  const changeTheme = document.createElement('button');
-  const dropdownContent = document.querySelector('.dropdown-content');
-  changeTheme.className = 'theme';
-  changeTheme.innerText = 'Theme';
+  const changeTheme = document.createElement('input');
+  const label = document.createElement('label');
+  const dropdownContent = document.querySelector('.header');
+
+  changeTheme.className = 'checkbox';
+  changeTheme.id = 'checkbox';
+  changeTheme.type = 'checkbox';
+  changeTheme.checked = checked;
+
+  label.setAttribute('for', 'checkbox');
+  label.className = 'toggle-label';
+  label.innerHTML = '<span class="toggle"></span>';
 
   changeTheme.addEventListener('click', () => {
     const game = document.querySelector('.game-board');
     document.body.classList.toggle('dark-theme');
     game.classList.toggle('change');
+    checked = changeTheme.checked;
   });
-  dropdownContent.append(changeTheme);
+
+  dropdownContent.appendChild(changeTheme);
+  dropdownContent.appendChild(label);
 }
 
 function updateGameHistory() {
@@ -404,12 +458,14 @@ function historyGame() {
   containerButtons.append(gameStatus);
 }
 
+const logo = document.createElement('h1');
+logo.innerText = 'Minesweeper';
+logo.className = 'logo';
+document.body.append(logo);
+
 function rendeModeBtns() {
   const header = document.createElement('div');
   header.className = 'container-buttons';
-
-  const logo = document.createElement('h1');
-  logo.innerText = 'Minesweeper';
 
   const butnEasy = document.createElement('button');
   butnEasy.className = 'butn-easy';
@@ -426,7 +482,6 @@ function rendeModeBtns() {
   optionsMenu.className = 'menu';
   optionsMenu.id = 'menu';
   optionsMenu.innerHTML = '⚙️';
-  optionsMenu.onclick = 'myFunction()';
 
   const dropdownContent = document.createElement('div');
   dropdownContent.className = 'dropdown-content';
@@ -445,7 +500,7 @@ function rendeModeBtns() {
   butnHard.addEventListener('click', () => renderNewBoard(25, 99));
   dropdownContent.append(butnEasy, butnMedium, butnHard);
   optionsContainer.append(optionsMenu, dropdownContent);
-  header.append(logo, optionsContainer);
+  header.append(optionsContainer);
   document.body.append(header);
 }
 
@@ -460,7 +515,7 @@ window.onclick = function (e) {
 
 document.addEventListener('DOMContentLoaded', () => {
   rendeModeBtns();
-  renderColorThemeBtn();
   historyGame();
+  // countBomb();
   renderNewBoard(10, 10);
 });
