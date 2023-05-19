@@ -22,7 +22,6 @@ body {
     position: absolute;
     width: 52px;
     height: 52px;
-    left: 632px;
     top: -9px;
     border: none;
     left: 660px;
@@ -59,6 +58,9 @@ body {
 .logo {
   font-family: 'Bungee Shade', cursive;
   color: white;
+  margin-top: 13px;
+  margin-bottom: 0;
+  font-size: 40px;
 }
 
 .container {
@@ -207,7 +209,7 @@ h1 {
 }
 
 .flag::before {
-  content: '🚩';
+  content: '🏴';
   font-size: 15px;
 }
 
@@ -218,7 +220,7 @@ body.dark-theme {
 }
 
 .game-board.change {
-  background-color: #ccc9d1;
+  background-color: #7f7c83;
   border: 3px solid white;
   transition: 0.3s ease-out;
   color: white;
@@ -233,10 +235,11 @@ body.dark-theme {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin: 1px 0 20px 0;
 }
 
 span {
-  margin: 9px;
+  margin: 10px;
 }
 
 .mine-count-input {
@@ -357,4 +360,24 @@ span {
   .clicks {
     margin: 3px;
   }
+
+.content-popap {
+    position: absolute;
+    background-color: #fafafa;
+    width: 427px;
+    height: 171px;
+    border-radius: 9px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    padding: 15px;
+}
+
+.close-popap {
+  top: -9px;
+  border: none;
+  left: 414px;
+}
 }
