@@ -54,13 +54,36 @@ body {
     color: red;
     padding: 15px;
 }
+
+.dark-theme .content-popap {
+  background-color: #333;
+  transition: all 0.3s ease-out;
+}
+
+.dark-theme .board TR TD {
+  background-color: #979797;
+  border: 1px solid #676666;
+  box-shadow: inset 2px 2px 4px #676666, inset -2px -2px 5px #ffffff;
+  transition: all 0.3s ease-out;
+}
+
+.dark-theme .mine-count-input, .dark-theme .update-mines {
+  background: #8d8888;
+  color: white;
+}
+
+.dark-theme .reset-game,
+.dark-theme .seconds,
+.dark-theme .clicks {
+  color: white;
+}
     
 .logo {
   font-family: 'Bungee Shade', cursive;
   color: white;
   margin-top: 13px;
   margin-bottom: 0;
-  font-size: 40px;
+  font-size: 32px;
 }
 
 .container {
@@ -70,25 +93,21 @@ body {
   flex-shrink: 0;
 }
 
-.history-game{
+.history-game {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.results-table{
+.results-table {
     border-spacing: 15px 7px;
     border: 4px double #333;
 }
+
 .table-row:not(:first-child) {
     border-left: 1px solid black;
     height: 16px;
     padding: 1px 15px;
-}
-
-h1 {
-  padding: 0;
-  margin: 0;
 }
 
 .header {
@@ -111,6 +130,15 @@ h1 {
   color: #121212;
 }
 
+.sound-toggle {
+  font-size: 21px;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
 .reset-game.active {
   box-shadow: 0 1px #666;
   transform: translateY(3px);
@@ -125,21 +153,30 @@ h1 {
   transition: 0.3s ease-out;
 }
 
+br {
+  display: none;
+}
+
 .seconds,
 .clicks {
   font-size: 16px;
 }
 
 .board TR TD {
-  width: 25px;
+  width: 23px;
   font-size: 18px;
   font-weight: 600;
-  height: 25px;
+  height: 23px;
   border: 1px solid #ccc;
   background-color: #f1eaf1;
   text-align: center;
   border-radius: 3px;
   box-shadow: inset 2px 2px 4px #ffffff, inset -2px -2px 5px #676666;
+}
+
+.board tr td.change{
+  border: 1px solid #000000;
+  background-color: #504f50;
 }
 
 .board tr td.clicked {
