@@ -2,6 +2,12 @@ let intervalId = null;
 let gameOver = false;
 let counter = 0;
 let checked = false;
+let soundOff = false;
+
+const logo = document.createElement('p');
+logo.innerText = 'Minesweeper';
+logo.className = 'logo';
+document.body.append(logo);
 
 const timer = () => {
   let seconds = 0;
@@ -24,7 +30,9 @@ const resetTimer = () => {
 
 function counterClicks(cell) {
   if (!cell.classList.contains('clicked')) {
-    counter += 1;
+    if (!cell.classList.contains('flag')) {
+      counter += 1;
+    }
   }
 }
 
@@ -61,25 +69,20 @@ const createBoard = () => {
   resetGame.className = 'reset-game';
   resetGame.innerText = '↺';
 
-  const timeName = document.createElement('span');
-  timeName.innerText = 'Time: ';
-  timeName.className = 'seconds';
-
   const time = document.createElement('span');
   time.className = 'seconds';
-  time.innerText = '00:00';
-  timeName.append(time);
+  time.innerText = 'Time: 0:00';
 
   const board = document.createElement('table');
   board.className = 'board';
   board.innerHTML = '';
   container.append(gameBoard);
   gameBoard.append(header, board);
-  header.append(clickName, timeName, resetGame);
+  header.append(clickName, time, resetGame);
   document.body.append(container);
 };
 
-const renderBoardGame = (rows, bombs) => {
+function renderBoardGame(rows, bombs) {
   const containerMine = document.createElement('div');
   containerMine.className = 'container-mines';
 
@@ -95,13 +98,44 @@ const renderBoardGame = (rows, bombs) => {
   minesCount.max = 99;
   minesCount.value = bombs;
   minesCount.placeholder = 'mines';
-  minesCount.oninput = function () {
-    this.value = !!this.value && Math.abs(this.value) >= 10 && Math.abs(this.value) <= 99
-      ? Math.abs(this.value) : null;
-  };
+
+  minesCount.addEventListener('change', (event) => {
+    if (event.target.value < 10) {
+      event.target.value = 10;
+    } else if (event.target.value > 99) {
+      event.target.value = 99;
+    }
+  });
+
   const countFlags = document.createElement('span');
   countFlags.className = 'count-bombs';
-  countFlags.innerText = `Flags: ${bombs}`;
+  countFlags.innerText = `🏴: ${bombs}`;
+
+  const soundButton = document.createElement('button');
+  soundButton.className = 'sound-toggle';
+  soundButton.innerText = '🔊';
+
+  soundButton.addEventListener('click', () => {
+    soundOff = !soundOff;
+    if (soundButton.innerHTML === '🔊') {
+      soundButton.innerHTML = '🔇';
+    } else {
+      soundButton.innerHTML = '🔊';
+    }
+  });
+
+  function toggleSound(name) {
+    // const soundToggle = document.querySelector('.sound-toggle');
+    if (!soundOff) {
+      name.play();
+    } else {
+      name.pause();
+    }
+  }
+
+  const countMines = document.createElement('span');
+  countMines.className = 'count-mines';
+  countMines.innerText = `💣: ${bombs}`;
 
   const board = document.querySelector('.board');
   board.addEventListener('click', () => {
@@ -117,7 +151,7 @@ const renderBoardGame = (rows, bombs) => {
   updateGameButton.innerText = 'Update';
 
   countBomb = bombs;
-  containerMine.append(nameMine, minesCount, updateGameButton, countFlags);
+  containerMine.append(nameMine, minesCount, updateGameButton, countFlags, countMines, soundButton);
   game.append(containerMine);
 
   const resetGame = () => {
@@ -128,6 +162,13 @@ const renderBoardGame = (rows, bombs) => {
     renderNewBoard(rows, bombs);
     resetPopup();
     gameOver = false;
+    const soundBtn = document.querySelector('.sound-toggle');
+    if (soundOff) {
+      soundOff = true;
+      soundBtn.innerHTML = '🔇';
+    } else {
+      soundBtn.innerHTML = '🔊';
+    }
   };
 
   updateGameButton.addEventListener('click', () => {
@@ -144,6 +185,7 @@ const renderBoardGame = (rows, bombs) => {
   const audioClick = new Audio('assets/click.mp3');
 
   audio.preload = 'auto';
+  audio.className = 'audio';
   audioWin.preload = 'auto';
   audioGameOver.preload = 'auto';
   audioClick.preload = 'auto';
@@ -165,9 +207,9 @@ const renderBoardGame = (rows, bombs) => {
         ) {
           counterBombs(event.target);
           const clickedFlag = document.querySelector('.count-bombs');
-          clickedFlag.textContent = `Flags: ${countBomb}`;
+          clickedFlag.textContent = `🏴: ${countBomb}`;
           event.target.classList.toggle('flag');
-          audio.play();
+          toggleSound(audio);
         }
       });
 
@@ -175,15 +217,14 @@ const renderBoardGame = (rows, bombs) => {
         if (!gameOver
           || !currentCell.classList.contains('clicked')
           || !currentCell.classList.contains('opened')
+          || !currentCell.classList.contains('flag')
         ) {
           counterClicks(event.target);
+          toggleSound(audioClick);
+
           if (!gameOver) {
             const clickedCell = document.querySelector('.clicks');
             clickedCell.textContent = `Steps: ${counter}`;
-          }
-          if (!currentCell.classList.contains('clicked')
-          && !currentCell.classList.contains('opened')) {
-            audioClick.play();
           }
         }
       });
@@ -200,9 +241,9 @@ const renderBoardGame = (rows, bombs) => {
 
     while (mines.length < bombs) {
       const randomIndex = Math.floor(Math.random() * cellsCount);
-
       const clickedIndex = row * count + column;
-      if (randomIndex !== clickedIndex) {
+      const isMine = mines.includes(randomIndex);
+      if (randomIndex !== clickedIndex && !isMine) {
         mines.push(randomIndex);
       }
     }
@@ -252,7 +293,17 @@ const renderBoardGame = (rows, bombs) => {
     }
 
     if (isBomb(row, column)) {
-      audioGameOver.play();
+      const openCell = document.querySelectorAll('.board td');
+      openCell.forEach((item) => {
+        if (isBomb(item.parentNode.rowIndex, item.cellIndex)) {
+          item.classList.add('clicked');
+          item.classList.add('opened');
+          item.classList.add('bomb');
+          item.classList.remove('flag');
+          item.innerHTML = '💣';
+        }
+      });
+      toggleSound(audioGameOver);
       cell.classList.add('bomb');
       cell.innerHTML = '💣';
       resetTimer();
@@ -273,9 +324,9 @@ const renderBoardGame = (rows, bombs) => {
     cellsCount--;
     if (cellsCount <= bombs) {
       resetTimer();
-      const time = document.querySelector('.seconds').innerHTML;
+      const time = document.querySelector('.seconds').innerText;
       const clicks = document.querySelector('.clicks').innerHTML;
-      audioWin.play();
+      toggleSound(audioWin);
       gameOver = true;
 
       windowPopup(`Hooray! You found all mines in ${time} seconds and ${clicks} moves!`);
@@ -344,14 +395,7 @@ const renderBoardGame = (rows, bombs) => {
       openBoard(row, column);
     }
   });
-};
-
-// function saveState() {
-//   const time = document.querySelector('.seconds').innerHTML;
-//   const minesInput = document.querySelector('.mine-count-input');
-//   const data = { time, minesInput };
-//   localStorage.setItem('saveGame', JSON.stringify(data));
-// }
+}
 
 function saveGameResult(time, clicks, bombs) {
   const savedGame = JSON.parse(localStorage.getItem('Your result')) || [];
@@ -384,14 +428,30 @@ function renderNewBoard(row, column) {
   if (mi) mi.remove();
 
   gameOver = false;
+
   createBoard();
   resetPopup();
+  resetTimer();
+
   renderBoardGame(row, column);
   renderColorThemeBtn();
 
   const gameBoard = document.querySelector('.checkbox');
   gameBoard.checked = checked;
   gameBoard.classList.add('checked');
+  const gameBoardColor = document.querySelector('.game-board');
+  if (checked) {
+    gameBoardColor.classList.add('change');
+  } else {
+    gameBoardColor.classList.remove('change');
+  }
+  const soundBtn = document.querySelector('.sound-toggle');
+  if (soundOff) {
+    soundOff = true;
+    soundBtn.innerHTML = '🔇';
+  } else {
+    soundBtn.innerHTML = '🔊';
+  }
 }
 
 function renderColorThemeBtn() {
@@ -441,26 +501,19 @@ function historyGame() {
   const gameStatus = document.createElement('span');
   gameStatus.className = 'status';
   gameStatus.innerHTML = 'Results';
-  const results = JSON.parse(localStorage.getItem('Your result')) || [];
   updateGameHistory();
   gameStatus.addEventListener('click', () => {
-    if (results.length > 0) {
-      if (!gameResult) {
-        renderResultsTable();
+    if (!gameResult) {
+      renderResultsTable();
 
-        document.body.appendChild(gameResult);
-      } else {
-        gameResult.remove();
-        gameResult = null;
-      }
+      document.body.appendChild(gameResult);
+    } else {
+      gameResult.remove();
+      gameResult = null;
     }
   });
   containerButtons.append(gameStatus);
 }
-const logo = document.createElement('h1');
-logo.innerText = 'Minesweeper';
-logo.className = 'logo';
-document.body.append(logo);
 
 function renderResultsTable() {
   const results = JSON.parse(localStorage.getItem('Your result')) || [];
@@ -533,6 +586,7 @@ function windowPopup(message) {
   popup.appendChild(popapWindow);
   document.body.append(popup);
 }
+
 function resetPopup() {
   const popupWindow = document.querySelector('.popap-game-result');
   if (popupWindow) {
