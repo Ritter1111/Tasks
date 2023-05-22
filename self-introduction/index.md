@@ -1,7 +1,7 @@
 # Self_introduction
 
 ## Video:
-https://youtu.be/I_j8geccPIo
+[YouTube video](https://youtu.be/I_j8geccPIo)
 
 ## Text transcript of video:
 Hello, my name is Angelina. I want to introduce myself and tell you how and why I became interested in programming. 
