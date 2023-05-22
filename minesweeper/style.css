@@ -1,5 +1,5 @@
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Pangolin', cursive;
   text-align: center;
   background-image: url('assets/image1.jpg');
   transition: 0.3s ease-out;
@@ -75,6 +75,14 @@ body {
 .dark-theme .reset-game,
 .dark-theme .seconds,
 .dark-theme .clicks {
+  color: white;
+}
+
+.dark-theme .show {
+  background-color: #000000;
+}
+
+.dark-theme .butn-easy {
   color: white;
 }
     
@@ -167,10 +175,10 @@ br {
   font-size: 18px;
   font-weight: 600;
   height: 23px;
-  border: 1px solid #ccc;
+  border: 1px solid #b364e1;
   background-color: #f1eaf1;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 1px;
   box-shadow: inset 2px 2px 4px #ffffff, inset -2px -2px 5px #676666;
 }
 
@@ -283,6 +291,8 @@ span {
   width: 53px;
   height: 25px;
   margin-right: 9px;
+  background: #e2a7ff;
+  border: 2px solid white;
 }
 
 .dropdown-content {
@@ -296,11 +306,14 @@ span {
 
 .show {
   display: block;
+  background: #e2a7ff;
 }
 
 .update-mines {
   width: 60px;
   height: 30px;
+  background: #e2a7ff;
+  border: 2px solid white;
 }
 
 .checkbox {
@@ -322,7 +335,7 @@ span {
 }
 
 .toggle {
-  background-color: #bf9af3;
+  background-color: #e2a7ff;
   width: 16px;
   height: 16px;
   position: absolute;
@@ -338,32 +351,40 @@ span {
 
 @media (max-width: 800px) {
   .board TR TD {
-    width: 18px;
-    height: 18px;
-    font-size: 12px;
+    width: 15px;
+    height: 17px;
+    font-size: 11px;
     font-weight: 600;
-    border: none;
+    border: 1px solid #b58cef;
   }
+
+  .seconds, .clicks {
+    font-size: 13px;
+  }
+
   .board tr td.bomb {
     font-size: 10px;
   }
+
   .game-board {
     border-radius: 2px;
     padding: 4px;
   }
+
   .board {
     margin: 0 auto;
   }
+
   .reset-game {
-    font-size: 23px;
+    font-size: 19px;
   }
 }
 
 @media (max-width: 750px) {
   .toggle-label {
     background-color: #0f0f0f;
-    width: 25px;
-    height: 10px;
+    width: 22px;
+    height: 7px;
     border-radius: 50px;
     position: relative;
     padding: 5px;
@@ -372,17 +393,13 @@ span {
     justify-content: space-between;
     align-items: center;
   }
-  .seconds,
-  .clicks {
-    font-size: 14px;
-  }
 
   .toggle {
     background-color: #bf9af3;
-    width: 13px;
-    height: 13px;
+    width: 10px;
+    height: 10px;
     position: absolute;
-    left: -5px;
+    left: -6px;
     top: -6px;
     border-radius: 50%;
     transition: transform 0.2s linear;
