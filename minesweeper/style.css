@@ -1,0 +1,360 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
+  background-image: url('assets/image1.jpg');
+  transition: 0.3s ease-out;
+  margin: 0;
+}
+
+.popap-game-result {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(41, 41, 41, 0.6);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s ease-in-out;
+  }
+
+.close-popap {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    left: 632px;
+    top: -9px;
+    border: none;
+    left: 660px;
+    background: none;
+    transition: 0.5s ease;
+}
+  
+.popap-game-result.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popap-window {
+    display: flex;
+    min-height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-popap {
+    position: absolute;
+    background-color: #fafafa;
+    width: 675px;
+    height: 186px;
+    border-radius: 9px;
+    font-size: 27px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    padding: 15px;
+}
+    
+.logo {
+  font-family: 'Bungee Shade', cursive;
+  color: white;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 4px;
+  flex-shrink: 0;
+}
+
+.history-game{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-table{
+    border-spacing: 15px 7px;
+    border: 4px double #333;
+}
+.table-row:not(:first-child) {
+    border-left: 1px solid black;
+    height: 16px;
+    padding: 1px 15px;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.reset-game,
+.seconds,
+.clicks {
+  cursor: pointer;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #121212;
+}
+
+.reset-game.active {
+  box-shadow: 0 1px #666;
+  transform: translateY(3px);
+}
+
+.game-board {
+  border-radius: 3px;
+  padding: 10px;
+  border: 3px solid white;
+  background-color: #ccc9d1;
+  box-shadow: inset 2px 2px 4px #676666, inset -2px -2px 5px #676666;
+  transition: 0.3s ease-out;
+}
+
+.seconds,
+.clicks {
+  font-size: 16px;
+}
+
+.board TR TD {
+  width: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  height: 25px;
+  border: 1px solid #ccc;
+  background-color: #f1eaf1;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: inset 2px 2px 4px #ffffff, inset -2px -2px 5px #676666;
+}
+
+.board tr td.clicked {
+  background: rgb(181, 181, 181);
+  box-shadow: none;
+}
+
+.butn-easy,
+.theme {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  width: 80px;
+  height: 50px;
+  font-size: 19px;
+  border-radius: 7px;
+  border: 0px solid white;
+  background: none;
+}
+
+.menu {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.status {
+  font-size: 16px;
+}
+
+.board tr td.bomb {
+  font-size: 16px;
+  background: red;
+  color: red;
+}
+
+.bomb-message {
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.board tr td.numberGreen {
+  color: rgb(32, 173, 32);
+}
+
+.board tr td.numberBlue {
+  color: blue;
+}
+
+.board tr td.numberRed {
+  color: red;
+}
+
+.board tr td.numberYellow {
+  color: rgb(216, 238, 23);
+}
+
+.board tr td.numberPink {
+  color: rgb(255, 4, 184);
+}
+
+.board tr td.numberGold {
+  color: rgb(52, 202, 179);
+}
+
+.board tr td.numberPurple {
+  color: rgb(168, 10, 183);
+}
+
+.flag::before {
+  content: '🚩';
+  font-size: 15px;
+}
+
+body.dark-theme {
+  color: #eee;
+  background-image: url('assets/image2.jpg');
+  transition: 0.3s ease-out;
+}
+
+.game-board.change {
+  background-color: #ccc9d1;
+  border: 3px solid white;
+  transition: 0.3s ease-out;
+  color: white;
+}
+
+.butn-easy.change {
+  color: white;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+span {
+  margin: 9px;
+}
+
+.mine-count-input {
+  width: 53px;
+  height: 25px;
+  margin-right: 9px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.show {
+  display: block;
+}
+
+.update-mines {
+  width: 60px;
+  height: 30px;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.toggle-label {
+  background-color: #0f0f0f;
+  width: 35px;
+  height: 15px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle {
+  background-color: #bf9af3;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: -2px;
+  top: -5px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .toggle-label .toggle {
+  transform: translateX(15px);
+}
+
+@media (max-width: 800px) {
+  .board TR TD {
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+  }
+  .board tr td.bomb {
+    font-size: 10px;
+  }
+  .game-board {
+    border-radius: 2px;
+    padding: 4px;
+  }
+  .board {
+    margin: 0 auto;
+  }
+  .reset-game {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 750px) {
+  .toggle-label {
+    background-color: #0f0f0f;
+    width: 25px;
+    height: 10px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .seconds,
+  .clicks {
+    font-size: 14px;
+  }
+
+  .toggle {
+    background-color: #bf9af3;
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    left: -5px;
+    top: -6px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+  }
+
+  .checkbox:checked + .toggle-label .toggle {
+    transform: translateX(13px);
+  }
+
+  .reset-game,
+  .seconds,
+  .clicks {
+    margin: 3px;
+  }
+}
