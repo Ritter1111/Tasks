@@ -1,0 +1,224 @@
+body {
+  margin: 0;
+}
+
+.br {
+  width: 59px;
+  height: 3px;
+  border: none;
+}
+
+.our {
+  margin-top: 0;
+}
+
+.logo-text-bottom {
+  line-height: 15px;
+  margin-top: 4px;
+  color: #292929;
+}
+
+.logo-text {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.header-link {
+  color: #545454;
+}
+
+.card {
+  margin: 30px 0 0 0;
+}
+
+.our-friends-title {
+  margin: 81px 0 30px 0;
+  padding-left: 4px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 62px 0 96px 0;
+}
+
+.header-wrapper {
+  padding-bottom: 16px;
+}
+
+.header {
+  background: #ffffff;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.button-arrow {
+  margin: 0 10px 0 10px;
+  cursor: pointer;
+  background: #f6f6f6;
+}
+
+.colored {
+  font-family: "Georgia";
+  font-size: 20px;
+  background-color: #f1cdb3;
+}
+
+.btn-no-interactive {
+  border: 2px solid #cdcdcd;
+  pointer-events: none;
+}
+
+.title-navigation {
+  margin: 0;
+}
+
+.header-link:hover {
+  color: #292929;
+  transition: 0.5s ease-in-out;
+}
+
+.chose-link {
+  color: #292929;
+}
+
+.arrow {
+  font-family: "Georgia";
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+}
+
+.description-popap {
+  margin: 9px 20px 88px 29px;
+}
+
+.our-friends-container {
+  flex-wrap: wrap;
+  column-gap: 10px;
+}
+
+@media (max-width: 1079px) {
+  .our-friends-container {
+    justify-content: space-evenly;
+    margin: 0 12px 0 9px;
+  }
+  .button-arrow:hover {
+    background: #fafafa;
+    border: 2px solid #f1cdb3;
+  }
+}
+
+@media (max-width: 1070px) {
+  .popap-name-pets {
+    margin-top: 0;
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 830px) {
+  .cards {
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 768px) {
+  .our-friends-title {
+    margin-bottom: 0;
+  }
+
+  .our-friends-container {
+    margin: 0 59px 0 59px;
+  }
+
+  .scarlett,
+  .freddie {
+    display: none;
+  }
+
+  .pagination {
+    padding: 43px 0 76px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .burger::before,
+  .burger-line,
+  .burger::after {
+    border: 1px solid #000000;
+  }
+
+  .nav-menu {
+    background: #f6f6f6;
+    z-index: 1;
+  }
+
+  .br {
+    width: 241px;
+  }
+  .header.open .nav-menu {
+    z-index: 1;
+  }
+}
+
+@media (max-width: 674px) {
+  .title-navigation-second {
+    margin: 39px 0 7px 0;
+  }
+
+  .description-popap {
+    margin: 2px 6px 0px 11px;
+    text-align: center;
+  }
+  
+  .link-popap {
+    text-align: start;
+  }
+}
+
+@media (max-width: 462px) {
+  .card {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .our-friends-title {
+    margin: 0;
+    margin-top: 43px;
+    margin-bottom: 11px;
+  }
+
+  .sophia,
+  .timmy,
+  .charly {
+    display: none;
+  }
+
+  .button-arrow {
+    margin: 0 5px 0 5px;
+  }
+
+  .pagination {
+    padding: 43px 0 44px 0;
+  }
+
+  .ico-city {
+    padding: 33px 0 40px 0;
+  }
+
+  .footer-puppy {
+    padding-top: 41px;
+  }
+
+  .ico-email,
+  .ico-phone {
+    padding-left: 17px;
+  }
+}
