@@ -8,7 +8,11 @@ const baseConfig = {
     entry: path.resolve(__dirname, './src/index'),
     mode: 'development',
     module: {
-        rules: [{ test: /\.ts$/i, use: 'ts-loader' }],
+        rules: [{ test: /\.ts$/i, use: 'ts-loader' },
+        {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+          },],
     },
     resolve: {
         extensions: ['.ts', '.js'],
