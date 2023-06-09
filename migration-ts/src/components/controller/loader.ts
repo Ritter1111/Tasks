@@ -1,8 +1,9 @@
 type IOpitons = Record<string, string>;
 
 class Loader {
-    baseLink: string;
-    options: IOpitons;
+    private baseLink: string;
+    private options: IOpitons;
+
     constructor(baseLink: string, options: IOpitons) {
         this.baseLink = baseLink;
         this.options = options;
@@ -32,7 +33,7 @@ class Loader {
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
-            url += `${key}=${urlOptions[key]}&`;
+            url += `${key}=${urlOptions[key as keyof typeof urlOptions]}&`;
         });
 
         return url.slice(0, -1);

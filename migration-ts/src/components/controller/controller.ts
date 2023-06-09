@@ -4,8 +4,10 @@ interface ISourcesData {
     endpoint: string;
 }
 
+type getSoursesData = (data: ISourcesData) => void;
+
 class AppController extends AppLoader {
-    getSources(callback: (data) => void) {
+    getSources(callback: getSoursesData) {
         super.getResp(
             {
                 endpoint: 'sources',
