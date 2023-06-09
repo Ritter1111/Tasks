@@ -38,9 +38,8 @@ class News {
             }
         });
 
-        const newsElem = document.querySelector('.news') as HTMLElement;
-        newsElem.innerHTML = '';
-        newsElem.appendChild(fragment);
+        (document.querySelector('.news') as HTMLElement).innerHTML = '';
+        (document.querySelector('.news') as HTMLElement).appendChild(fragment);
     }
 }
 

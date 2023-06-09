@@ -3,16 +3,11 @@ import { IDrawArticles, IDrawSources } from '../view/appView';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-    getSources(callback: CallbackType<IDrawSources>) {
-        super.getResp(
-            {
-                endpoint: 'sources',
-            },
-            callback
-        );
+    getSources(callback: CallbackType<IDrawSources>): void {
+        super.getResp({ endpoint: 'sources' }, callback);
     }
 
-    getNews(e: Event, callback: CallbackType<IDrawArticles>) {
+    getNews(e: Event, callback: CallbackType<IDrawArticles | undefined>): void {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 

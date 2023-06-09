@@ -3,28 +3,28 @@ import News from './news/news';
 import Sources from './sources/sources';
 
 export interface IDrawSources {
-    sources?: INewsSource[];
+    readonly sources?: INewsSource[];
 }
 
 export interface IDrawArticles {
-    articles?: INews[];
+    readonly articles?: INews[];
 }
 
 export class AppView {
-    private news: News;
-    private sources: Sources;
+    news: News;
+    sources: Sources;
 
     constructor() {
         this.news = new News();
         this.sources = new Sources();
     }
 
-    drawNews(data: IDrawArticles): void {
+    drawNews(data: IDrawArticles) {
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
 
-    drawSources(data: IDrawSources): void {
+    drawSources(data: IDrawSources) {
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }

@@ -1,4 +1,11 @@
+import { CallbackType } from '../../types';
+
 type IOpitons = Record<string, string>;
+
+type endPoint = {
+    endpoint: string;
+    options?: IOpitons;
+};
 
 class Loader {
     private baseLink: string;
@@ -10,8 +17,8 @@ class Loader {
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: IOpitons },
-        callback = (data: any) => {
+        { endpoint, options = {} }: endPoint,
+        callback = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -39,7 +46,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: CallbackType<any>, options = {}) {
+    load(method: string, endpoint: string, callback: CallbackType<unknown>, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

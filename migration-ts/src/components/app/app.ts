@@ -1,5 +1,11 @@
+// import { INews, INewsSource } from '../../types';
 import AppController from '../controller/controller';
-import { AppView } from '../view/appView';
+import { AppView, IDrawArticles, IDrawSources } from '../view/appView';
+
+// export type newsResponse = {
+//     readonly sources?: INewsSource[];
+//     readonly articles?: INews[];
+// };
 
 class App {
     private controller: AppController;
@@ -10,13 +16,13 @@ class App {
         this.view = new AppView();
     }
 
-    start(): void {
+    public start() {
         const sourcesElement = document.querySelector('.sources');
         if (sourcesElement) {
             sourcesElement.addEventListener('click', (e: Event) => {
-                this.controller.getNews(e, (data) => this.view.drawNews(data));
+                this.controller.getNews(e, (data: IDrawArticles | undefined) => this.view.drawNews(data || {}));
             });
-            this.controller.getSources((data) => this.view.drawSources(data));
+            this.controller.getSources((data: IDrawSources | undefined) => this.view.drawSources(data || {}));
         }
     }
 }
