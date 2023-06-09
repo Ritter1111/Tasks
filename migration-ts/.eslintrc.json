@@ -18,11 +18,12 @@
         "node": true
     },
     "rules": {
-        "import/extensions" : "off",
-        "@typescript-eslint/no-var-requires": 0,
         "no-debugger": "off",
+        "import/extensions" : "off",
+        "prettier/prettier" : "error",
+        "@typescript-eslint/no-var-requires": 0,
         "no-console": 0,
         "class-methods-use-this": "off",
-        "@typescript-eslint/no-explicit-any": 2
+        "@typescript-eslint/no-explicit-any": "error"
     }
 }
