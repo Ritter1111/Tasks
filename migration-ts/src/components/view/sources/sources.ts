@@ -4,27 +4,22 @@ import { INewsSource } from '../../../types/index';
 class Sources {
     draw(data: INewsSource[]) {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
+        const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
 
         data.forEach((item) => {
-            const sourceClone = sourceItemTemp?.content.cloneNode(true) as HTMLTemplateElement | null;
-            if (sourceClone instanceof HTMLTemplateElement) {
-                const itemName = sourceClone.querySelector('.source__item-name');
-                if (itemName) {
-                    itemName.textContent = item.name;
-                }
-                const sourceItem = sourceClone.querySelector('.source__item');
-                if (sourceItem) {
-                    sourceItem.setAttribute('data-source-id', item.id);
-                }
-                fragment.append(sourceClone);
-            }
+            const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
+
+            const itemName = sourceClone.querySelector('.source__item-name') as HTMLElement;
+            itemName.textContent = item.name;
+
+            const itemSource = sourceClone.querySelector('.source__item') as HTMLElement;
+            itemSource.setAttribute('data-source-id', item.id);
+
+            fragment.append(sourceClone);
         });
 
-        const soursecContainer = document.querySelector<HTMLElement>('.sources');
-        if (soursecContainer) {
-            soursecContainer.append(fragment);
-        }
+        const sourcesContainer = document.querySelector('.sources') as HTMLElement;
+        sourcesContainer.append(fragment);
     }
 }
 
