@@ -5,7 +5,7 @@ interface ISourcesData {
 }
 
 class AppController extends AppLoader {
-    getSources(callback: () => void) {
+    getSources(callback: (data) => void) {
         super.getResp(
             {
                 endpoint: 'sources',

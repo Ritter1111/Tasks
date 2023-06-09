@@ -9,7 +9,7 @@ class Loader {
     }
 
     getResp(
-        { endpoint, options = {} }: {endpoint: string, options: IOpitons},
+        { endpoint, options = {} }: { endpoint: string; options: IOpitons },
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -38,12 +38,12 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: (data: unknown) => void, options = {}) {
+    load(method: string, endpoint: string, callback: (data) => void, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
             .then((data) => callback(data))
-            .catch((err) => console.error(err));
+            .catch((err: Error) => console.error(err));
     }
 }
 
