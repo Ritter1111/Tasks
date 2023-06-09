@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+export type CallbackType<Type> = (data: Type) => void;
+
 export interface INewsSource {
     id: string;
     name: string;
