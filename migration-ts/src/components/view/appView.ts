@@ -1,30 +1,22 @@
-import { INews, INewsSource } from '../../types';
+import { IDrawArticles, IDrawSources } from '../../types';
 import News from './news/news';
 import Sources from './sources/sources';
 
-export interface IDrawSources {
-    readonly sources?: INewsSource[];
-}
-
-export interface IDrawArticles {
-    readonly articles?: INews[];
-}
-
 export class AppView {
-    news: News;
-    sources: Sources;
+    private news: News;
+    protected sources: Sources;
 
     constructor() {
         this.news = new News();
         this.sources = new Sources();
     }
 
-    drawNews(data: IDrawArticles) {
+    drawNews(data: IDrawArticles): void {
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
 
-    drawSources(data: IDrawSources) {
+    drawSources(data: IDrawSources): void {
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
