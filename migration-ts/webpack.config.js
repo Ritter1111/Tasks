@@ -8,18 +8,20 @@ const baseConfig = {
     entry: path.resolve(__dirname, './src/index'),
     mode: 'development',
     module: {
-        rules: [{ test: /\.ts$/i, use: 'ts-loader' },
-        {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader'],
-          },],
+        rules: [
+            { test: /\.ts$/i, use: 'ts-loader' },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+        ],
     },
     resolve: {
         extensions: ['.ts', '.js'],
     },
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, './dist'),
     },
     plugins: [
         new HtmlWebpackPlugin({

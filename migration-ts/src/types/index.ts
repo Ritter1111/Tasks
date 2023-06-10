@@ -12,13 +12,12 @@ export enum StatusResponce {
     notFound = 404,
 }
 
-export interface IDrawSources {
-    readonly sources?: INewsSource[];
+interface ISourcesArticles {
+    readonly sources: INewsSource[];
+    readonly articles: INews[];
 }
 
-export interface IDrawArticles {
-    readonly articles?: INews[];
-}
+type SourcesArticles = Partial<ISourcesArticles>;
 
 export interface INewsSource {
     readonly id: string;
@@ -37,3 +36,6 @@ export interface INews {
     readonly description: string;
     readonly source: INewsSource;
 }
+
+export type DrawSources = Pick<SourcesArticles, 'sources'>;
+export type DrawArticles = Pick<SourcesArticles, 'articles'>;

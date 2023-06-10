@@ -1,12 +1,12 @@
-import { CallbackType, IDrawArticles, IDrawSources } from '../../types';
+import { CallbackType, DrawArticles, DrawSources } from '../../types';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-    getSources(callback: CallbackType<IDrawSources>): void {
-        super.getResp<IDrawSources>({ endpoint: 'sources' }, callback);
+    getSources(callback: CallbackType<DrawSources>): void {
+        super.getResp<DrawSources>({ endpoint: 'sources' }, callback);
     }
 
-    getNews(e: Event, callback: CallbackType<IDrawArticles>): void {
+    getNews(e: Event, callback: CallbackType<DrawArticles>): void {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 
@@ -15,7 +15,7 @@ class AppController extends AppLoader {
                 const sourceId = target.getAttribute('data-source-id') as string;
                 if (sourceId !== null && newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
-                    super.getResp<IDrawArticles>(
+                    super.getResp<DrawArticles>(
                         {
                             endpoint: 'everything',
                             options: {
