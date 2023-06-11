@@ -2,15 +2,23 @@ body {
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    margin: 0;
 }
 
 header {
     padding: 10px 30px;
+    background-color: #1179af;
 }
 
 header h1 {
-    font-size: 40px;
     font-weight: 800;
+    margin: 15px;
+    font-size: calc(28px + 33 * (100vw - 320px) / 880);
+    font-family: 'Luckiest Guy';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #dfdfdf;
+    text-shadow: -1px 1px 0 #41ba45, 3px 1px 0 #c63d2b, 4px -1px 0 #42afac, -1px -1px 0 #c6c23f;
 }
 
 footer {
@@ -19,17 +27,59 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
 footer .copyright {
     font-size: 14px;
     color: #333;
     text-align: center;
+    padding: 0 5px;
 }
+
 footer .copyright a {
     color: #444;
 }
+
 footer .copyright a:hover {
     color: #555;
 }
+
 footer .copyright:before {
     content: '©';
+}
+
+.footer-logo_rsschool {
+    width: 50px;
+    height: 36px;
+    padding: 0 5px;
+}
+
+.footer-logo {
+    list-style: none;
+
+}
+
+.footer-logo_git {
+    width: 30px;
+    height: 37px;
+    padding: 0 5px;
+}
+
+.footer-logo_link {
+    color: #17181c;
+}
+
+@media (max-width: 340px) {
+    .footer-logo_rsschool {
+        width: 39px;
+        height: 30px;
+    }
+
+    .footer-logo_git {
+        width: 21px;
+        height: 31px;
+    }
+
+    .source__item-name {
+        font-size: 13px;
+    }
 }

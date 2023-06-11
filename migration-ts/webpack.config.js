@@ -9,10 +9,18 @@ const baseConfig = {
     mode: 'development',
     module: {
         rules: [
+            {
+                test: /\.html$/i,
+                loader: 'html-loader',
+            },
             { test: /\.ts$/i, use: 'ts-loader' },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
         ],
     },
