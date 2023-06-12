@@ -30,6 +30,25 @@ class AppController extends AppLoader {
             target = target.parentNode as HTMLElement;
         }
     }
+
+    filterSourcesByLetter(letter: string): void {
+        const sourcesContainer = document.querySelector('.sources') as HTMLElement;
+        console.log(sourcesContainer);
+        sourcesContainer.classList.remove('hidden');
+
+        const sourceItems = sourcesContainer.querySelectorAll('.source__item');
+
+        sourceItems.forEach((item) => {
+            const itemName = item.querySelector('.source__item-name') as HTMLElement;
+            const sourceName = itemName.textContent || '';
+
+            if (sourceName.charAt(0).toLowerCase() === letter.toLowerCase()) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    }
 }
 
 export default AppController;
