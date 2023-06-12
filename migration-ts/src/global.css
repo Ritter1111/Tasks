@@ -7,14 +7,13 @@ body {
 
 header {
     padding: 1px 30px;
-    /* background: linear-gradient(90deg, rgba(104,53,131,1) 0%, rgba(62,0,108,1) 100%); */
     background-color: #7b29e2;
 }
 
 header h1 {
     font-weight: 800;
     margin: 15px;
-    font-size: calc(32px + 20 * (100vw - 320px) / 880);
+    font-size: calc(30px + 15 * (100vw - 320px) / 880);
     font-family: 'Luckiest Guy';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

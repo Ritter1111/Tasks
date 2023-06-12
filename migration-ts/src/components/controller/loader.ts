@@ -16,7 +16,7 @@ class Loader {
         this.load<T>('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: Response): Response {
+    errorHandler = (res: Response): Response => {
         if (!res.ok) {
             if (res.status === StatusResponce.unautorized || res.status === StatusResponce.notFound)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -24,7 +24,7 @@ class Loader {
         }
 
         return res;
-    }
+    };
 
     makeUrl(options: IOpitons, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
