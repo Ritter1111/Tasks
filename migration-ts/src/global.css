@@ -7,7 +7,7 @@ body {
 
 header {
     padding: 10px 30px;
-    background-color: #1179af;
+    background-color: #7f0ff8;
 }
 
 header h1 {
@@ -48,7 +48,7 @@ footer .copyright:before {
 }
 
 .footer-logo_rsschool {
-    width: 50px;
+    width: 41px;
     height: 36px;
     padding: 0 5px;
 }
@@ -59,7 +59,7 @@ footer .copyright:before {
 }
 
 .footer-logo_git {
-    width: 30px;
+    width: 21px;
     height: 37px;
     padding: 0 5px;
 }

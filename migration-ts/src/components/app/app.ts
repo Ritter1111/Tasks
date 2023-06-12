@@ -1,6 +1,8 @@
 import { DrawArticles, DrawSources } from '../../types';
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
+import { alphabet } from './btnKey';
+import './app.css';
 
 class App {
     private controller: AppController;
@@ -16,34 +18,6 @@ class App {
             this.controller.getNews(e, (data: DrawArticles) => this.view.drawNews(data));
         });
 
-        const alphabet = [
-            { key: 'A' },
-            { key: 'B' },
-            { key: 'C' },
-            { key: 'D' },
-            { key: 'E' },
-            { key: 'F' },
-            { key: 'G' },
-            { key: 'H' },
-            { key: 'I' },
-            { key: 'J' },
-            { key: 'K' },
-            { key: 'L' },
-            { key: 'M' },
-            { key: 'N' },
-            { key: 'O' },
-            { key: 'P' },
-            { key: 'Q' },
-            { key: 'R' },
-            { key: 'S' },
-            { key: 'T' },
-            { key: 'U' },
-            { key: 'V' },
-            { key: 'W' },
-            { key: 'X' },
-            { key: 'Y' },
-            { key: 'Z' },
-        ];
         const letterElem = document.querySelector('.letter') as HTMLElement;
 
         alphabet.forEach((btn) => {
