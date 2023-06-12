@@ -11,12 +11,12 @@
 
 .source__item {
     background: none;
-    border: 2px solid #3a3776;
+    border: 2px solid #640ca6;
     font: inherit;
     line-height: 1;
     margin: 0.5em;
     padding: 1em 1em;
-    color: #d5bfec;
+    color: #eae4f1;
     transition: 0.25s;
     cursor: pointer;
     width: 190px;
@@ -24,9 +24,8 @@
 
 .source__item:hover,
 .source__item:focus {
-    border-color: #3fcc59;
-    color: #69db7e;
-    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+    border-color: #cc3fbe;
+    box-shadow: 0 0.5em 0.5em -0.4em #cc3fcc;
     transform: translateY(-0.25em);
 }
 

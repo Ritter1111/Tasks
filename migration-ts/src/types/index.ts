@@ -42,5 +42,3 @@ export interface INews {
 export type DrawSources = Pick<SourcesArticles, 'sources'>;
 export type DrawArticles = Pick<SourcesArticles, 'articles'>;
 export type sourseData = Pick<INewsSource, 'id' | 'name'>;
-
-export type typesData = INewsSource | INews;

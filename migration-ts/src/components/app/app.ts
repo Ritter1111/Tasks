@@ -20,7 +20,7 @@ class App {
 
         const letterElem = document.querySelector('.letter') as HTMLElement;
 
-        alphabet.forEach((btn) => {
+        alphabet.forEach((btn: Record<string, string>) => {
             const btnEl = document.createElement('button');
             btnEl.className = 'letter_button';
             btnEl.innerHTML = btn.key;

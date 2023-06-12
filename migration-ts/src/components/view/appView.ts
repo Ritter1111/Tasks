@@ -13,7 +13,6 @@ export class AppView {
 
     drawNews(data: DrawArticles): void {
         const values = data?.articles ? data?.articles : [];
-        console.log(values);
         this.news.draw(values);
     }
 

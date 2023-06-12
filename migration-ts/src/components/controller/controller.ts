@@ -33,7 +33,6 @@ class AppController extends AppLoader {
 
     filterSourcesByLetter(letter: string): void {
         const sourcesContainer = document.querySelector('.sources') as HTMLElement;
-        console.log(sourcesContainer);
         sourcesContainer.classList.remove('hidden');
 
         const sourceItems = sourcesContainer.querySelectorAll('.source__item');

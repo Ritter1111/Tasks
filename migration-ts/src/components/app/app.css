@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 5px;
 }
 
 .letter_button {
@@ -11,7 +12,7 @@
     width: auto;
     background: transparent;
     color: #d5bfec;
-    font: inherit;
+    font-size: calc(12px + 5 * (100vw - 320px) / 880);
     line-height: normal;
     transition: all .2s ease-in-out;
 }

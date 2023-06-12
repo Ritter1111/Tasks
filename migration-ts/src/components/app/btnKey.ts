@@ -1,4 +1,4 @@
-export const alphabet = [
+export const alphabet: Record<string, string>[] = [
     { key: 'A' },
     { key: 'B' },
     { key: 'C' },
