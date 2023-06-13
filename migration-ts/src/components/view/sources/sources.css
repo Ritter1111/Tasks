@@ -1,3 +1,5 @@
+@import '/src/color.css';
+
 .sources {
     display: flex;
     flex-wrap: wrap;
@@ -24,8 +26,8 @@
 
 .source__item:hover,
 .source__item:focus {
-    border-color: #cc3fbe;
-    box-shadow: 0 0.5em 0.5em -0.4em #cc3fcc;
+    border-color: var(--pink);
+    box-shadow: 0 0.5em 0.5em -0.4em var(--pink);
     transform: translateY(-0.25em);
 }
 

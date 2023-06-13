@@ -1,6 +1,8 @@
+@import '/src/color.css';
+
 body {
-    color: #fff;
-    background: #17181c;
+    color: var(--white);
+    background: var(--blue);
     font-family: sans-serif;
     margin: 0;
 }
@@ -30,7 +32,7 @@ footer {
 
 footer .copyright {
     font-size: 14px;
-    color: #333;
+    color: var(--dark-gray);
     text-align: center;
     padding: 0 5px;
 }
@@ -55,7 +57,6 @@ footer .copyright:before {
 
 .footer-logo {
     list-style: none;
-
 }
 
 .footer-logo_git {
@@ -65,7 +66,7 @@ footer .copyright:before {
 }
 
 .footer-logo_link {
-    color: #17181c;
+    color: var(--blue);
 }
 
 @media (max-width: 340px) {

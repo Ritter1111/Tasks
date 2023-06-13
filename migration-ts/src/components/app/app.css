@@ -6,7 +6,7 @@
 }
 
 .letter_button {
-  border: none;
+    border: none;
     margin: 0;
     padding: 6px;
     width: auto;
@@ -14,9 +14,9 @@
     color: #d5bfec;
     font-size: calc(12px + 5 * (100vw - 320px) / 880);
     line-height: normal;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .letter_button:hover {
-  transform: scale(1.4);
+    transform: scale(1.4);
 }

@@ -9,5 +9,3 @@ class AppLoader extends Loader {
 }
 
 export default AppLoader;
-
-// 4635dcf20dd14584a3402807405a4ca8
