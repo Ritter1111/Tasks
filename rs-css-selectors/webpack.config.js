@@ -1,7 +1,7 @@
-const path = require('path');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path')
+const { merge } = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.js'),
@@ -9,8 +9,20 @@ const baseConfig = {
     module: {
         rules: [
             {
+                test: /\.html$/i,
+                loader: 'html-loader',
+            },
+            {
+                test: /\.ts$/i,
+                use: 'ts-loader',
+            },
+            {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
         ],
     },
@@ -28,11 +40,13 @@ const baseConfig = {
         }),
         new CleanWebpackPlugin(),
     ],
-};
+}
 
 module.exports = ({ mode }) => {
-    const isProductionMode = mode === 'prod';
-    const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
+    const isProductionMode = mode === 'prod'
+    const envConfig = isProductionMode
+        ? require('./webpack.prod.config')
+        : require('./webpack.dev.config')
 
-    return merge(baseConfig, envConfig);
-};
+    return merge(baseConfig, envConfig)
+}
