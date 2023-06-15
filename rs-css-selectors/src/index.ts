@@ -1,1 +1,2 @@
-let a = 5
+import './index.html'
+import './style.scss'
