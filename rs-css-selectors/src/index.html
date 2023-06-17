@@ -3,9 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rs-css-selectors</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title></title>
   </head>
   <body>
-    <p>shdfdg</p>
+    <div class="container">
+      <main class="main">
+        <aside class="sidebar">
+          <div class="sidebar-lvl">
+            <h2 class="sidebar-lvl_header">
+              <div class="sidebar-lvl_header__text">Level 1 of 15</div>
+              <i class="fa fa-check"></i>
+              <i class="fa fa-angle-left"></i>
+              <i class="fa fa-angle-right"></i>
+              <span class="sidebar-lvl_header__burger burger">
+                <span class="burger-line"></span>
+              </span>
+            </h2>
+            <div class="levels-wrapper">
+            <div class="levels-wrapper__main levels">
+              <h3 class="levels_title">Type selector</h3>
+              <p class="levels_subtitle">Select elements by their type</p>
+              <h3 class="levels_type">
+                <tag class="levels_type_tag">A</tag>
+              </h3>
+              <p class="levels_description">
+                Selects all elements of type A. Type refers to the type of tag,
+                so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all
+                different element types.
+              </p>
+              <h3 class="levels_example">Examples</h3>
+              <div class="levels_example_text"> <tag>div</tag> selects all <tag>div</tag> elements.</div>
+            </div>
+              <button class="levels-wrapper_reset">Reset progress</button>
+          </div>
+          </div>
+        </aside>
+        <header class="header">
+          <div class="header_name">Css Diner</div>
+          <div class="header_links">Help</div>
+        </header>
+        <section class="section__main">
+          <div class="wrapper">
+            <div class="layout">
+              <h3 class="layout_title">Select all elements</h3>
+            </div>
+          </div>
+        </section>
+        <footer class="footer">
+          <div class="footer-logo_link">
+            <a href="https://rs.school" class="footer-logo_link">
+              <img
+                src="./assets/img/logo.svg"
+                alt="Rsschool Logo"
+                class="footer-logo_rsschool"
+              />
+            </a>
+          </div>
+          <div class="footer-logo_year">Made by ritter1111 2023</div>
+          <div class="footer-logo_link">
+            <a href="https://github.com/Ritter1111">
+              <img
+                src="./assets/img/git-logo.svg"
+                alt="Git Logo"
+                class="footer-logo_git"
+              />
+            </a>
+          </div>
+        </footer>
+      </main>
+    </div>
   </body>
 </html>

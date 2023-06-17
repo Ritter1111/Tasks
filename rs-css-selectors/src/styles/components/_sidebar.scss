@@ -1,0 +1,47 @@
+.sidebar-lvl_header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.levels-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 268px;
+
+  &_reset {
+    line-height: 2rem;
+    font-family: inherit;
+    background-color: transparent;
+    border: 2px solid #aaa5ac;
+  }
+}
+
+.levels {
+  &_title {
+    padding: 0 0 10px 0;
+  }
+
+  &_type_tag {
+    font-size: 16px;
+    line-height: 5rem;
+    padding: 8px 10px;
+    border: 1px solid $black;
+  }
+
+  &_description {
+    padding: 0 0 23px 0;
+  }
+}
+
+.fa-angle-left,
+.fa-angle-right {
+  font-size: 30px;
+}
+
+tag {
+  background-color: #e3afe0;
+  padding: 2px 7px;
+  font-size: 1rem;
+}

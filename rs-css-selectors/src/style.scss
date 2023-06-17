@@ -1,7 +1,11 @@
-$text: rgb(216, 216, 21);
-$color: rgb(91, 122, 91);
+// abstract
+@import "./styles/abstract/constants.scss";
 
-body {
-  background-color: $color;
-  color: $text;
-}
+// layouts
+@import "./styles/layouts/main.scss";
+
+// components
+@import "./styles/components/header.scss";
+@import "./styles/components/footer.scss";
+@import "./styles/components/sidebar.scss";
+@import "./styles/components/burger.scss";
