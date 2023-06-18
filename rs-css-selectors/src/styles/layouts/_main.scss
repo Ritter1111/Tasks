@@ -2,28 +2,96 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: $dirty-white;
 }
 
 body {
-  background-color: $light-grey;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: $purple;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .sidebar {
-  position: relative;
-  width: 30%;
+  position: fixed;
+  right: 0;
+  width: 27%;
   height: 100vh;
   background-color: $dark-grey;
-  float: right;
   padding: 15px;
   z-index: 1;
 }
 
 .section__main {
-  width: 70%;
-  height: 87vh;
-  background-color: $light-grey;
+  width: 73%;
+  background-color: $purple;
   display: flex;
   justify-content: center;
   padding: 15px;
+}
+
+.layout-editor {
+  position: relative;
+  text-align: left;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  border-radius: 3px;
+  overflow: hidden;
+  font-size: 14px;
+  padding: 4px;
+  background-color: $smoke-gray;
+}
+
+.css-left {
+  height: 100%;
+  &_header {
+    padding: 9px 13px;
+    background: $light-grey;
+    display: flex;
+    justify-content: space-between;
+  }
+  &_body {
+    background-color: $white;
+  }
+}
+
+.html-right {
+  height: 100%;
+  &_header {
+    padding: 9px 13px;
+    background: $light-grey;
+    display: flex;
+    justify-content: space-between;
+  }
+  &_body {
+    background-color: $smoke-black;
+  }
+}
+
+.panel-numbers {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  padding: 5px;
+  left: 0;
+  top: 0;
+  width: 35px;
+  height: 100%;
+  background: $dirty-white;
+  color: $grey;
+}
+
+.panel {
+  position: relative;
+  padding: 9px 6px 8px 45px;
+  line-height: 20px;
+  min-height: 305px;
+  &_input {
+    all: unset;
+    cursor: text;
+  }
+}
+
+.pnl-right {
+  background-color: $smoke-black;
 }
