@@ -21,6 +21,10 @@
     background-color: transparent;
     border: 2px solid #aaa5ac;
     cursor: pointer;
+    transition: 0.3s ease-in;
+  }
+  &_reset:hover {
+    background-color: $grey;
   }
 }
 

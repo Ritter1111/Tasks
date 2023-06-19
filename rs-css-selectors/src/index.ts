@@ -1,5 +1,6 @@
 // import App from './scripts/app'
 import './index.html'
+import burgerView from './scripts/burger'
 import './style.scss'
 
 // window.onload = () => {
@@ -7,3 +8,9 @@ import './style.scss'
 
 //   app.start()
 // }
+
+window.onload = () => {
+  const burger = new burgerView()
+
+  burger.init()
+}

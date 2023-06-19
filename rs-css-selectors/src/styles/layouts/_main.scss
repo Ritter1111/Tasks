@@ -11,6 +11,10 @@ body {
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+html {
+
+}
+
 .sidebar {
   position: fixed;
   right: 0;
@@ -32,7 +36,7 @@ body {
 .layout-editor {
   position: relative;
   text-align: left;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   border-radius: 3px;
@@ -40,6 +44,33 @@ body {
   font-size: 14px;
   padding: 4px;
   background-color: $smoke-gray;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  10%,
+  90% {
+    transform: translateX(-7px);
+  }
+  20%,
+  80% {
+    transform: translateX(7px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-7px);
+  }
+  40%,
+  60% {
+    transform: translateX(7px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .css-left {
@@ -57,6 +88,7 @@ body {
 
 .html-right {
   height: 100%;
+  width: 288px;
   &_header {
     padding: 9px 13px;
     background: $light-grey;
@@ -76,9 +108,10 @@ body {
   left: 0;
   top: 0;
   width: 35px;
+  text-align: right;
   height: 100%;
   background: $dirty-white;
-  color: $grey;
+  color: #666;
 }
 
 .panel {
@@ -86,12 +119,53 @@ body {
   padding: 9px 6px 8px 45px;
   line-height: 20px;
   min-height: 305px;
+  border: 1px solid #333;
   &_input {
     all: unset;
     cursor: text;
+    margin-right: 10px;
+  }
+  &_submit {
+    display: flex;
   }
 }
 
 .pnl-right {
   background-color: $smoke-black;
+  border-right: 1px solid #333;
+}
+
+.btn_enter {
+  transition: 0.3s ease-in;
+  background-color: $grey;
+  padding: 5px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+  &:hover {
+    background-color: $dark-grey;
+  }
+}
+
+@keyframes blink {
+  0% {
+    background-color: rgb(110, 255, 120);
+  }
+  50% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: rgb(110, 255, 120);
+  }
+}
+
+#panel_input {
+  animation: blink 0.5s infinite;
+}
+
+.layout_main {
+  // background-image: url('~assets/img/grass.png');
+}
+
+.layout_main-grass {
+
 }
