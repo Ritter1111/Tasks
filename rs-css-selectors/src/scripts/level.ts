@@ -1,6 +1,7 @@
 export default class Level {
   public id: string
   public title: string
+  public subtitle: string
   public description: string
   public selectors: string[]
   public nameSelectors: string
@@ -10,6 +11,7 @@ export default class Level {
   constructor(
     id: string,
     title: string,
+    subtitle: string,
     description: string,
     selectors: string[],
     nameSelectors: string,
@@ -23,5 +25,6 @@ export default class Level {
     this.nameSelectors = nameSelectors
     this.examples = examples
     this.code = code
+    this.subtitle = subtitle
   }
 }
