@@ -40,8 +40,13 @@ export default class Game {
     )
   }
 
-  public initGame(): void {
-    this.renderLevel(this.levels[0])
+  initGame = () => {
+    const storedLevel = localStorage.getItem('currentLevel')
+    if (storedLevel) {
+      this.indexLevel = +storedLevel
+    }
+
+    this.renderLevel(this.levels[this.indexLevel])
     this.addClickAngle()
   }
 
@@ -88,6 +93,7 @@ export default class Game {
       if (this.indexLevel < levels.length - 1) {
         this.indexLevel++
         this.renderLevel(levels[this.indexLevel])
+        localStorage.setItem('currentLevel', this.indexLevel.toString())
       }
     })
 
@@ -95,6 +101,7 @@ export default class Game {
       if (this.indexLevel > 0) {
         this.indexLevel--
         this.renderLevel(levels[this.indexLevel])
+        localStorage.setItem('currentLevel', this.indexLevel.toString())
       }
     })
   }

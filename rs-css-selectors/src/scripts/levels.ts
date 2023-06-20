@@ -9,9 +9,8 @@ export const levels = [
     selectors: ['robot'],
     nameSelectors: 'A',
     examples: [`<tag>div</tag> selects all <tag>div</tag> elements.`],
-    code: `
-    <robot></robot>
-    <robot></robot>
+    code: `<robot></robot>
+<robot></robot>
     `,
   },
   {
@@ -24,10 +23,9 @@ export const levels = [
     selectors: ['fry'],
     nameSelectors: 'A',
     examples: [`<tag>div</tag> selects all <tag>div</tag> elements.`],
-    code: `
-    <fry></fry>
-    <amy></amy>
-    <fry></fry>
+    code: `<fry></fry>
+<amy></amy>
+<fry></fry>
     `,
   },
   {
@@ -41,13 +39,12 @@ export const levels = [
     examples: [
       `<tag>h1 strong</tag> select all <tag>strong</tag> elements that are inside of any <tag>p</tag>`,
     ],
-    code: `
-    <benderDrink>
-        <beer></beer>
-    </benderDrink>
-    <benderDrink>
-        <beer></beer>
-    </benderDrink>
+    code: `<benderDrink>
+  <beer></beer>
+</benderDrink>
+<benderDrink>
+  <beer></beer>
+</benderDrink>
     `,
   },
   {
@@ -58,10 +55,9 @@ export const levels = [
     selectors: ['zoidberg'],
     nameSelectors: '#id',
     examples: [`<tag>#nice</tag> select any element with <tag>id="nice"</tag>`],
-    code: `
-    <robot></robot>
-    <zoidberg id="cancer"></zoidberg>
-    <robot></robot>
+    code: `<robot></robot>
+<zoidberg id="cancer"></zoidberg>
+<robot></robot>
     `,
   },
 ]

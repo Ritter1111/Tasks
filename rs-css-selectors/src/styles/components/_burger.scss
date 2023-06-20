@@ -43,15 +43,15 @@
 .nav-menu {
   position: absolute;
   height: 100vh;
-  right: -273px;
+  right: -345px;
   top: 0;
   margin-top: 0;
-  width: 273px;
+  width: 346px;
   display: flex;
   flex-direction: column;
   background: $dark-grey;
   text-align: center;
-  transition: 0.5s ease-out;
+  transition: 0.3s ease-out;
   list-style: none;
   z-index: 1;
 
@@ -83,14 +83,16 @@
 
 .nav-menu a {
   cursor: pointer;
-  display: flex;
   font-size: 1rem;
   padding: 5px 12px 5px 22px;
+  flex-direction: row-reverse;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav-menu.open {
   transform: translateX(-100%);
-  box-shadow: 0 0 0 9999px rgba(41, 41, 41, 0.6);
+  // box-shadow: 0 0 0 9999px rgba(41, 41, 41, 0.6);
 }
 
 .burger-reverse.show {
