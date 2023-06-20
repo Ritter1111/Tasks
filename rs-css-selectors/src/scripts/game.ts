@@ -12,9 +12,10 @@ export default class Game {
   private examples: Element
   private gameTitle: Element
   private indexLevel: number
+  private level: Element
 
   constructor() {
-    this.panel = document.querySelector('.html-right_body') as Element
+    this.panel = document.querySelector('.panel-right') as Element
     this.image = document.querySelector('.person') as Element
     this.title = document.querySelector('.levels_title') as Element
     this.subtitle = document.querySelector('.levels_subtitle') as Element
@@ -22,6 +23,7 @@ export default class Game {
     this.description = document.querySelector('.levels_description') as Element
     this.examples = document.querySelector('.levels_example_text') as Element
     this.gameTitle = document.querySelector('.game_title') as Element
+    this.level = document.querySelector('.sidebar-lvl_header__text') as Element
     this.indexLevel = 0
     this.levels = levels.map(
       (level) =>
@@ -58,6 +60,7 @@ export default class Game {
     this.panel.append(panel)
 
     this.image.innerHTML = level.code
+    this.level.innerHTML = `Level ${level.id} of 10`
 
     const nodes = document.querySelectorAll(
       '.person ' + level.selectors[0]
