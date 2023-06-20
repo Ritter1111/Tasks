@@ -6,7 +6,7 @@ export const levels = [
     description: `Selects all elements of type A. Type refers to the type of tag,
       so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all
       different element types.`,
-    selectors: ['amy', 'fry', 'angel', 'robot', 'richard'],
+    selectors: ['amy'],
     nameSelectors: 'A',
     examples: [`<tag>div</tag> selects all <tag>div</tag> elements.`],
     code: `
@@ -25,9 +25,9 @@ export const levels = [
     nameSelectors: 'A',
     examples: ['hsdjjhxcxhcjxgfjcxhgjfhcjfhcxjfcfxhfj'],
     code: `
-    <amy />
-    <fry />
-    <amy />
+    <amy></amy>
+    <fry></fry>
+    <fry></fry>
     `,
   },
 ]

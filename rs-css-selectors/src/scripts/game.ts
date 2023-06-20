@@ -10,6 +10,8 @@ export default class Game {
   private levelsTag: Element
   private description: Element
   private examples: Element
+  private gameTitle: Element
+  private indexLevel: number
 
   constructor() {
     this.panel = document.querySelector('.html-right_body') as Element
@@ -19,6 +21,8 @@ export default class Game {
     this.levelsTag = document.querySelector('.levels_type_tag') as Element
     this.description = document.querySelector('.levels_description') as Element
     this.examples = document.querySelector('.levels_example_text') as Element
+    this.gameTitle = document.querySelector('.game_title') as Element
+    this.indexLevel = 0
     this.levels = levels.map(
       (level) =>
         new Level(
@@ -36,6 +40,7 @@ export default class Game {
 
   public initGame(): void {
     this.renderLevel(this.levels[0])
+    this.addClickAngle()
   }
 
   public renderLevel(level: Level) {
@@ -46,6 +51,7 @@ export default class Game {
     this.levelsTag.innerHTML = ''
     this.description.innerHTML = ''
     this.examples.innerHTML = ''
+    this.gameTitle.innerHTML = ''
 
     const panel = document.createElement('pre')
     panel.innerText = level.code
@@ -53,13 +59,40 @@ export default class Game {
 
     this.image.innerHTML = level.code
 
+    const nodes = document.querySelectorAll(
+      '.person ' + level.selectors[0]
+    ) as NodeListOf<HTMLElement>
+
+    nodes.forEach((node) => {
+      node.classList.add('animated')
+    })
+
     this.title.append(level.title)
+    this.gameTitle.append(level.subtitle)
     this.subtitle.append(level.subtitle)
     this.levelsTag.append(level.nameSelectors)
     this.description.innerHTML = level.description
 
     level.examples.forEach((el) => {
       this.examples.innerHTML = el
+    })
+  }
+
+  public addClickAngle(): void {
+    const angleRight = document.querySelector('.fa-angle-right') as HTMLElement
+    const angleLeft = document.querySelector('.fa-angle-left') as HTMLElement
+    angleRight.addEventListener('click', () => {
+      if (this.indexLevel < levels.length - 1) {
+        this.indexLevel++
+        this.renderLevel(levels[this.indexLevel])
+      }
+    })
+
+    angleLeft.addEventListener('click', () => {
+      if (this.indexLevel > 0) {
+        this.indexLevel--
+        this.renderLevel(levels[this.indexLevel])
+      }
     })
   }
 }
