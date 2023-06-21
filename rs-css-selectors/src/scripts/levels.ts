@@ -56,8 +56,77 @@ export const levels = [
     nameSelectors: '#id',
     examples: [`<tag>#nice</tag> select any element with <tag>id="nice"</tag>`],
     code: `<robot></robot>
-<zoidberg id="cancer"></zoidberg>
+<zoidberg id="cancer">
+</zoidberg>
 <robot></robot>
+    `,
+  },
+  {
+    id: '5',
+    title: 'General Sibling Selector',
+    subtitle: 'Select elements that follows another',
+    description: `You can select all siblings of an element that follow it.
+     This is like the Adjacent Selector (A + B) except it gets all of the following
+     elements instead of one`,
+    selectors: ['frog, freak'],
+    nameSelectors: 'A ~ B',
+    examples: [
+      `<tag>A ~ B</tag> select all <tag>B</tag> that follow a <tag>A</tag>`,
+    ],
+    code: `<amy>
+  <hat></hat>
+</amy>
+<frog></frog>
+<freak></freak>
+<benderDrink>
+  <beer></beer>
+</benderDrink>
+    `,
+  },
+  {
+    id: '6',
+    title: 'Universal Selector',
+    subtitle: 'Combine the Universal Selector',
+    description: `This selects all elements inside of <tag>A</tag>`,
+    selectors: ['hat, hat2, hat3'],
+    nameSelectors: 'A *',
+    examples: [`<tag>p*</tag> select every element inside <tag>p</tag>`],
+    code: `<amy>
+  <hat></hat>
+</amy>
+<benderDrink>
+  <beer></beer>
+</benderDrink>
+<amy>
+  <hat2></hat2>
+</amy>
+<amy>
+  <hat3></hat3>
+</amy>
+    `,
+  },
+  {
+    id: '7',
+    title: 'Class Selector',
+    subtitle: 'Select elements by their type',
+    description: `The class selector selects all elements with that class attribute. 
+    Elements can only have one ID, but many classes.`,
+    selectors: ['hat.small'],
+    nameSelectors: '.className',
+    examples: [
+      `<tag>.bag</tag> select all elements
+     with <tag>class='bag'</tag>`,
+    ],
+    code: `<amy>
+  <hat></hat>
+</amy>
+<fry>
+  <hat class="small"></hat>
+</fry>
+<professor>
+  <richard></richard>
+</professor>
+<hat class="small"></hat>
     `,
   },
 ]

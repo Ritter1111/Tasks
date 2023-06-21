@@ -1,5 +1,11 @@
 import Level from './level'
 import { levels } from './levels'
+import hljs from 'highlight.js/lib/core'
+import xml from 'highlight.js/lib/languages/xml'
+import html from 'highlight.js/lib/languages/xml'
+
+hljs.registerLanguage('xml', xml)
+hljs.registerLanguage('html', html)
 
 export default class Game {
   private panel: Element
@@ -60,9 +66,20 @@ export default class Game {
     this.examples.innerHTML = ''
     this.gameTitle.innerHTML = ''
 
+    // const panel = document.createElement('pre')
+    // const cod = document.createElement('code')
+    // panel.append(cod)
+    // cod.className = 'html'
+    // cod.innerText = level.code
+    // this.panel.append(panel)
     const panel = document.createElement('pre')
-    panel.innerText = level.code
+    // const cod = document.createElement('code')
+    // panel.append(cod)
+    // cod.className = 'html'
+    panel.textContent = level.code
     this.panel.append(panel)
+
+    hljs.highlightElement(panel)
 
     this.image.innerHTML = level.code
     this.level.innerHTML = `Level ${level.id} of 10`
