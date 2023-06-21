@@ -19,6 +19,8 @@ export class BurgerMenu {
       element.addEventListener('click', () => {
         game.renderLevel(level)
         game.setCurrentLevelIndex(i)
+        game.saveLevelInfo()
+        game.setProgressWidth()
         this.menu?.classList.remove('open')
         this.burgerRev.classList.remove('show')
       })

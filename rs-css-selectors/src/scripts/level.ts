@@ -7,8 +7,6 @@ export default class Level {
   public nameSelectors: string
   public examples: string[]
   public code: string
-  public editorPanel: Element
-  public buttonSubmit: Element
 
   constructor(
     id: string,
@@ -28,32 +26,13 @@ export default class Level {
     this.examples = examples
     this.code = code
     this.subtitle = subtitle
-
-    this.editorPanel = document.querySelector('.layout-editor') as Element
-    this.buttonSubmit = document.querySelector('.btn_enter') as Element
   }
 
   public checkAnswer(enteredSelector: string): boolean {
-    this.editorPanel.classList.add('shake')
-    // const currLevel = levels
-    // console.log(currLevel)
-    // const isAnswerCorrect = currLevel.checkAnswer(answerr)
-
     if (this.selectors.includes(enteredSelector)) {
-      console.log('win')
       return true
     } else {
       return false
     }
-    // this.checkCorrectAnswer()
-
-    document.addEventListener('animationend', () => {
-      this.editorPanel.classList.remove('shake')
-    })
-
-    // this.buttonSubmit.addEventListener('click', () => {
-    //   // this.checkCorrectAnswer()
-    //   console.log('d')
-    // })
   }
 }

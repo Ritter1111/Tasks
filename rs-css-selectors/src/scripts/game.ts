@@ -18,8 +18,9 @@ export default class Game {
   public indexLevel: number
   private level: Element
   public buttonSubmit: Element
-  public inputArea: Element
+  public inputArea: HTMLInputElement
   public editorPanel: Element
+  public progressElement: HTMLElement
 
   constructor() {
     this.panel = document.querySelector('.panel-right') as Element
@@ -32,8 +33,10 @@ export default class Game {
     this.gameTitle = document.querySelector('.game_title') as Element
     this.level = document.querySelector('.sidebar-lvl_header__text') as Element
     this.buttonSubmit = document.querySelector('.btn_enter') as Element
-    this.inputArea = document.querySelector('.panel_input') as Element
+    this.inputArea = document.querySelector('.panel_input') as HTMLInputElement
     this.editorPanel = document.querySelector('.layout-editor') as Element
+    this.progressElement = document.querySelector('.progress') as HTMLElement
+
     this.indexLevel = 0
     this.levels = levels.map(
       (level) =>
@@ -71,12 +74,46 @@ export default class Game {
         )
         if (!isAnserCorrect) {
           console.error('Answer is incorrect')
+          this.editorPanel.classList.add('shake')
           return
         }
         const level = this.getNextLevel()
         if (level) {
+          this.saveLevelInfo()
           this.renderLevel(level)
         }
+      }
+    })
+
+    // document.addEventListener('keyup', () => {
+    //   this.buttonSubmit.classList.remove('clicked')
+    // })
+
+    document.addEventListener('animationend', () => {
+      this.editorPanel.classList.remove('shake')
+    })
+
+    this.inputArea.addEventListener('input', (e) => {
+      const inputValue = (e.target as HTMLInputElement).value
+      if (inputValue === '') {
+        this.inputArea.classList.add('blink-animation')
+      } else {
+        this.inputArea.classList.remove('blink-animation')
+      }
+    })
+
+    this.buttonSubmit.addEventListener('click', () => {
+      const isAnserCorrect = this.getCurrentLevel().checkAnswer(
+        this.inputArea.value
+      )
+      if (!isAnserCorrect) {
+        this.editorPanel.classList.add('shake')
+        return
+      }
+      const level = this.getNextLevel()
+      if (level) {
+        this.saveLevelInfo()
+        this.renderLevel(level)
       }
     })
   }
@@ -90,12 +127,16 @@ export default class Game {
     this.description.innerHTML = ''
     this.examples.innerHTML = ''
     this.gameTitle.innerHTML = ''
+    this.inputArea.value = ''
+    this.setProgressWidth()
 
     const panel = document.createElement('pre')
     panel.textContent = level.code
     this.panel.append(panel)
 
     hljs.highlightElement(panel)
+
+    this.inputArea.classList.add('blink-animation')
 
     this.image.innerHTML = level.code
     this.level.innerHTML = `Level ${level.id} of 10`
@@ -124,6 +165,7 @@ export default class Game {
     if (nextLevel) {
       this.renderLevel(nextLevel)
       this.saveLevelInfo()
+      this.increaseProgressWidth()
     }
   }
 
@@ -132,6 +174,7 @@ export default class Game {
     if (previousLevel) {
       this.renderLevel(previousLevel)
       this.saveLevelInfo()
+      this.reduceProgressWidth()
     }
   }
 
@@ -153,11 +196,37 @@ export default class Game {
     }
   }
 
-  private saveLevelInfo() {
+  public saveLevelInfo() {
     localStorage.setItem('currentLevel', this.indexLevel.toString())
   }
 
   public setCurrentLevelIndex(index: number) {
     this.indexLevel = index
+  }
+
+  public increaseProgressWidth(): void {
+    const progressWidth = ((this.indexLevel + 1) * 100) / this.levels.length
+    this.progressElement.style.width = `${progressWidth}%`
+  }
+
+  public getProgressWidth(): number {
+    return (
+      ((this.indexLevel + 1) * 100) / this.levels.length + this.levels.length
+    )
+  }
+
+  public setProgressWidth(): void {
+    this.progressElement.style.width = `${
+      this.getProgressWidth() - this.levels.length
+    }%`
+  }
+
+  public reduceProgressWidth(): void {
+    let progressWidth = this.getProgressWidth()
+    if (progressWidth === this.levels.length) {
+      return
+    }
+    progressWidth = this.getProgressWidth() - this.levels.length
+    this.progressElement.style.width = `${progressWidth}%`
   }
 }

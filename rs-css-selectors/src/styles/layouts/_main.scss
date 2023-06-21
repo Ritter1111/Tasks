@@ -102,6 +102,7 @@ body {
     all: unset;
     cursor: text;
     margin-right: 10px;
+    color: $turquoise;
   }
 
   &_submit {
@@ -120,9 +121,14 @@ body {
   padding: 5px 8px;
   border-radius: 3px;
   font-size: 10px;
+  box-shadow: 2px 3px 2px #393737;
+  border: 1px solid #282727;
 
   &:hover {
     background-color: $dark-grey;
+  }
+  &.clicked {
+    box-shadow: 0 1px #666;
   }
 }
 
@@ -164,7 +170,7 @@ body {
   }
 }
 
-#panel_input {
+.blink-animation {
   animation: blink 0.5s infinite;
 }
 

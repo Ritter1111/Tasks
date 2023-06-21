@@ -6,7 +6,7 @@ export const levels = [
     description: `Selects all elements of type A. Type refers to the type of tag,
       so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all
       different element types.`,
-    selectors: ['robot'],
+    selectors: ['robot', '*'],
     nameSelectors: 'A',
     examples: [`<tag>div</tag> selects all <tag>div</tag> elements.`],
     code: `<robot></robot>
@@ -132,21 +132,71 @@ export const levels = [
   {
     id: '8',
     title: 'Class Selector',
-    subtitle: 'Select elements by their type',
-    description: `The class selector selects all elements with that class attribute. 
-    Elements can only have one ID, but many classes.`,
-    selectors: ['.small', 'hat.small'],
-    nameSelectors: '.className',
+    subtitle: 'Combine the Class Selector',
+    description: `You can combine the class selector with other selectors, 
+    like the type selector`,
+    selectors: ['hat3.small'],
+    nameSelectors: 'A.className',
     examples: [
-      `<tag>.bag</tag> select all elements
-     with <tag>class='bag'</tag>`,
+      `<tag>p.important</tag> select all <tag>p</tag> elements
+     that have <tag>class='important'</tag>`,
     ],
     code: `<amy>
-  <hat></hat>
+  <hat3></hat3>
 </amy>
 <fry>
-  <hat class="small"></hat>
+  <hat3 class="small"></hat3>
 </fry>
+<robot>
+  <hat3 class="small"></hat3>
+</robot>
+<dog class="small"></dog>
+    `,
+  },
+  {
+    id: '9',
+    title: 'Comma Combinator',
+    subtitle: 'Combine, selectors, with... commas!',
+    description: `Thanks to Shatner technology, this selects all <tag>A</tag> and <tag>B</tag> elements. 
+    You can combine any selectors this way, and you can specify more than two.`,
+    selectors: ['hat3.small'],
+    nameSelectors: 'A, B',
+    examples: [
+      `<tag>p, .fun</tag> selects all <tag>p</tag> elements as well as all elements with <tag>class="fun"</tag>`,
+    ],
+    code: `<amy>
+  <hat3></hat3>
+</amy>
+<fry>
+  <hat3 class="small"></hat3>
+</fry>
+<robot>
+  <hat3 class="small"></hat3>
+</robot>
+<dog class="small"></dog>
+    `,
+  },
+  {
+    id: '10',
+    title: 'Adjacent Sibling Selector',
+    subtitle: 'Select an element that directly follows another element',
+    description: `This selects all <tag>B</tag> elements that directly follow <tag>A</tag>. Elements that follow one another are called siblings. They're on the same level, or depth.
+    In the HTML markup for this level, elements that have the same indentation are siblings.`,
+    selectors: ['hat3.small'],
+    nameSelectors: 'A + B',
+    examples: [
+      `<tag>h1 + .like</tag> selects every element with <tag>class="like"</tag> that directly follows a <tag>p</tag>`,
+    ],
+    code: `<amy>
+  <hat3></hat3>
+</amy>
+<fry>
+  <hat3 class="small"></hat3>
+</fry>
+<robot>
+  <hat3 class="small"></hat3>
+</robot>
+<dog class="small"></dog>
     `,
   },
 ]

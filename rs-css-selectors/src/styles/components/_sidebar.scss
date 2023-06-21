@@ -1,5 +1,5 @@
 .sidebar-lvl_header {
-  height: 50px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -52,7 +52,37 @@
 
   &_example {
     padding: 0 0 10px 0;
+    &_text {
+      line-height: 25px;
+    }
   }
+}
+
+.level_progress {
+  width: 100%;
+  background: $translucent-black;
+  height: 2px;
+  margin-bottom: 10px;
+}
+
+.progress {
+  background: $translucent-white;
+  width: 10%;
+  height: 2px;
+  position: relative;
+}
+
+.level_progress .progress:after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: -3px;
+  height: 4px;
+  width: 4px;
+  border: solid 2px $orange;
+  background: $translucent-white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 .fa-angle-left,

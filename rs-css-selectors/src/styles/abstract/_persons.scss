@@ -140,8 +140,16 @@ professor {
   animation: move 1.4s infinite;
 }
 
+.image-element {
+  position: absolute;
+  animation-name: fly-out;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
 .small {
-  top: -16px;
+  top: -13px;
   left: 7px;
   height: 31px;
   width: 41px;
