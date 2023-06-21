@@ -7,15 +7,13 @@
 
 body {
   background-color: $purple;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .sidebar {
   position: fixed;
   right: 0;
   width: 27%;
-  // max-width: 273px;
   height: 100vh;
   background-color: $dark-grey;
   padding: 15px;
@@ -41,33 +39,10 @@ body {
   font-size: 14px;
   padding: 4px;
   background-color: $smoke-gray;
-  animation: shake 0.5s;
 }
 
-@keyframes shake {
-  0% {
-    transform: translateX(0);
-  }
-  10%,
-  90% {
-    transform: translateX(-7px);
-  }
-  20%,
-  80% {
-    transform: translateX(7px);
-  }
-  30%,
-  50%,
-  70% {
-    transform: translateX(-7px);
-  }
-  40%,
-  60% {
-    transform: translateX(7px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+.shake {
+  animation: shake 0.5s;
 }
 
 .css-left {
@@ -113,7 +88,7 @@ body {
   text-align: right;
   height: 100%;
   background: $dirty-white;
-  color: #666;
+  color: $sand-grey;
 }
 
 .panel {
@@ -121,7 +96,7 @@ body {
   padding: 9px 6px 8px 45px;
   line-height: 20px;
   min-height: 305px;
-  border: 1px solid #333;
+  border: 1px solid $dark-blue;
 
   &_input {
     all: unset;
@@ -136,7 +111,7 @@ body {
 
 .pnl-right {
   background-color: $smoke-black;
-  border-right: 1px solid #333;
+  border-right: 1px solid $dark-blue;
 }
 
 .btn_enter {
@@ -153,13 +128,39 @@ body {
 
 @keyframes blink {
   0% {
-    background-color: $green;
+    background-color: $turquoise;
   }
   50% {
     background-color: transparent;
   }
   100% {
-    background-color: $green;
+    background-color: $turquoise;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  10%,
+  90% {
+    transform: translateX(-7px);
+  }
+  20%,
+  80% {
+    transform: translateX(7px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-7px);
+  }
+  40%,
+  60% {
+    transform: translateX(7px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 

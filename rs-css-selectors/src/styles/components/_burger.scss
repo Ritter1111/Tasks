@@ -18,26 +18,6 @@
   z-index: 2;
   transition: 0.5s ease;
   cursor: pointer;
-
-  // &::before {
-  //   content: "";
-  //   display: inline-block;
-  //   position: absolute;
-  //   border: 1px solid $black;
-  //   width: 97%;
-  //   top: 0;
-  //   left: 0;
-  // }
-
-  // &::after {
-  //   content: "";
-  //   display: inline-block;
-  //   position: absolute;
-  //   border: 1px solid $black;
-  //   width: 96%;
-  //   bottom: 0;
-  //   left: 0;
-  // }
 }
 
 .nav-menu {
@@ -92,7 +72,6 @@
 
 .nav-menu.open {
   transform: translateX(-100%);
-  // box-shadow: 0 0 0 9999px rgba(41, 41, 41, 0.6);
 }
 
 .burger-reverse.show {
@@ -110,7 +89,7 @@
     right: 0;
     top: -334px;
     width: 100%;
-    background: #474a53;
+    background: $navy-blue;
     overflow: scroll;
   }
 

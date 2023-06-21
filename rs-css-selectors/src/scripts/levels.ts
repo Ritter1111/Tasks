@@ -68,7 +68,7 @@ export const levels = [
     description: `You can select all siblings of an element that follow it.
      This is like the Adjacent Selector (A + B) except it gets all of the following
      elements instead of one`,
-    selectors: ['frog, freak'],
+    selectors: ['amy~dog'],
     nameSelectors: 'A ~ B',
     examples: [
       `<tag>A ~ B</tag> select all <tag>B</tag> that follow a <tag>A</tag>`,
@@ -76,8 +76,8 @@ export const levels = [
     code: `<amy>
   <hat></hat>
 </amy>
-<frog></frog>
-<freak></freak>
+<dog class="small"></dog>
+<dog></dog>
 <benderDrink>
   <beer></beer>
 </benderDrink>
@@ -88,7 +88,7 @@ export const levels = [
     title: 'Universal Selector',
     subtitle: 'Combine the Universal Selector',
     description: `This selects all elements inside of <tag>A</tag>`,
-    selectors: ['hat, hat2, hat3'],
+    selectors: ['amy *'],
     nameSelectors: 'A *',
     examples: [`<tag>p*</tag> select every element inside <tag>p</tag>`],
     code: `<amy>
@@ -111,7 +111,7 @@ export const levels = [
     subtitle: 'Select elements by their type',
     description: `The class selector selects all elements with that class attribute. 
     Elements can only have one ID, but many classes.`,
-    selectors: ['hat.small'],
+    selectors: ['.small', 'hat.small'],
     nameSelectors: '.className',
     examples: [
       `<tag>.bag</tag> select all elements
@@ -127,6 +127,26 @@ export const levels = [
   <richard></richard>
 </professor>
 <hat class="small"></hat>
+    `,
+  },
+  {
+    id: '8',
+    title: 'Class Selector',
+    subtitle: 'Select elements by their type',
+    description: `The class selector selects all elements with that class attribute. 
+    Elements can only have one ID, but many classes.`,
+    selectors: ['.small', 'hat.small'],
+    nameSelectors: '.className',
+    examples: [
+      `<tag>.bag</tag> select all elements
+     with <tag>class='bag'</tag>`,
+    ],
+    code: `<amy>
+  <hat></hat>
+</amy>
+<fry>
+  <hat class="small"></hat>
+</fry>
     `,
   },
 ]

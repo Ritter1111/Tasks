@@ -1,5 +1,4 @@
 import { game } from '../index'
-import { levels } from './levels'
 
 export class BurgerMenu {
   constructor(
@@ -9,7 +8,7 @@ export class BurgerMenu {
   ) {}
 
   public renderMenuLevels(): void {
-    levels.forEach((level) => {
+    game.levels.forEach((level, i) => {
       const element = document.createElement('a')
       const checkLabel = document.createElement('span')
       checkLabel.className = 'fa fa-check'
@@ -19,6 +18,7 @@ export class BurgerMenu {
 
       element.addEventListener('click', () => {
         game.renderLevel(level)
+        game.setCurrentLevelIndex(i)
         this.menu?.classList.remove('open')
         this.burgerRev.classList.remove('show')
       })
