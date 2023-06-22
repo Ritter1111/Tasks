@@ -1,7 +1,12 @@
+// import CodeMirror from 'codemirror'
 import Level from './level'
 import { levels } from './levels'
 import hljs from 'highlight.js/lib/core'
 import xml from 'highlight.js/lib/languages/xml'
+// import 'codemirror/mode/css/css'
+// import 'codemirror/lib/codemirror.css'
+// import 'codemirror/theme/monokai.css'
+// import 'codemirror/addon/display/autorefresh'
 
 hljs.registerLanguage('xml', xml)
 
@@ -21,6 +26,7 @@ export default class Game {
   public inputArea: HTMLInputElement
   public editorPanel: Element
   public progressElement: HTMLElement
+  public facheck: HTMLElement
 
   constructor() {
     this.panel = document.querySelector('.panel-right') as Element
@@ -36,6 +42,7 @@ export default class Game {
     this.inputArea = document.querySelector('.panel_input') as HTMLInputElement
     this.editorPanel = document.querySelector('.layout-editor') as Element
     this.progressElement = document.querySelector('.progress') as HTMLElement
+    this.facheck = document.querySelector('.fa-check') as HTMLElement
 
     this.indexLevel = 0
     this.levels = levels.map(
@@ -59,6 +66,7 @@ export default class Game {
       this.indexLevel = +storedLevel
     }
 
+    this.checkCompletedLevels(this.facheck)
     this.renderLevel(this.levels[this.indexLevel])
 
     const angleRight = document.querySelector('.fa-angle-right') as HTMLElement
@@ -132,6 +140,11 @@ export default class Game {
 
     const panel = document.createElement('pre')
     panel.textContent = level.code
+    if (localStorage.getItem(`level_${level.id}`)) {
+      this.facheck.classList.add('completed')
+    } else {
+      this.facheck.classList.remove('completed')
+    }
     this.panel.append(panel)
 
     hljs.highlightElement(panel)
@@ -198,6 +211,14 @@ export default class Game {
 
   public saveLevelInfo() {
     localStorage.setItem('currentLevel', this.indexLevel.toString())
+
+    for (let i = 0; i <= this.indexLevel; i++) {
+      const level = this.levels[i]
+      const isAnswerCorrect = level.checkAnswer(this.inputArea.value)
+      if (isAnswerCorrect) {
+        localStorage.setItem(`level_${level.id}`, 'completed')
+      }
+    }
   }
 
   public setCurrentLevelIndex(index: number) {
@@ -228,5 +249,17 @@ export default class Game {
     }
     progressWidth = this.getProgressWidth() - this.levels.length
     this.progressElement.style.width = `${progressWidth}%`
+  }
+
+  public checkCompletedLevels(icon: HTMLElement): void {
+    this.levels.forEach((level) => {
+      if (localStorage.getItem(`level_${level.id}`)) {
+        icon.classList.add('completed')
+      }
+    })
+  }
+
+  public removeProgress(): void {
+    localStorage.clear()
   }
 }

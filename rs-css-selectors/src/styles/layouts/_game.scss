@@ -21,6 +21,10 @@
   align-items: end;
 }
 
+.completed {
+  color: greenyellow;
+}
+
 @keyframes fly-out {
   0% {
     transform: translateY(0);

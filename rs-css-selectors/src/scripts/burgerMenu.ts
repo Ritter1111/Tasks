@@ -16,14 +16,32 @@ export class BurgerMenu {
       element.append(checkLabel)
       this.menuContainer.append(element)
 
+      if (localStorage.getItem(`level_${level.id}`)) {
+        checkLabel.classList.add('completed')
+      }
+
       element.addEventListener('click', () => {
         game.renderLevel(level)
         game.setCurrentLevelIndex(i)
         game.saveLevelInfo()
         game.setProgressWidth()
-        this.menu?.classList.remove('open')
-        this.burgerRev.classList.remove('show')
+        this.closeBurger()
+      })
+
+      const resetProgress = document.querySelector(
+        '.levels-wrapper_reset'
+      ) as HTMLElement
+
+      resetProgress.addEventListener('click', () => {
+        game.removeProgress()
+        game.renderLevel(game.levels[0])
+        this.closeBurger()
       })
     })
+  }
+
+  public closeBurger(): void {
+    this.menu?.classList.remove('open')
+    this.burgerRev.classList.remove('show')
   }
 }
