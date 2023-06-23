@@ -1,6 +1,6 @@
 .section-game {
   background-image: url('~assets/img/VIKf.gif');
-  height: 50vh;
+  height: 43vh;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;
@@ -27,7 +27,7 @@
 
 @keyframes fly-out {
   0% {
-    transform: translateY(0);
+    transform: translateY(100px);
   }
   100% {
     transform: translateY(-100%);

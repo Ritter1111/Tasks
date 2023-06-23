@@ -3,6 +3,7 @@ import Level from './level'
 import { levels } from './levels'
 import hljs from 'highlight.js/lib/core'
 import xml from 'highlight.js/lib/languages/xml'
+
 // import 'codemirror/mode/css/css'
 // import 'codemirror/lib/codemirror.css'
 // import 'codemirror/theme/monokai.css'
@@ -80,25 +81,13 @@ export default class Game {
         const isAnserCorrect = this.getCurrentLevel().checkAnswer(
           (event.target as HTMLInputElement).value
         )
-        if (!isAnserCorrect) {
-          console.error('Answer is incorrect')
-          this.editorPanel.classList.add('shake')
-          return
-        }
-        const level = this.getNextLevel()
-        if (level) {
-          this.saveLevelInfo()
-          this.renderLevel(level)
-        }
+        this.checkCorrectAnswer(isAnserCorrect)
       }
     })
 
-    // document.addEventListener('keyup', () => {
-    //   this.buttonSubmit.classList.remove('clicked')
-    // })
-
     document.addEventListener('animationend', () => {
       this.editorPanel.classList.remove('shake')
+      this.image.classList.remove('image-element')
     })
 
     this.inputArea.addEventListener('input', (e) => {
@@ -114,15 +103,7 @@ export default class Game {
       const isAnserCorrect = this.getCurrentLevel().checkAnswer(
         this.inputArea.value
       )
-      if (!isAnserCorrect) {
-        this.editorPanel.classList.add('shake')
-        return
-      }
-      const level = this.getNextLevel()
-      if (level) {
-        this.saveLevelInfo()
-        this.renderLevel(level)
-      }
+      this.checkCorrectAnswer(isAnserCorrect)
     })
   }
 
@@ -261,5 +242,26 @@ export default class Game {
 
   public removeProgress(): void {
     localStorage.clear()
+  }
+
+  public checkCorrectAnswer(value: boolean): void {
+    if (!value) {
+      this.editorPanel.classList.add('shake')
+      return
+    }
+    this.image.classList.add('image-element')
+    setTimeout(() => {
+      console.log(this.levels[this.indexLevel].id === '10')
+      if (this.levels[this.indexLevel].id === '10') {
+        this.gameTitle.innerHTML = 'You did it!!!🥹😍🤓'
+        this.inputArea.value = ''
+        alert('You did it!!! Congratulations🥹😍🤓')
+      }
+      const level = this.getNextLevel()
+      if (level) {
+        this.saveLevelInfo()
+        this.renderLevel(level)
+      }
+    }, 400)
   }
 }
