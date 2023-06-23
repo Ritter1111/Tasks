@@ -4,11 +4,14 @@ export const levels = [
     title: 'Type Selector',
     subtitle: 'Select elements by their type',
     description: `Selects all elements of type A. Type refers to the type of tag,
-      so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all
+      so <tag class="brackets">div</tag>, <tag class="brackets">p</tag> 
+      and <tag class="brackets">ul</tag> are all
       different element types.`,
     selectors: ['robot', '*'],
     nameSelectors: 'A',
-    examples: [`<tag>div</tag> selects all <tag>div</tag> elements.`],
+    examples: [
+      `<tag>div</tag> selects all <tag class="brackets">div</tag> elements.`,
+    ],
     code: `<robot></robot>
 <robot></robot>
     `,
@@ -18,11 +21,14 @@ export const levels = [
     title: 'Type Selector',
     subtitle: 'Select elements by their type',
     description: `Selects all elements of type A. Type refers to the type of tag,
-    so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all
+    so <tag class="brackets">div</tag>, <tag class="brackets">p</tag> 
+    and <tag class="brackets">ul</tag> are all
     different element types.`,
     selectors: ['fry'],
     nameSelectors: 'A',
-    examples: [`<tag>div</tag> selects all <tag>div</tag> elements.`],
+    examples: [
+      `<tag>div</tag> selects all <tag class="brackets">div</tag> elements.`,
+    ],
     code: `<fry></fry>
 <amy></amy>
 <fry></fry>
@@ -37,7 +43,8 @@ export const levels = [
     selectors: ['beer'],
     nameSelectors: 'A B',
     examples: [
-      `<tag>h1 strong</tag> select all <tag>strong</tag> elements that are inside of any <tag>p</tag>`,
+      `<tag>h1 strong</tag> select all <tag>strong</tag> elements that 
+      are inside of any <tag>p</tag>`,
     ],
     code: `<benderDrink>
   <beer></beer>
@@ -51,7 +58,8 @@ export const levels = [
     id: '4',
     title: 'ID Selector',
     subtitle: 'Select elements with an ID',
-    description: `Selects all elements with a specific <tag>id</tag>. You can also combine the ID selector with the type selector`,
+    description: `Selects all elements with a specific <tag>id</tag>. 
+    You can also combine the ID selector with the type selector`,
     selectors: ['zoidberg'],
     nameSelectors: '#id',
     examples: [`<tag>#nice</tag> select any element with <tag>id="nice"</tag>`],
@@ -90,7 +98,9 @@ export const levels = [
     description: `This selects all elements inside of <tag>A</tag>`,
     selectors: ['amy *'],
     nameSelectors: 'A *',
-    examples: [`<tag>p*</tag> select every element inside <tag>p</tag>`],
+    examples: [
+      `<tag>p*</tag> select every element inside <tag class="brackets">p</tag>`,
+    ],
     code: `<amy>
   <hat></hat>
 </amy>
@@ -138,7 +148,7 @@ export const levels = [
     selectors: ['hat3.small'],
     nameSelectors: 'A.className',
     examples: [
-      `<tag>p.important</tag> select all <tag>p</tag> elements
+      `<tag>p.important</tag> select all <tag class="brackets">p</tag> elements
      that have <tag>class='important'</tag>`,
     ],
     code: `<amy>
@@ -157,12 +167,14 @@ export const levels = [
     id: '9',
     title: 'Comma Combinator',
     subtitle: 'Combine, selectors, with... commas!',
-    description: `Thanks to Shatner technology, this selects all <tag>A</tag> and <tag>B</tag> elements. 
+    description: `Thanks to Shatner technology, this selects all <tag>A</tag> 
+    and <tag>B</tag> elements. 
     You can combine any selectors this way, and you can specify more than two.`,
     selectors: ['hat3.small'],
     nameSelectors: 'A, B',
     examples: [
-      `<tag>p, .fun</tag> selects all <tag>p</tag> elements as well as all elements with <tag>class="fun"</tag>`,
+      `<tag>p, .fun</tag> selects all <tag class="brackets">p</tag> 
+      elements as well as all elements with <tag>class="fun"</tag>`,
     ],
     code: `<amy>
   <hat3></hat3>
@@ -180,12 +192,14 @@ export const levels = [
     id: '10',
     title: 'Adjacent Sibling Selector',
     subtitle: 'Select an element that directly follows another element',
-    description: `This selects all <tag>B</tag> elements that directly follow <tag>A</tag>. Elements that follow one another are called siblings. They're on the same level, or depth.
+    description: `This selects all <tag>B</tag> elements that directly follow <tag>A</tag>. 
+    Elements that follow one another are called siblings. They're on the same level, or depth.
     In the HTML markup for this level, elements that have the same indentation are siblings.`,
     selectors: ['hat3.small'],
     nameSelectors: 'A + B',
     examples: [
-      `<tag>h1 + .like</tag> selects every element with <tag>class="like"</tag> that directly follows a <tag>p</tag>`,
+      `<tag>h1 + .like</tag> selects every element with <tag>class="like"</tag> 
+      that directly follows a <tag class="brackets">p</tag>`,
     ],
     code: `<amy>
   <hat3></hat3>

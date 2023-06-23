@@ -174,20 +174,7 @@ body {
   animation: blink 0.5s infinite;
 }
 
-@media (max-width: 1000px) {
-  .sidebar {
-    position: static;
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-
-  .section__main {
-    width: 100%;
-  }
-}
-
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .layout-editor {
     flex-direction: column;
   }
@@ -198,7 +185,7 @@ body {
   }
 
   .html-right {
-    width: calc(100vw - 60px);
+    width: calc(70vw - 30px);
   }
 
   .panel_submit {
@@ -206,6 +193,24 @@ body {
   }
 
   #panel_input {
+    width: 50%;
+  }
+
+  .panel {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .section__main {
     width: 100%;
   }
 }
+
+
