@@ -25,7 +25,7 @@ body {
   background-color: $purple;
   display: flex;
   justify-content: center;
-  padding: 15px;
+  padding-top: 10px;
 }
 
 .layout-editor {
@@ -80,7 +80,7 @@ body {
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  line-height: 21.1px;
+  line-height: 17px;
   padding: 5px;
   left: 0;
   top: 0;
@@ -93,20 +93,23 @@ body {
 
 .panel {
   position: relative;
-  padding: 9px 6px 8px 45px;
-  line-height: 20px;
-  min-height: 305px;
+  padding: 9px 6px 6px 45px;
+  line-height: 16px;
+  min-height: 40vh;
   border: 1px solid $dark-blue;
 
   &_input {
     all: unset;
     cursor: text;
     margin-right: 10px;
-    color: $turquoise;
+    color: $black;
+    width: 100%;
+
   }
 
   &_submit {
     display: flex;
+    justify-content: space-between;
   }
 }
 
@@ -117,19 +120,35 @@ body {
 
 .btn_enter {
   transition: 0.3s ease-in;
-  background-color: $grey;
+  background-color: $dark-grey;
   padding: 5px 8px;
   border-radius: 3px;
   font-size: 10px;
-  box-shadow: 2px 3px 2px #393737;
-  border: 1px solid #282727;
+  box-shadow: 2px 3px 2px $dark-blue;
+  border: 1px solid $black;
 
   &:hover {
-    background-color: $dark-grey;
+    background-color: $pink;
   }
-  &.clicked {
-    box-shadow: 0 1px #666;
+}
+
+.btn_help {
+  transition: 0.3s ease-in;
+  background-color: $blue;
+  padding: 5px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+  box-shadow: 2px 3px 2px $dark-blue;
+  border: 1px solid $black;
+  margin-left: 5px;
+
+  &:hover {
+    background-color: $green;
+    color: $black;
   }
+  // &.clicked {
+  //   box-shadow: 0 1px #666;
+  // }
 }
 
 @keyframes blink {
@@ -180,20 +199,16 @@ body {
   }
 
   .css-left {
-    height: 10vh;
+    height: 14vh;
     overflow: hidden;
+  }
+
+  .css-left_body {
+    height: 47px;
   }
 
   .html-right {
     width: calc(70vw - 30px);
-  }
-
-  .panel_submit {
-    justify-content: space-between;
-  }
-
-  #panel_input {
-    width: 50%;
   }
 
   .panel {

@@ -76,7 +76,7 @@ export const levels = [
     description: `You can select all siblings of an element that follow it.
      This is like the Adjacent Selector (A + B) except it gets all of the following
      elements instead of one`,
-    selectors: ['amy~dog', 'amy ~ dog'],
+    selectors: ['amy~dog'],
     nameSelectors: 'A ~ B',
     examples: [
       `<tag>A ~ B</tag> select all <tag>B</tag> that follow a <tag>A</tag>`,

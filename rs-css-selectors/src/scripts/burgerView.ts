@@ -19,5 +19,18 @@ export default class burgerView {
       this.burgerRev.classList.toggle('show')
     })
     this.burgerMenu.renderMenuLevels()
+    this.burgerMenu.resetButton()
+  }
+
+  public renderMenuLevels(): void {
+    this.clearBurgerManu()
+    this.burgerMenu.renderMenuLevels()
+  }
+
+  public clearBurgerManu(): void {
+    const itemsLevel = document.querySelectorAll('.item-level')
+    itemsLevel.forEach((el) => {
+      el.remove()
+    })
   }
 }

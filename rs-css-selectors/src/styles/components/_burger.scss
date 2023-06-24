@@ -22,11 +22,9 @@
 .nav-menu {
   position: absolute;
   height: 100vh;
-  // right: -345px;
   right: -100%;
   top: 0;
   margin-top: 0;
-  // width: 346px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -46,7 +44,7 @@
   content: "";
   display: inline-block;
   position: absolute;
-  border: 1px solid #dfdfdf;
+  border: 1px solid $dirty-white;
   width: 100%;
   top: calc(50% - 1.5px);
   left: 0;
@@ -71,12 +69,26 @@
   justify-content: flex-end;
 }
 
+.show .burger-line.line1 {
+  transform: rotate(45deg);
+}
+
+.show .burger-line.line3 {
+  display: none;
+
+}
+
+.show .burger-line {
+  transform: rotate(137deg);
+  top: 10px;
+}
+
 .nav-menu.open {
   transform: translateX(-100%);
 }
 
 .burger-reverse.show {
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
 
 .sidebar-lvl_header__burger {

@@ -42,10 +42,10 @@
     font-size: 16px;
     line-height: 5rem;
     padding: 5px 15px;
-    border-right: 1px solid #5aff4d;
-    border-bottom: solid 1px rgb(241 86 255);
-    border-left: 1px solid red;
-    border-top: 1px solid #544cfe;
+    border-right: 1px solid $green;
+    border-bottom: solid 1px $pink;
+    border-left: 1px solid $red;
+    border-top: 1px solid $blue;
   }
 
   &_description {
@@ -69,7 +69,7 @@
 }
 
 .progress {
-  background: $translucent-white;
+  background: $green;
   width: 10%;
   height: 2px;
   position: relative;

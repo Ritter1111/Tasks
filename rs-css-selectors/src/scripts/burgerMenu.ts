@@ -10,6 +10,7 @@ export class BurgerMenu {
   public renderMenuLevels(): void {
     game.levels.forEach((level, i) => {
       const element = document.createElement('a')
+      element.className = 'item-level'
       const checkLabel = document.createElement('span')
       checkLabel.className = 'fa fa-check'
       element.innerText = level.nameSelectors
@@ -27,21 +28,25 @@ export class BurgerMenu {
         game.setProgressWidth()
         this.closeBurger()
       })
-
-      const resetProgress = document.querySelector(
-        '.levels-wrapper_reset'
-      ) as HTMLElement
-
-      resetProgress.addEventListener('click', () => {
-        game.removeProgress()
-        game.renderLevel(game.levels[0])
-        this.closeBurger()
-      })
     })
   }
 
   public closeBurger(): void {
     this.menu?.classList.remove('open')
     this.burgerRev.classList.remove('show')
+  }
+
+  public resetButton(): void {
+    const resetProgress = document.querySelector(
+      '.levels-wrapper_reset'
+    ) as HTMLElement
+
+    resetProgress.addEventListener('click', () => {
+      game.removeProgress()
+      game.setCurrentLevelIndex(0)
+      game.setProgressWidth()
+      game.renderLevel(game.levels[0])
+      this.closeBurger()
+    })
   }
 }

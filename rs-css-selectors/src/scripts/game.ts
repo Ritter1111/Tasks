@@ -3,11 +3,10 @@ import Level from './level'
 import { levels } from './levels'
 import hljs from 'highlight.js/lib/core'
 import xml from 'highlight.js/lib/languages/xml'
+import burgerView from './burgerView'
+import { ILevel } from './types'
 
-// import 'codemirror/mode/css/css'
-// import 'codemirror/lib/codemirror.css'
-// import 'codemirror/theme/monokai.css'
-// import 'codemirror/addon/display/autorefresh'
+export const burger = new burgerView()
 
 hljs.registerLanguage('xml', xml)
 
@@ -28,6 +27,8 @@ export default class Game {
   public editorPanel: Element
   public progressElement: HTMLElement
   public facheck: HTMLElement
+  public btnHelp: HTMLElement
+  public isAnswerEntered: boolean
 
   constructor() {
     this.panel = document.querySelector('.panel-right') as Element
@@ -44,29 +45,16 @@ export default class Game {
     this.editorPanel = document.querySelector('.layout-editor') as Element
     this.progressElement = document.querySelector('.progress') as HTMLElement
     this.facheck = document.querySelector('.fa-check') as HTMLElement
+    this.btnHelp = document.querySelector('.btn_help') as HTMLElement
+    this.isAnswerEntered = false
 
     this.indexLevel = 0
-    this.levels = levels.map(
-      (level) =>
-        new Level(
-          level.id,
-          level.title,
-          level.subtitle,
-          level.description,
-          level.selectors,
-          level.nameSelectors,
-          level.examples,
-          level.code
-        )
-    )
+    this.levels = levels.map((level: ILevel) => new Level(level))
   }
 
   initGame = () => {
-    const storedLevel = localStorage.getItem('currentLevel')
-    if (storedLevel) {
-      this.indexLevel = +storedLevel
-    }
-
+    burger.init()
+    this.getLevelInfo()
     this.checkCompletedLevels(this.facheck)
     this.renderLevel(this.levels[this.indexLevel])
 
@@ -79,7 +67,7 @@ export default class Game {
     document.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
         const isAnserCorrect = this.getCurrentLevel().checkAnswer(
-          (event.target as HTMLInputElement).value
+          (event.target as HTMLInputElement).value.replace(/ /g, '')
         )
         this.checkCorrectAnswer(isAnserCorrect)
       }
@@ -88,6 +76,12 @@ export default class Game {
     document.addEventListener('animationend', () => {
       this.editorPanel.classList.remove('shake')
       this.image.classList.remove('image-element')
+    })
+
+    this.btnHelp.addEventListener('click', () => {
+      this.isAnswerEntered = false
+      this.writeAnswerSelector()
+      this.inputArea.focus()
     })
 
     this.inputArea.addEventListener('input', (e) => {
@@ -101,34 +95,27 @@ export default class Game {
 
     this.buttonSubmit.addEventListener('click', () => {
       const isAnserCorrect = this.getCurrentLevel().checkAnswer(
-        this.inputArea.value
+        this.inputArea.value.replace(/ /g, '')
       )
       this.checkCorrectAnswer(isAnserCorrect)
     })
   }
 
   public renderLevel(level: Level) {
-    this.panel.innerHTML = ''
-    this.image.innerHTML = ''
-    this.title.innerHTML = ''
-    this.subtitle.innerHTML = ''
-    this.levelsTag.innerHTML = ''
-    this.description.innerHTML = ''
-    this.examples.innerHTML = ''
-    this.gameTitle.innerHTML = ''
-    this.inputArea.value = ''
+    this.clearLevel()
+    burger.renderMenuLevels()
     this.setProgressWidth()
 
     const panel = document.createElement('pre')
     panel.textContent = level.code
+    this.panel.append(panel)
+    hljs.highlightElement(panel)
+
     if (localStorage.getItem(`level_${level.id}`)) {
       this.facheck.classList.add('completed')
     } else {
       this.facheck.classList.remove('completed')
     }
-    this.panel.append(panel)
-
-    hljs.highlightElement(panel)
 
     this.inputArea.classList.add('blink-animation')
 
@@ -202,6 +189,13 @@ export default class Game {
     }
   }
 
+  public getLevelInfo(): void {
+    const storedLevel = localStorage.getItem('currentLevel')
+    if (storedLevel) {
+      this.indexLevel = +storedLevel
+    }
+  }
+
   public setCurrentLevelIndex(index: number) {
     this.indexLevel = index
   }
@@ -251,9 +245,9 @@ export default class Game {
     }
     this.image.classList.add('image-element')
     setTimeout(() => {
-      console.log(this.levels[this.indexLevel].id === '10')
-      if (this.levels[this.indexLevel].id === '10') {
+      if (localStorage.length === this.levels.length) {
         this.gameTitle.innerHTML = 'You did it!!!🥹😍🤓'
+        this.isAnswerEntered = true
         this.inputArea.value = ''
         alert('You did it!!! Congratulations🥹😍🤓')
       }
@@ -263,5 +257,25 @@ export default class Game {
         this.renderLevel(level)
       }
     }, 400)
+  }
+
+  public writeAnswerSelector(): void {
+    const selector = this.getCurrentLevel().selectors[0].split('')
+
+    selector.forEach((el, idx) => {
+      setTimeout(() => (this.inputArea.value += el), idx * 200)
+    })
+  }
+
+  public clearLevel(): void {
+    this.panel.innerHTML = ''
+    this.image.innerHTML = ''
+    this.title.innerHTML = ''
+    this.subtitle.innerHTML = ''
+    this.levelsTag.innerHTML = ''
+    this.description.innerHTML = ''
+    this.examples.innerHTML = ''
+    this.gameTitle.innerHTML = ''
+    this.inputArea.value = ''
   }
 }

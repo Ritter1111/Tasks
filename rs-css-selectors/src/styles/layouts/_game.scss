@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0 50px;
+  padding: 5px 0 40px;
 }
 
 .game_title {
@@ -22,7 +22,7 @@
 }
 
 .completed {
-  color: greenyellow;
+  color: $green;
 }
 
 @keyframes fly-out {
