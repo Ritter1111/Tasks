@@ -1,6 +1,7 @@
 amy {
   background-image: url('~assets/img/amy.png');
   background-size: 100% 100%;
+  display: flex;
   height: 150px;
   width: 128px;
   transform: scaleX(-1);
@@ -10,6 +11,7 @@ amy {
 fry {
   background-image: url('~assets/img/fry.png');
   background-size: 100% 100%;
+  display: flex;
   height: 150px;
   width: 61px;
 }
@@ -17,6 +19,7 @@ fry {
 angel {
   background-image: url('~assets/img/angel.png');
   background-size: 100% 100%;
+  display: flex;
   height: 156px;
   width: 84px;
 }
@@ -24,13 +27,15 @@ angel {
 bender {
   background-image: url('~assets/img/bender.png');
   background-size: 100% 100%;
+  display: flex;
   height: 150px;
-  width: 59px;
+  width: 84px;
 }
 
 dog {
   background-image: url('~assets/img/dog.png');
   background-size: 100% 100%;
+  display: flex;
   height: 70px;
   width: 77px;
   margin: 0 7px;
@@ -39,7 +44,8 @@ dog {
 freak {
   background-image: url('~assets/img/freak.png');
   background-size: 100% 100%;
-  height: 100px;
+  display: flex;
+  height: 82px;
   width: 44px;
 }
 
@@ -47,17 +53,15 @@ richard {
   background-image: url('~assets/img/richard.png');
   background-size: 100% 100%;
   display: block;
-  position: relative;
-  top: 52px;
-  left: 44px;
-  transform: rotate(15deg);
-  height: 43px;
-  width: 40px;
+  // transform: rotate(15deg);
+  height: 51px;
+  width: 49px;
 }
 
 robot {
   background-image: url('~assets/img/robot.png');
   background-size: 100% 100%;
+  display: flex;
   height: 150px;
   width: 91px;
 }
@@ -65,6 +69,7 @@ robot {
 zoidberg {
   background-image: url('~assets/img/zoidberg.png');
   background-size: 100% 100%;
+  display: flex;
   height: 79px;
   width: 80px;
 }
@@ -136,6 +141,15 @@ professor {
   width: 111px;
 }
 
+// table1 {
+//   background-image: url('~assets/img/table1.png');
+//   background-size: 100% 100%;
+//   top: 56px;
+//   position: relative;
+//   height: 166px;
+//   width: 86px;
+// }
+
 .animated {
   animation: move 1.4s infinite;
 }
@@ -153,4 +167,31 @@ professor {
   left: 7px;
   height: 31px;
   width: 41px;
+  // position: relative;
+  //   top: 1px;
+  //   left: -17px;
+  //   height: 31px;
+  //   width: 41px;
+}
+
+#small {
+  height: 90px;
+  width: 61px;
+}
+
+professor richard {
+  position: relative;
+  top: 54px;
+  left: 44px;
+}
+
+.black {
+  background-image: url('~assets/img/hat-black.png');
+  left: 38px;
+  top: -29px;
+  display: block;
+  background-size: 100% 100%;
+  height: 71px;
+  position: relative;
+  width: 57px;
 }

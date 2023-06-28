@@ -1,4 +1,3 @@
-// import CodeMirror from 'codemirror'
 import Level from './level'
 import { levels } from './levels'
 import hljs from 'highlight.js/lib/core'
@@ -54,9 +53,8 @@ export default class Game {
 
   initGame = () => {
     burger.init()
-    this.getLevelInfo()
-    this.checkCompletedLevels(this.facheck)
-    this.renderLevel(this.levels[this.indexLevel])
+    this.setLastLevelIndex()
+    this.renderLevel(this.getCurrentLevel())
 
     const angleRight = document.querySelector('.fa-angle-right') as HTMLElement
     angleRight.addEventListener('click', this.moveToNextLevel.bind(this))
@@ -67,7 +65,7 @@ export default class Game {
     document.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
         const isAnserCorrect = this.getCurrentLevel().checkAnswer(
-          (event.target as HTMLInputElement).value.replace(/ /g, '')
+          (event.target as HTMLInputElement).value.replace(/\s+/g, ' ').trim()
         )
         this.checkCorrectAnswer(isAnserCorrect)
       }
@@ -95,7 +93,7 @@ export default class Game {
 
     this.buttonSubmit.addEventListener('click', () => {
       const isAnserCorrect = this.getCurrentLevel().checkAnswer(
-        this.inputArea.value.replace(/ /g, '')
+        this.inputArea.value.replace(/\s+/g, ' ').trim()
       )
       this.checkCorrectAnswer(isAnserCorrect)
     })
@@ -107,9 +105,50 @@ export default class Game {
     this.setProgressWidth()
 
     const panel = document.createElement('pre')
-    panel.textContent = level.code
-    this.panel.append(panel)
-    hljs.highlightElement(panel)
+    panel.className = 'hljs'
+
+    const childContents: string[] = []
+
+    level.code.forEach((item) => {
+      const robotElement = document.createElement('div')
+      let openingTag = `<${item.tag}>`
+      const closingTag = `</${item.tag}>`
+
+      if (item.class) {
+        openingTag = `<${item.tag} class="${item.class}">`
+      }
+
+      const childElement = document.createElement('div')
+
+      if (item.child) {
+        let openingTag = `  <${item.child.tag}>`
+        const closingTag = `</${item.child.tag}>`
+        if (item.child.class) {
+          openingTag = `  <${item.child.tag} class="${item.child.class}">`
+        }
+        childElement.textContent = `${openingTag}${closingTag}`
+        hljs.highlightElement(childElement)
+      }
+
+      const openingCodeElement = document.createElement('div')
+      openingCodeElement.textContent = openingTag
+
+      const closingCodeElement = document.createElement('div')
+      closingCodeElement.textContent = closingTag
+      robotElement.append(openingCodeElement, childElement, closingCodeElement)
+
+      hljs.highlightElement(openingCodeElement)
+      hljs.highlightElement(closingCodeElement)
+      // robotElement.textContent = `${openingTag}`
+      // robotElement.appendChild(childElement)
+      // robotElement.insertAdjacentText('beforeend', closingTag)
+
+      childContents.push(robotElement.textContent || '')
+      panel.appendChild(robotElement)
+    })
+
+    this.panel.appendChild(panel)
+    this.image.innerHTML = childContents.join('')
 
     if (localStorage.getItem(`level_${level.id}`)) {
       this.facheck.classList.add('completed')
@@ -119,8 +158,7 @@ export default class Game {
 
     this.inputArea.classList.add('blink-animation')
 
-    this.image.innerHTML = level.code
-    this.level.innerHTML = `Level ${level.id} of 10`
+    this.level.innerHTML = `Level ${level.id} of ${levels.length}`
 
     const nodes = document.querySelectorAll(
       '.person ' + level.selectors[0]
@@ -144,8 +182,8 @@ export default class Game {
   public moveToNextLevel(): void {
     const nextLevel = this.getNextLevel()
     if (nextLevel) {
-      this.renderLevel(nextLevel)
       this.saveLevelInfo()
+      this.renderLevel(nextLevel)
       this.increaseProgressWidth()
     }
   }
@@ -153,15 +191,15 @@ export default class Game {
   public moveToPreviousLevel(): void {
     const previousLevel = this.getPreviousLevel()
     if (previousLevel) {
-      this.renderLevel(previousLevel)
       this.saveLevelInfo()
+      this.renderLevel(previousLevel)
       this.reduceProgressWidth()
     }
   }
 
   public getNextLevel(): Level | void {
     if (this.indexLevel < levels.length - 1) {
-      this.indexLevel++
+      this.setCurrentLevelIndex(this.indexLevel + 1)
       return this.levels[this.indexLevel]
     }
   }
@@ -182,15 +220,18 @@ export default class Game {
 
     for (let i = 0; i <= this.indexLevel; i++) {
       const level = this.levels[i]
-      const isAnswerCorrect = level.checkAnswer(this.inputArea.value)
+      const isAnswerCorrect = level.checkAnswer(
+        this.inputArea.value.replace(/\s+/g, ' ').trim()
+      )
       if (isAnswerCorrect) {
         localStorage.setItem(`level_${level.id}`, 'completed')
       }
     }
   }
 
-  public getLevelInfo(): void {
+  public setLastLevelIndex(): void {
     const storedLevel = localStorage.getItem('currentLevel')
+
     if (storedLevel) {
       this.indexLevel = +storedLevel
     }
@@ -226,7 +267,7 @@ export default class Game {
     this.progressElement.style.width = `${progressWidth}%`
   }
 
-  public checkCompletedLevels(icon: HTMLElement): void {
+  public addCompletedToLevels(icon: HTMLElement): void {
     this.levels.forEach((level) => {
       if (localStorage.getItem(`level_${level.id}`)) {
         icon.classList.add('completed')
@@ -243,23 +284,28 @@ export default class Game {
       this.editorPanel.classList.add('shake')
       return
     }
+
+    this.saveLevelInfo()
+    this.addCompletedToLevels(this.facheck)
     this.image.classList.add('image-element')
     setTimeout(() => {
-      if (localStorage.length === this.levels.length) {
+      if (localStorage.length === this.levels.length + 1) {
         this.gameTitle.innerHTML = 'You did it!!!🥹😍🤓'
         this.isAnswerEntered = true
         this.inputArea.value = ''
         alert('You did it!!! Congratulations🥹😍🤓')
       }
       const level = this.getNextLevel()
+      this.saveLevelInfo()
+
       if (level) {
-        this.saveLevelInfo()
         this.renderLevel(level)
       }
     }, 400)
   }
 
   public writeAnswerSelector(): void {
+    this.inputArea.value = ''
     const selector = this.getCurrentLevel().selectors[0].split('')
 
     selector.forEach((el, idx) => {

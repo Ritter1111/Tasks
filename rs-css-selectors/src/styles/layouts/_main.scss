@@ -7,7 +7,7 @@
 
 body {
   background-color: $purple;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .sidebar {
@@ -31,7 +31,7 @@ body {
 .layout-editor {
   position: relative;
   text-align: left;
-  width: 100%;
+  width: 96%;
   margin: 0 auto;
   display: flex;
   border-radius: 3px;
@@ -91,6 +91,10 @@ body {
   color: $sand-grey;
 }
 
+.hljs {
+  background: none;
+}
+
 .panel {
   position: relative;
   padding: 9px 6px 6px 45px;
@@ -104,7 +108,14 @@ body {
     margin-right: 10px;
     color: $black;
     width: 100%;
+    z-index: 2;
+  }
 
+  &_input_value {
+    position: absolute;
+    display: flex;
+    width: 49%;
+    height: 10%;
   }
 
   &_submit {
@@ -193,19 +204,19 @@ body {
   animation: blink 0.5s infinite;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 766px) {
   .layout-editor {
     flex-direction: column;
   }
 
   .css-left {
-    height: 14vh;
+    height: 10vh;
     overflow: hidden;
   }
 
-  .css-left_body {
-    height: 47px;
-  }
+  // .css-left_body {
+  //   height: 72px;
+  // }
 
   .html-right {
     width: calc(70vw - 30px);
@@ -227,5 +238,3 @@ body {
     width: 100%;
   }
 }
-
-

@@ -1,4 +1,4 @@
-import { ILevel } from './types'
+import { CodeItem, ILevel } from './types'
 
 export default class Level {
   public id: string
@@ -8,7 +8,7 @@ export default class Level {
   public selectors: Array<string>
   public nameSelectors: string
   public examples: string[]
-  public code: string
+  public code: CodeItem[]
 
   constructor(data: ILevel) {
     this.id = data.id

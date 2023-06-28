@@ -6,5 +6,11 @@ export interface ILevel {
   readonly selectors: string[]
   readonly nameSelectors: string
   readonly examples: string[]
-  readonly code: string
+  readonly code: CodeItem[]
+}
+
+export type CodeItem = {
+  tag: string
+  class?: string | null
+  child: CodeItem | null
 }
