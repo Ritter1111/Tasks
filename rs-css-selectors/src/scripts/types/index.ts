@@ -12,5 +12,5 @@ export interface ILevel {
 export type CodeItem = {
   tag: string
   class?: string | null
-  child: CodeItem | null
+  child?: CodeItem | null
 }

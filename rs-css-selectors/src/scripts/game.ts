@@ -4,6 +4,12 @@ import hljs from 'highlight.js/lib/core'
 import xml from 'highlight.js/lib/languages/xml'
 import burgerView from './burgerView'
 import { ILevel } from './types'
+import {
+  highlightTableElements,
+  highlightCodeElements,
+  removehighlightCodeElements,
+  removehighlightTableElements,
+} from './highliteElements'
 
 export const burger = new burgerView()
 
@@ -46,8 +52,8 @@ export default class Game {
     this.facheck = document.querySelector('.fa-check') as HTMLElement
     this.btnHelp = document.querySelector('.btn_help') as HTMLElement
     this.isAnswerEntered = false
-
     this.indexLevel = 0
+
     this.levels = levels.map((level: ILevel) => new Level(level))
   }
 
@@ -55,6 +61,7 @@ export default class Game {
     burger.init()
     this.setLastLevelIndex()
     this.renderLevel(this.getCurrentLevel())
+    this.highliteElements()
 
     const angleRight = document.querySelector('.fa-angle-right') as HTMLElement
     angleRight.addEventListener('click', this.moveToNextLevel.bind(this))
@@ -130,10 +137,10 @@ export default class Game {
         hljs.highlightElement(childElement)
       }
 
-      const openingCodeElement = document.createElement('div')
+      const openingCodeElement = document.createElement('span')
       openingCodeElement.textContent = openingTag
 
-      const closingCodeElement = document.createElement('div')
+      const closingCodeElement = document.createElement('span')
       closingCodeElement.textContent = closingTag
       robotElement.append(openingCodeElement, childElement, closingCodeElement)
 
@@ -149,12 +156,6 @@ export default class Game {
 
     this.panel.appendChild(panel)
     this.image.innerHTML = childContents.join('')
-
-    if (localStorage.getItem(`level_${level.id}`)) {
-      this.facheck.classList.add('completed')
-    } else {
-      this.facheck.classList.remove('completed')
-    }
 
     this.inputArea.classList.add('blink-animation')
 
@@ -177,6 +178,12 @@ export default class Game {
     level.examples.forEach((el) => {
       this.examples.innerHTML = el
     })
+
+    if (localStorage.getItem(`level_${level.id}`)) {
+      this.facheck.classList.add('completed')
+    } else {
+      this.facheck.classList.remove('completed')
+    }
   }
 
   public moveToNextLevel(): void {
@@ -323,5 +330,45 @@ export default class Game {
     this.examples.innerHTML = ''
     this.gameTitle.innerHTML = ''
     this.inputArea.value = ''
+  }
+
+  public highliteElements(): void {
+    const tooltip = document.createElement('div')
+    tooltip.className = 'tooltip'
+    this.image.append(tooltip)
+    this.panel.addEventListener('mouseover', (e) => {
+      const targetElement = e.target as HTMLElement
+      targetElement.classList.add('hovered')
+      highlightTableElements(this.image, this.panel, targetElement, tooltip)
+    })
+
+    this.image.addEventListener('mouseover', (e) => {
+      const targetElement = e.target as HTMLElement
+      targetElement.classList.add('hovered')
+      highlightCodeElements(this.image, this.panel, targetElement, tooltip)
+    })
+
+    this.image.addEventListener('mouseout', (e) => {
+      const targetElement = e.target as HTMLElement
+      targetElement.classList.remove('hovered')
+      removehighlightCodeElements(
+        this.image,
+        this.panel,
+        targetElement,
+        tooltip
+      )
+    })
+
+    this.panel.addEventListener('mouseout', (e) => {
+      const targetElement = e.target as HTMLElement
+
+      targetElement.classList.remove('hovered')
+      removehighlightTableElements(
+        this.image,
+        this.panel,
+        targetElement,
+        tooltip
+      )
+    })
   }
 }

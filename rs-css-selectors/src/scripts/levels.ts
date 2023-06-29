@@ -15,7 +15,7 @@ export const levels = [
     code: [
       {
         tag: 'benderDrink',
-        class: 'animated',
+        class: null,
         child: {
           tag: 'beer',
           child: null,
@@ -26,7 +26,7 @@ export const levels = [
         class: null,
         child: {
           tag: 'beer',
-          class: 'small',
+          class: null,
           child: null,
         },
       },
