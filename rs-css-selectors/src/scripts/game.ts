@@ -61,7 +61,6 @@ export default class Game {
     burger.init()
     this.setLastLevelIndex()
     this.renderLevel(this.getCurrentLevel())
-    this.highliteElements()
 
     const angleRight = document.querySelector('.fa-angle-right') as HTMLElement
     angleRight.addEventListener('click', this.moveToNextLevel.bind(this))
@@ -124,6 +123,9 @@ export default class Game {
       if (item.class) {
         openingTag = `<${item.tag} class="${item.class}">`
       }
+      if (item.id) {
+        openingTag = `<${item.tag} id="${item.id}">`
+      }
 
       const childElement = document.createElement('div')
 
@@ -142,13 +144,15 @@ export default class Game {
 
       const closingCodeElement = document.createElement('span')
       closingCodeElement.textContent = closingTag
-      robotElement.append(openingCodeElement, childElement, closingCodeElement)
+      robotElement.append(openingCodeElement)
+
+      if (item.child) {
+        robotElement.append(childElement)
+      }
+      robotElement.append(closingCodeElement)
 
       hljs.highlightElement(openingCodeElement)
       hljs.highlightElement(closingCodeElement)
-      // robotElement.textContent = `${openingTag}`
-      // robotElement.appendChild(childElement)
-      // robotElement.insertAdjacentText('beforeend', closingTag)
 
       childContents.push(robotElement.textContent || '')
       panel.appendChild(robotElement)
@@ -184,6 +188,7 @@ export default class Game {
     } else {
       this.facheck.classList.remove('completed')
     }
+    this.highliteElements()
   }
 
   public moveToNextLevel(): void {
@@ -338,7 +343,7 @@ export default class Game {
     this.image.append(tooltip)
     this.panel.addEventListener('mouseover', (e) => {
       const targetElement = e.target as HTMLElement
-      targetElement.classList.add('hovered')
+      targetElement.classList.add('hovered-code')
       highlightTableElements(this.image, this.panel, targetElement, tooltip)
     })
 
@@ -362,7 +367,7 @@ export default class Game {
     this.panel.addEventListener('mouseout', (e) => {
       const targetElement = e.target as HTMLElement
 
-      targetElement.classList.remove('hovered')
+      targetElement.classList.remove('hovered-code')
       removehighlightTableElements(
         this.image,
         this.panel,

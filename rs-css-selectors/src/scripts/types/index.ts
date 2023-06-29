@@ -12,5 +12,8 @@ export interface ILevel {
 export type CodeItem = {
   tag: string
   class?: string | null
+  id?: string | null
   child?: CodeItem | null
 }
+
+// type CodeItemNoOptional = Partial<CodeItem>

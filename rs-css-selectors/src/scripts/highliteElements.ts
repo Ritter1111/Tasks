@@ -10,7 +10,7 @@ export function highlightTableElements(
   )
   const index = elemCode.indexOf(target)
   if (index !== -1) {
-    console.log(elemCode[index].textContent)
+    // console.log(elemCode[index].textContent)
     elemTable[index].classList.add('hovered')
     tooltip.innerText = elemCode[index].textContent
     tooltip.style.visibility = 'visible'
@@ -29,7 +29,9 @@ export function highlightCodeElements(
   )
   const index = elemTable.indexOf(target)
   if (index !== -1) {
-    elemCode[index].classList.add('hovered')
+    // console.log(elemCode[index].textContent)
+
+    elemCode[index].classList.add('hovered-code')
     tooltip.innerText = elemCode[index].textContent
     tooltip.style.visibility = 'visible'
   }
@@ -64,7 +66,7 @@ export function removehighlightCodeElements(
   )
   const index = elemTable.indexOf(target)
   if (index !== -1) {
-    elemCode[index].classList.remove('hovered')
+    elemCode[index].classList.remove('hovered-code')
     tooltip.style.visibility = 'hidden'
   }
 }
