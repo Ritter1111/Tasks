@@ -10,7 +10,6 @@ export function highlightTableElements(
   )
   const index = elemCode.indexOf(target)
   if (index !== -1 && index < elemCode.length) {
-    // console.log(elemCode[index].textContent)
     elemTable[index].classList.add('hovered')
     tooltip.innerText = elemCode[index].textContent
     calculatePositionTooltip(elemTable[index], tooltip)

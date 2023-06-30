@@ -15,5 +15,3 @@ export type CodeItem = {
   id?: string | null
   child?: CodeItem | null
 }
-
-// type CodeItemNoOptional = Partial<CodeItem>

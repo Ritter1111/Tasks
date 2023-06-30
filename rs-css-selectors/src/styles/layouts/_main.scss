@@ -157,9 +157,6 @@ body {
     background-color: $green;
     color: $black;
   }
-  // &.clicked {
-  //   box-shadow: 0 1px #666;
-  // }
 }
 
 @keyframes blink {
@@ -213,10 +210,6 @@ body {
     height: 10vh;
     overflow: hidden;
   }
-
-  // .css-left_body {
-  //   height: 72px;
-  // }
 
   .html-right {
     width: calc(70vw - 30px);
