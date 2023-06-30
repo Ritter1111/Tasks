@@ -9,11 +9,11 @@ export function highlightTableElements(
     targetElement.querySelectorAll('div')
   )
   const index = elemCode.indexOf(target)
-  if (index !== -1) {
+  if (index !== -1 && index < elemCode.length) {
     // console.log(elemCode[index].textContent)
     elemTable[index].classList.add('hovered')
     tooltip.innerText = elemCode[index].textContent
-    tooltip.style.visibility = 'visible'
+    calculatePositionTooltip(elemTable[index], tooltip)
   }
 }
 
@@ -28,12 +28,10 @@ export function highlightCodeElements(
     targetElement.querySelectorAll('div')
   )
   const index = elemTable.indexOf(target)
-  if (index !== -1) {
-    // console.log(elemCode[index].textContent)
-
+  if (index !== -1 && index < elemCode.length) {
     elemCode[index].classList.add('hovered-code')
     tooltip.innerText = elemCode[index].textContent
-    tooltip.style.visibility = 'visible'
+    calculatePositionTooltip(target, tooltip)
   }
 }
 
@@ -48,7 +46,7 @@ export function removehighlightTableElements(
     targetElement.querySelectorAll('div')
   )
   const index = elemCode.indexOf(target)
-  if (index !== -1) {
+  if (index !== -1 && index < elemCode.length) {
     elemTable[index].classList.remove('hovered')
     tooltip.style.visibility = 'hidden'
   }
@@ -65,8 +63,14 @@ export function removehighlightCodeElements(
     targetElement.querySelectorAll('div')
   )
   const index = elemTable.indexOf(target)
-  if (index !== -1) {
+  if (index !== -1 && index < elemCode.length) {
     elemCode[index].classList.remove('hovered-code')
     tooltip.style.visibility = 'hidden'
   }
+}
+
+function calculatePositionTooltip(currElem: HTMLElement, tooltip: HTMLElement) {
+  tooltip.style.visibility = 'visible'
+  tooltip.style.left = `${currElem.offsetLeft}px`
+  tooltip.style.top = `${currElem.offsetTop + currElem.offsetHeight}px`
 }

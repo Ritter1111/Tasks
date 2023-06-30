@@ -341,6 +341,7 @@ export default class Game {
     const tooltip = document.createElement('div')
     tooltip.className = 'tooltip'
     this.image.append(tooltip)
+
     this.panel.addEventListener('mouseover', (e) => {
       const targetElement = e.target as HTMLElement
       targetElement.classList.add('hovered-code')

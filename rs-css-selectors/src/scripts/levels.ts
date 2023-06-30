@@ -173,7 +173,8 @@ export const levels = [
         tag: 'amy',
         class: null,
         child: {
-          tag: 'hat',
+          tag: 'hat3',
+          class: 'black',
         },
       },
       {
@@ -187,15 +188,14 @@ export const levels = [
         tag: 'amy',
         class: null,
         child: {
-          tag: 'hat2',
+          tag: 'hat',
         },
       },
       {
         tag: 'amy',
         class: null,
         child: {
-          tag: 'hat3',
-          class: 'black',
+          tag: 'hat2',
         },
       },
     ],

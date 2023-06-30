@@ -164,9 +164,8 @@ professor richard {
   border-radius: 3px;
 }
 
-.hovered-code {
-  box-shadow: rgba(255, 255, 255, 0.25) 0px 5px 25px;
-
+div.hovered-code {
+  text-shadow: 2px 2px 3px rgb(70, 255, 113);
 }
 
 .animated {
@@ -194,10 +193,9 @@ professor richard {
 }
 
 .tooltip {
-  left: 164px;
-  background-color: black;
   position: absolute;
+  background-color: black;
+  color: white;
   padding: 3px;
-  top: 34px;
   visibility: hidden;
 }
