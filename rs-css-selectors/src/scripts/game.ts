@@ -71,7 +71,7 @@ export default class Game {
     document.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
         const isAnserCorrect = this.getCurrentLevel().checkAnswer(
-          (event.target as HTMLInputElement).value.replace(/\s+/g, ' ').trim()
+          this.trimAnswer(event.target as HTMLInputElement)
         )
         this.checkCorrectAnswer(isAnserCorrect)
       }
@@ -99,7 +99,7 @@ export default class Game {
 
     this.buttonSubmit.addEventListener('click', () => {
       const isAnserCorrect = this.getCurrentLevel().checkAnswer(
-        this.inputArea.value.replace(/\s+/g, ' ').trim()
+        this.trimAnswer(this.inputArea)
       )
       this.checkCorrectAnswer(isAnserCorrect)
     })
@@ -227,14 +227,16 @@ export default class Game {
     }
   }
 
+  public trimAnswer(element: HTMLInputElement) {
+    return element.value.replace(/\s+/g, ' ').trim()
+  }
+
   public saveLevelInfo() {
     localStorage.setItem('currentLevel', this.indexLevel.toString())
 
     for (let i = 0; i <= this.indexLevel; i++) {
       const level = this.levels[i]
-      const isAnswerCorrect = level.checkAnswer(
-        this.inputArea.value.replace(/\s+/g, ' ').trim()
-      )
+      const isAnswerCorrect = level.checkAnswer(this.trimAnswer(this.inputArea))
       if (isAnswerCorrect) {
         localStorage.setItem(`level_${level.id}`, 'completed')
       }

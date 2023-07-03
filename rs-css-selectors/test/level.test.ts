@@ -1,8 +1,20 @@
 import Level from '../src/scripts/level'
-import { levels } from '../src/scripts/levels'
+
+const level = new Level({
+  id: '1',
+  title: 'Type Selector',
+  subtitle: 'Select elements by their type',
+  description: `Desription`,
+  selectors: ['robot', '*', 'robot, robot'],
+  nameSelectors: 'A',
+  examples: [`<tag>div</tag> selects`],
+  code: [
+    { tag: 'robot', class: null },
+    { tag: 'robot', class: null },
+  ],
+})
 
 test('returns true if entered selector is in selectors array', () => {
-  const level = new Level(levels[0])
   expect(level.checkAnswer('robot')).toBe(true)
   expect(level.checkAnswer('*')).toBe(true)
   expect(level.checkAnswer('robot:last-child')).toBe(false)
