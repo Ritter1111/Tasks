@@ -20,6 +20,7 @@ const baseConfig = {
       },
       {
         test: /\.(c|sa|sc)ss$/i,
+        exclude: /felipec\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
