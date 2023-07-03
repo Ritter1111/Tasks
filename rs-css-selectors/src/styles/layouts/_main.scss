@@ -204,23 +204,23 @@ body {
 @media (max-width: 766px) {
   .layout-editor {
     flex-direction: column;
+    width: 100%;
   }
 
   .css-left {
-    height: 10vh;
+    height: 13vh;
     overflow: hidden;
   }
 
   .html-right {
-    width: calc(70vw - 30px);
+    // width: calc(70vw - 30px);
+    width: calc(88vw - 30px);
   }
 
-  .panel {
+  .html-right_body {
     min-height: auto;
   }
-}
 
-@media (max-width: 760px) {
   .sidebar {
     position: static;
     width: 100%;

@@ -70,6 +70,7 @@ export function removehighlightCodeElements(
 
 function calculatePositionTooltip(currElem: HTMLElement, tooltip: HTMLElement) {
   tooltip.style.visibility = 'visible'
-  tooltip.style.left = `${currElem.offsetLeft}px`
-  tooltip.style.top = `${currElem.offsetTop + currElem.offsetHeight}px`
+  const rect = currElem.getBoundingClientRect()
+  tooltip.style.left = `${rect.left}px`
+  tooltip.style.top = `${rect.bottom}px`
 }

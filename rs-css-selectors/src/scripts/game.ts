@@ -344,13 +344,18 @@ export default class Game {
 
     this.panel.addEventListener('mouseover', (e) => {
       const targetElement = e.target as HTMLElement
-      targetElement.classList.add('hovered-code')
-      highlightTableElements(this.image, this.panel, targetElement, tooltip)
+      const parentElement = targetElement.closest('div') as HTMLElement
+
+      parentElement.classList.add('hovered-code')
+      highlightTableElements(this.image, this.panel, parentElement, tooltip)
     })
 
     this.image.addEventListener('mouseover', (e) => {
       const targetElement = e.target as HTMLElement
-      targetElement.classList.add('hovered')
+
+      if (targetElement !== this.image) {
+        targetElement.classList.add('hovered')
+      }
       highlightCodeElements(this.image, this.panel, targetElement, tooltip)
     })
 
@@ -367,12 +372,12 @@ export default class Game {
 
     this.panel.addEventListener('mouseout', (e) => {
       const targetElement = e.target as HTMLElement
-
-      targetElement.classList.remove('hovered-code')
+      const parentElement = targetElement.closest('div') as HTMLElement
+      parentElement.classList.remove('hovered-code')
       removehighlightTableElements(
         this.image,
         this.panel,
-        targetElement,
+        parentElement,
         tooltip
       )
     })

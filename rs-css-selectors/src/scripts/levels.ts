@@ -7,7 +7,7 @@ export const levels = [
       so <tag class="brackets">div</tag>, <tag class="brackets">p</tag> 
       and <tag class="brackets">ul</tag> are all
       different element types.`,
-    selectors: ['robot', '*'],
+    selectors: ['robot', '*', 'robot, robot'],
     nameSelectors: 'A',
     examples: [
       `<tag>div</tag> selects all <tag class="brackets">div</tag> elements.`,
@@ -31,7 +31,7 @@ export const levels = [
       so <tag class="brackets">div</tag>, <tag class="brackets">p</tag>
       and <tag class="brackets">ul</tag> are all
       different element types.`,
-    selectors: ['fry'],
+    selectors: ['fry', '> fry'],
     nameSelectors: 'A',
     examples: [
       `<tag>div</tag> selects all <tag class="brackets">div</tag> elements.`,
@@ -61,7 +61,17 @@ export const levels = [
     subtitle: 'Select all element inside another element',
     description: `Selects all <tag>B</tag> inside of <tag>A</tag>. <tag>B</tag> is
       called a descendant because it is inside of another element`,
-    selectors: ['professor richard'],
+    selectors: [
+      'professor richard',
+      'professor > richard',
+      'professor richard:first-child',
+      'professor richard:nth-child(n)',
+      'professor richard:nth-last-child(n)',
+      'professor richard:last-child',
+      'professor richard:first-child',
+      'professor richard:last-of-type',
+      'professor richard:nth-of-type(n)',
+    ],
     nameSelectors: 'A B',
     examples: [
       `<tag>h1 strong</tag> select all <tag>strong</tag> elements that
@@ -95,7 +105,14 @@ export const levels = [
     subtitle: 'Select elements with an ID',
     description: `Selects all elements with a specific <tag>id</tag>.
       You can also combine the ID selector with the type selector`,
-    selectors: ['#small', 'robot#small'],
+    selectors: [
+      '#small',
+      'robot#small',
+      'robot[id="small"]',
+      'robot[id^="sm"]',
+      'robot[id$="all"]',
+      'robot[id*="ma"]',
+    ],
     nameSelectors: '#id',
     examples: [`<tag>#nice</tag> select any element with <tag>id="nice"</tag>`],
     code: [
@@ -121,7 +138,7 @@ export const levels = [
     description: `You can select all siblings of an element that follow it.
        This is like the Adjacent Selector (A + B) except it gets all of the following
        elements instead of one`,
-    selectors: ['bender ~ freak'],
+    selectors: ['bender ~ freak', 'bender + freak'],
     nameSelectors: 'A ~ B',
     examples: [
       `<tag>A ~ B</tag> select all <tag>B</tag> that follow a <tag>A</tag>`,
@@ -163,6 +180,7 @@ export const levels = [
       'amy *',
       'amy hat, amy hat2, amy hat3',
       'amy hat, amy hat2, amy hat3.black',
+      'amy > *',
     ],
     nameSelectors: 'A *',
     examples: [
@@ -206,7 +224,7 @@ export const levels = [
     subtitle: 'Select elements by their type',
     description: `The class selector selects all elements with that class attribute.
       Elements can only have one ID, but many classes.`,
-    selectors: ['.small', 'hat.small', 'hat.small, fry.small'],
+    selectors: ['.small', 'hat.small', 'hat.small, fry.small', 'fry > .small'],
     nameSelectors: '.className',
     examples: [
       `<tag>.bag</tag> select all elements

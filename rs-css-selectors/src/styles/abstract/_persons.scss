@@ -194,8 +194,22 @@ div.hovered-code {
 
 .tooltip {
   position: absolute;
-  background-color: $black;
+  background-color: $dark-grey;
   color: $white;
   padding: 3px;
+  border-radius: 8px;
   visibility: hidden;
+  font-size: 14px;
+}
+
+.tooltip::after {
+  content: "▼";
+  position: absolute;
+  top: -72%;
+  color: $dark-grey;
+  left: 31%;
+  transform: scale(1, 0.8) translate(-104%, 9%) rotate(58deg);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent transparent;
 }
