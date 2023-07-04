@@ -33,10 +33,11 @@
   transition: 0.3s ease-out;
   list-style: none;
   z-index: 1;
+  opacity: 0;
 
   &_title {
     display: flex;
-    padding: 22px 12px 5px 22px;
+    padding: 30px 12px 5px 22px;
   }
 }
 
@@ -58,7 +59,6 @@
 .burger-line.line3 {
   top: calc(50% + 5.5px);
 }
-
 
 .nav-menu a {
   cursor: pointer;
@@ -85,6 +85,7 @@
 
 .nav-menu.open {
   transform: translateX(-100%);
+  opacity: 1;
 }
 
 .burger-reverse.show {
@@ -104,9 +105,11 @@
     width: 100%;
     background: $navy-blue;
     overflow: scroll;
+    opacity: 0;
   }
 
   .nav-menu.open {
     transform: translateY(100%);
+    opacity: 1;
   }
 }

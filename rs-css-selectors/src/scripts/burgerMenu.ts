@@ -19,13 +19,17 @@ export class BurgerMenu {
 
       if (localStorage.getItem(`level_${level.id}`)) {
         checkLabel.classList.add('completed')
+      } else if (localStorage.getItem(`level_${level.id}_hint`)) {
+        checkLabel.classList.add('completed-help')
       }
+      this.addHighliteToCurrentLevel()
 
       element.addEventListener('click', () => {
         game.renderLevel(level)
         game.setCurrentLevelIndex(i)
         game.saveLevelInfo()
         game.setProgressWidth()
+        this.addHighliteToCurrentLevel()
         this.closeBurger()
       })
     })
@@ -34,6 +38,18 @@ export class BurgerMenu {
   public closeBurger(): void {
     this.menu?.classList.remove('open')
     this.burgerRev.classList.remove('show')
+  }
+
+  public addHighliteToCurrentLevel(): void {
+    const levelElements =
+      this.menuContainer.getElementsByClassName('item-level')
+    Array.from(levelElements).forEach((element, index) => {
+      if (index === +game.getCurrentLevel().id - 1) {
+        element.classList.add('selected')
+      } else {
+        element.classList.remove('selected')
+      }
+    })
   }
 
   public resetButton(): void {

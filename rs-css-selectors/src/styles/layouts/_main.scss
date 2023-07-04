@@ -106,7 +106,7 @@ body {
     all: unset;
     cursor: text;
     margin-right: 10px;
-    color: $black;
+    color: $turquoise;
     width: 100%;
     z-index: 2;
   }
@@ -161,13 +161,13 @@ body {
 
 @keyframes blink {
   0% {
-    background-color: $turquoise;
+    background-color: $blue;
   }
   50% {
     background-color: transparent;
   }
   100% {
-    background-color: $turquoise;
+    background-color: $blue;
   }
 }
 
@@ -213,7 +213,6 @@ body {
   }
 
   .html-right {
-    // width: calc(70vw - 30px);
     width: calc(88vw - 30px);
   }
 
@@ -229,5 +228,12 @@ body {
 
   .section__main {
     width: 100%;
+  }
+}
+
+@media (max-height: 585px) {
+  .css-left {
+    height: 20vh;
+    overflow: hidden;
   }
 }

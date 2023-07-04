@@ -83,9 +83,10 @@ export default class Game {
     })
 
     this.btnHelp.addEventListener('click', () => {
-      this.isAnswerEntered = false
+      this.isAnswerEntered = true
       this.writeAnswerSelector()
       this.inputArea.focus()
+      this.inputArea.classList.remove('blink-animation')
     })
 
     this.inputArea.addEventListener('input', (e) => {
@@ -188,6 +189,13 @@ export default class Game {
     } else {
       this.facheck.classList.remove('completed')
     }
+
+    if (localStorage.getItem(`level_${level.id}_hint`)) {
+      this.facheck.classList.add('completed-help')
+    } else {
+      this.facheck.classList.remove('completed-help')
+    }
+
     this.highliteElements()
   }
 
@@ -233,11 +241,12 @@ export default class Game {
 
   public saveLevelInfo() {
     localStorage.setItem('currentLevel', this.indexLevel.toString())
-
-    for (let i = 0; i <= this.indexLevel; i++) {
-      const level = this.levels[i]
-      const isAnswerCorrect = level.checkAnswer(this.trimAnswer(this.inputArea))
-      if (isAnswerCorrect) {
+    const level = this.getCurrentLevel()
+    const isAnswerCorrect = level.checkAnswer(this.trimAnswer(this.inputArea))
+    if (isAnswerCorrect) {
+      if (this.isAnswerEntered) {
+        localStorage.setItem(`level_${level.id}_hint`, 'completed')
+      } else {
         localStorage.setItem(`level_${level.id}`, 'completed')
       }
     }
@@ -285,6 +294,8 @@ export default class Game {
     this.levels.forEach((level) => {
       if (localStorage.getItem(`level_${level.id}`)) {
         icon.classList.add('completed')
+      } else if (localStorage.getItem(`level_${level.id}_hint`)) {
+        icon.classList.add('completed-help')
       }
     })
   }
@@ -314,6 +325,7 @@ export default class Game {
 
       if (level) {
         this.renderLevel(level)
+        this.isAnswerEntered = false
       }
     }, 400)
   }

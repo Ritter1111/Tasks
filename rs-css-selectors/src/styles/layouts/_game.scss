@@ -25,6 +25,14 @@
   color: $green;
 }
 
+.completed-help {
+  color: $red;
+}
+
+.selected {
+  background-color: $purple;
+}
+
 @keyframes fly-out {
   0% {
     transform: translateY(100px);
