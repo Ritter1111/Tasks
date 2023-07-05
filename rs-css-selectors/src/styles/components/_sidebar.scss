@@ -17,7 +17,8 @@
   &_reset {
     position: absolute;
     top: 90%;
-    left: 34%;
+    // left: 34%;
+    left: calc(73% - 40%);
     padding: 0px 5px;
     border-radius: 3px;
     line-height: 2rem;
@@ -125,5 +126,6 @@ tag.brackets {
   .levels-wrapper_reset {
     top: 6%;
     left: 47%;
+    line-height: 23px;
   }
 }

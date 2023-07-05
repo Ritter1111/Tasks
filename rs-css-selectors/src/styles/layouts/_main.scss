@@ -161,13 +161,13 @@ body {
 
 @keyframes blink {
   0% {
-    background-color: $blue;
+    background-color: #544cfe5e;;
   }
   50% {
     background-color: transparent;
   }
   100% {
-    background-color: $blue;
+    background-color: #544cfe5e;;
   }
 }
 
@@ -208,7 +208,7 @@ body {
   }
 
   .css-left {
-    height: 13vh;
+    height: 12vh;
     overflow: hidden;
   }
 
@@ -231,7 +231,7 @@ body {
   }
 }
 
-@media (max-height: 585px) {
+@media (max-height: 585px) and (max-width: 766px) {
   .css-left {
     height: 20vh;
     overflow: hidden;

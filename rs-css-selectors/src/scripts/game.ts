@@ -91,6 +91,7 @@ export default class Game {
 
     this.inputArea.addEventListener('input', (e) => {
       const inputValue = (e.target as HTMLInputElement).value
+
       if (inputValue === '') {
         this.inputArea.classList.add('blink-animation')
       } else {
