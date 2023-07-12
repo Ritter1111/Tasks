@@ -1,16 +1,14 @@
 body {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #323232;
+  color: rgb(232, 232, 232);
+  font-size: 17px;
 }
 
 hr {
   border: none;
   margin: 0;
   border-top: 3px dotted rgb(0, 0, 0);
-}
-
-.race-flag {
-  width: 50px;
-  height: 80px;
 }
 
 .flag {
@@ -21,19 +19,32 @@ hr {
 .container {
   display: flex;
   justify-content: space-between;
-}
 
-.container_car {
-  display: flex;
+  &_car {
+    display: flex;
+  }
 }
 
 .car-control {
   display: flex;
   align-items: center;
+  margin-right: 15px;
 }
 
-.create_cars {
-  padding: 0 0 28px 0;
+.create {
+    &_cars {
+    padding: 0 0 10px 0;
+  }
+
+  &_input {
+    height: 21px;
+    margin-right: 10px;
+  }
+}
+
+.update_input {
+  height: 21px;
+  margin-right: 10px;
 }
 
 .create-car, .update-car {
@@ -42,9 +53,8 @@ hr {
   margin: 10px 0;
 }
 
-.create_input, .update_input {
-  height: 21px;
-  margin-right: 10px;
+.racing-car {
+  width: 100px;
 }
 
 .create_color, .update-color {
@@ -53,14 +63,42 @@ hr {
 
 .btn {
   padding: 3px 12px;
+  margin-right: 15px;
+  border: 2px inset white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.5s ease;
+
+  &:hover {
+    background-color: rgb(106, 106, 106);
+    transition: 0.5 ease;
+  }
 }
 
-.race-car, .reset-car {
-  margin-right: 45px;
+.race-car, .reset-car, .generate-car {
+  margin-right: 21px;
   padding: 3px 12px;
+  border: 2px inset white;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.5s ease;
+
+  &:hover {
+    background-color: rgb(106, 106, 106);
+    transition: 0.5 ease;
+  }
 }
 
 .car {
   display: flex;
   align-items: end;
+}
+
+.race-flag {
+  width: 37px;
+  height: 70px;
+  transform: scale(-1, 1) rotate(8deg);
+  margin-right: 40px;
 }
