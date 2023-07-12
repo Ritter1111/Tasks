@@ -1,53 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Async Race</title>
-</head>
-<body>
-  <header>
-    <div class="container_header">
-      <button class="garage btns_header">To Garage</button>
-      <button class="winners btns_header">To Winners</button>
-    </div>
-  </header>
-  <main>
-    <div class="create_cars">
-      <div class="create-car">
-        <input type="text" class="create_input">
-        <input type="color" class="create_color">
-        <button class="btn-create btn">Create</button>
-      </div>
-      <div class="update-car">
-        <input type="text" class="update_input">
-        <input type="color" class="update-color">
-        <button class="btn-update btn">Update</button>
-      </div>
-      <div class="adjust-btns">
-        <button class="race-car">Race</button>
-        <button class="reset-car">Reset</button>
-        <button class="generate-car">Generate Cars</button>
-      </div>
-    </div>
-    
-    <div class="garage-name">Garage (104)</div>
-    <div class="number-page">Page #1</div>
-    <div class="generated-car">
-      <div class="nav-car">
-        <button class="btn">Select</button>
-        <button class="btn">Remove</button>
-        <span class="car-name">Tesla</span>
-      </div>
-      <div class="container">
-        <div class="container_car">
-          <div class="car-control">
-            <button class="btn">A</button>
-            <button class="btn">B</button>
-          </div>
-          <div class="car">
-        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="13vh" viewBox="0 0 1280.000000 640.000000"
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="1280.000000pt" height="640.000000pt" viewBox="0 0 1280.000000 640.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -147,42 +102,3 @@ l-15 -73 3006 7 c1653 4 3007 8 3009 9 1 1 -8 37 -20 81 -19 67 -22 105 -22
 61 239 98 16 10 -216 242 -234 235z"/>
 </g>
 </svg>
-</div>
-  </div>
-  <span class="flag">
-    <img src="./assets/img/race-flag.png" alt="Flag" class="race-flag">
-  </span>
-</div>
-<hr>
-    </div>
-    <div class="winners-page">
-      <div class="garage-name">Winners (3)</div>
-      <div class="number-page">Page #1</div>
-      <table>
-      <thead>
-        <tr>
-          <th>Number</th>
-          <th>Car</th>
-          <th>Name</th>
-          <th>Wins</th>
-          <th>Best Time (seconds)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>car</td>
-          <td>Tesla</td>
-          <td>1</td>
-          <td>10</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-    <div class="nav-pages">
-      <button class="btn">prev</button>
-      <button class="btn">next</button>
-    </div>
-  </main>
-</body>
-</html>
