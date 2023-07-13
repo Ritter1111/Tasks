@@ -1,3 +1,5 @@
 import './style.scss'
+import './scripts/garage/garage'
 import './scripts/api'
 import './scripts/ui'
+import './scripts/garage/create-car'

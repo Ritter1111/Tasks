@@ -3,4 +3,10 @@ export enum HttpMethod {
   POST = 'POST'
 }
 
-export default HttpMethod
+export interface DataCar {
+  name:string, 
+  color:string, 
+  id: number
+}
+
+export default { HttpMethod}

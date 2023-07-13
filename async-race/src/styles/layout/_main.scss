@@ -97,8 +97,23 @@ hr {
 }
 
 .race-flag {
-  width: 37px;
-  height: 70px;
+  background: url(./assets/race-flag.png);
+  width: 54px;
+  height: 57px;
+  background-repeat: no-repeat;
+  background-size: contain;
   transform: scale(-1, 1) rotate(8deg);
   margin-right: 40px;
+}
+
+.flag-img {
+  background: url(./assets/gif.gif);
+  width: 98px;
+  height: 97px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.car_wrapper {
+  margin: 40px 0;
 }

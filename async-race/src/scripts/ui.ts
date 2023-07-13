@@ -1,5 +1,8 @@
+import { getCars } from "./api";
+import { DataCar } from "./types/types";
+
 const createSVGImage = (color: string) =>
-   ` <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+  ` <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
     width="13vh" viewBox="0 0 1280.000000 640.000000"
     preserveAspectRatio="xMidYMid meet">
    <metadata>
@@ -102,16 +105,16 @@ const createSVGImage = (color: string) =>
    </g>
    </svg> `;
 
-   const createHeader = () =>
-    `<div class="container_header">
-    <img src="../assets/img/gif.gif" alt="Racing car" class="racing-car">
+const createHeader = () =>
+  `<div class="container_header">
+    <div class="flag-img"></div>
     <div>
       <button class="garage btns_header">To Garage</button>
       <button class="winners btns_header">To Winners</button>
     </div> 
   </div>`;
 
-  const createMainSection = () => `
+const createMainSection = () => `
   <div class="create_cars">
   <div class="create-car">
     <input type="text" class="create_input">
@@ -161,13 +164,17 @@ const pagination = () => `
 <button class="btn">next</button>
 `
 
-const cars = () => ` <h2 class="garage-name">Garage (104)</h2>
-<h3 class="number-page">Page #1</h3>
+const drawGarageHeader = () =>
+  `<h2 class="garage-name">Garage (<span class="count-cars"></span>)</h2>
+<h3 class="number-page">Page #1</h3>`
+
+const drawCar = (car: DataCar) => {
+  const a = ` 
 <div class="generated-car">
   <div class="nav-car">
     <button class="btn">Select</button>
     <button class="btn">Remove</button>
-    <span class="car-name">Tesla</span>
+    <span class="car-name">${car.name}</span>
   </div>
   <div class="container">
     <div class="container_car">
@@ -175,29 +182,63 @@ const cars = () => ` <h2 class="garage-name">Garage (104)</h2>
         <button class="btn">A</button>
         <button class="btn">B</button>
       </div>
-      <div class="car"></div>
+      <div class="car">${createSVGImage(car.color)}</div>
     </div>
   <span class="flag">
-  <img src="./assets/img/race-flag.png" alt="Flag" class="race-flag">
+  <div class="race-flag"></div>
   </span>
 </div>
 <hr>
 </div>`;
+  const main = <HTMLElement>document.querySelector('.main')
+  const carWrapper = document.createElement('div')
+  carWrapper.className = 'car_wrapper'
+  carWrapper.innerHTML = a
+  main.appendChild(carWrapper)
+}
 
-  const header = document.createElement('header');
-  header.innerHTML = createHeader()
+const header = document.createElement('header');
+header.innerHTML = createHeader()
 
-  const main = document.createElement('main')
-  main.innerHTML = createMainSection() + cars() + winnersPage()
+const main = document.createElement('main')
+main.className = 'main'
 
-  const paginationElem = document.createElement('div');
-  paginationElem.className = 'nav-pages';
-  paginationElem.innerHTML = pagination()
-  main.append(paginationElem)
+const paginationElem = document.createElement('div');
+paginationElem.className = 'nav-pages';
+paginationElem.innerHTML = pagination()
+main.append(paginationElem)
 
-  document.body.append(header, main)
+document.body.append(header, main)
 
-  const carImage = document.querySelector('.car');
-  if (carImage) {
-    carImage.innerHTML = createSVGImage('#7fff64;');
-  }
+
+const navigateToWinnersPage = () => {
+  main.innerHTML = winnersPage();
+  main.append(paginationElem);
+};
+
+const winnersButton = <HTMLElement>document.querySelector('.winners');
+winnersButton.addEventListener('click', navigateToWinnersPage);
+
+const drawEveryCar = async () => {
+  const carss = await getCars(1, 7)
+
+  carss.forEach((carr) => {
+    drawCar(carr)
+  })
+}
+
+const navigateToGaragePage = () => {
+  main.innerHTML = createMainSection() + drawGarageHeader()
+  drawEveryCar()
+  main.append(paginationElem);
+};
+
+const garageButton = <HTMLElement>document.querySelector('.garage');
+garageButton.addEventListener('click', navigateToGaragePage);
+
+document.addEventListener('DOMContentLoaded', async () => {
+  main.innerHTML = createMainSection() + drawGarageHeader()
+
+  drawEveryCar()
+})
+
