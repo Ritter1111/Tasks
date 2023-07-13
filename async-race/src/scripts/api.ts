@@ -16,6 +16,12 @@ const garageRequest = 'http://localhost:3000/garage';
 // }> => 
 // (await (fetch(`${garageRequest}/${id}`))).json()
 
+// export const getCar = async (): Promise<{id: number}> => {
+// const idd = await (fetch(`${garageRequest}/${id}`))
+//   return idd.json()
+// }
+
+// console.log(getCar(1))
 
 // async function obj() {
 //   const objResult = await getCar(2)
@@ -45,6 +51,14 @@ export const createCar = async (body: NewCar, method: HttpMethod.POST): Promise<
       'Content-Type': 'application/json'
     }
   })
+  return response.json()
+}
+
+export const removeCar = async (id: number, method: HttpMethod.DELETE): Promise<DataCar[]> => {
+  const response = await fetch(`${garageRequest}/${id}`, {
+    method
+  })
+
   return response.json()
 }
 

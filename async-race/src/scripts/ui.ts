@@ -168,12 +168,16 @@ const drawGarageHeader = () =>
   `<h2 class="garage-name">Garage (<span class="count-cars"></span>)</h2>
 <h3 class="number-page">Page #1</h3>`
 
+const wrappCars = document.createElement('div');
+wrappCars.className = 'wrapp-cars'
+
+
 const drawCar = (car: DataCar) => {
   const a = ` 
 <div class="generated-car">
   <div class="nav-car">
     <button class="btn">Select</button>
-    <button class="btn">Remove</button>
+    <button class="btn remove-car" data-id=${car.id}>Remove</button>
     <span class="car-name">${car.name}</span>
   </div>
   <div class="container">
@@ -191,10 +195,13 @@ const drawCar = (car: DataCar) => {
 <hr>
 </div>`;
   const main = <HTMLElement>document.querySelector('.main')
+
   const carWrapper = document.createElement('div')
   carWrapper.className = 'car_wrapper'
   carWrapper.innerHTML = a
-  main.appendChild(carWrapper)
+
+  main.append(wrappCars)
+  wrappCars.appendChild(carWrapper)
 }
 
 const header = document.createElement('header');
@@ -219,7 +226,8 @@ const navigateToWinnersPage = () => {
 const winnersButton = <HTMLElement>document.querySelector('.winners');
 winnersButton.addEventListener('click', navigateToWinnersPage);
 
-const drawEveryCar = async () => {
+export const drawEveryCar = async () => {
+  wrappCars.innerHTML = ''
   const carss = await getCars(1, 7)
 
   carss.forEach((carr) => {
@@ -241,3 +249,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   drawEveryCar()
 })
+
+export default drawEveryCar
