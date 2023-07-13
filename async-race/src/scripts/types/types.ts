@@ -9,4 +9,9 @@ export interface DataCar {
   id: number
 }
 
+export type NewCar = {
+  name:string, 
+  color:string, 
+} 
+
 export default { HttpMethod}

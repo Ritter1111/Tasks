@@ -1,6 +1,6 @@
 // import { HttpMethod } from "./types/types";
 
-import { DataCar } from "./types/types";
+import { DataCar, HttpMethod, NewCar } from "./types/types";
 
 // const requestUrl = 'http://localhost:3000/garage';
 const garageRequest = 'http://localhost:3000/garage';
@@ -37,7 +37,18 @@ export const getCars = async (page: number, limit: number): Promise<DataCar[]> =
   return res.json()
 }
 
-export default {getCountCars, getCars}
+export const createCar = async (body: NewCar, method: HttpMethod.POST): Promise<DataCar[]> => {
+  const response = await fetch(garageRequest, {
+    method,
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
+export default {getCountCars, getCars, createCar}
 
 // sendRequest(HttpMethod.GET, garageRequest)
 // .then(data => console.log(data))
