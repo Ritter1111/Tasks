@@ -1,7 +1,8 @@
 export enum HttpMethod {
   GET = 'GET',
   POST = 'POST',
-  DELETE = 'DELETE'
+  DELETE = 'DELETE',
+  PUT = 'PUT'
 }
 
 export interface DataCar {

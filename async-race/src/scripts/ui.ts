@@ -1,4 +1,3 @@
-import { getCars } from "./api";
 import { DataCar } from "./types/types";
 
 const createSVGImage = (color: string) =>
@@ -105,7 +104,7 @@ const createSVGImage = (color: string) =>
    </g>
    </svg> `;
 
-const createHeader = () =>
+export const createHeader = () =>
   `<div class="container_header">
     <div class="flag-img"></div>
     <div>
@@ -114,7 +113,7 @@ const createHeader = () =>
     </div> 
   </div>`;
 
-const createMainSection = () => `
+export const createMainSection = () => `
   <div class="create_cars">
   <div class="create-car">
     <input type="text" class="create_input">
@@ -133,7 +132,7 @@ const createMainSection = () => `
   </div>
 </div>`
 
-const winnersPage = () =>
+export const winnersPage = () =>
   `  <div class="winners-page">
   <div class="garage-name">Winners (3)</div>
   <div class="number-page">Page #1</div>
@@ -159,24 +158,23 @@ const winnersPage = () =>
 </table>
 </div>`;
 
-const pagination = () => `
+export const pagination = () => `
 <button class="btn">prev</button>
 <button class="btn">next</button>
 `
 
-const drawGarageHeader = () =>
+export const drawGarageHeader = () =>
   `<h2 class="garage-name">Garage (<span class="count-cars"></span>)</h2>
 <h3 class="number-page">Page #1</h3>`
 
 const wrappCars = document.createElement('div');
 wrappCars.className = 'wrapp-cars'
 
-
-const drawCar = (car: DataCar) => {
+export const drawCar = (car: DataCar) => {
   const a = ` 
 <div class="generated-car">
   <div class="nav-car">
-    <button class="btn">Select</button>
+    <button class="btn select" data-id=${car.id} data-name=${car.name} data-color=${car.color}>Select</button>
     <button class="btn remove-car" data-id=${car.id}>Remove</button>
     <span class="car-name">${car.name}</span>
   </div>
@@ -204,50 +202,4 @@ const drawCar = (car: DataCar) => {
   wrappCars.appendChild(carWrapper)
 }
 
-const header = document.createElement('header');
-header.innerHTML = createHeader()
-
-const main = document.createElement('main')
-main.className = 'main'
-
-const paginationElem = document.createElement('div');
-paginationElem.className = 'nav-pages';
-paginationElem.innerHTML = pagination()
-main.append(paginationElem)
-
-document.body.append(header, main)
-
-
-const navigateToWinnersPage = () => {
-  main.innerHTML = winnersPage();
-  main.append(paginationElem);
-};
-
-const winnersButton = <HTMLElement>document.querySelector('.winners');
-winnersButton.addEventListener('click', navigateToWinnersPage);
-
-export const drawEveryCar = async () => {
-  wrappCars.innerHTML = ''
-  const carss = await getCars(1, 7)
-
-  carss.forEach((carr) => {
-    drawCar(carr)
-  })
-}
-
-const navigateToGaragePage = () => {
-  main.innerHTML = createMainSection() + drawGarageHeader()
-  drawEveryCar()
-  main.append(paginationElem);
-};
-
-const garageButton = <HTMLElement>document.querySelector('.garage');
-garageButton.addEventListener('click', navigateToGaragePage);
-
-document.addEventListener('DOMContentLoaded', async () => {
-  main.innerHTML = createMainSection() + drawGarageHeader()
-
-  drawEveryCar()
-})
-
-export default drawEveryCar
+export default drawCar

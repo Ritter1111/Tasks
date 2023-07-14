@@ -1,6 +1,6 @@
 import { createCar } from "../api";
 import { HttpMethod } from "../types/types";
-import {drawEveryCar} from "../ui";
+import { drawLastCar } from "../draw-page";
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -13,6 +13,9 @@ const getColorValue = <HTMLInputElement>document.querySelector('.create_color');
     const colorValue = getColorValue.value
 
     await createCar({name: inputValue, color: colorValue}, HttpMethod.POST)
-    drawEveryCar()
+    drawLastCar()
+
+    getinputValue.value = '';
+    getColorValue.value = '';
   });
 })
