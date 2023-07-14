@@ -1,4 +1,4 @@
-import {drawCar,  createMainSection } from "../ui";
+import   { Car, createMainSection } from "../ui";
 import { getCar, updateCar } from "../api";
 import { HttpMethod } from "../types/types";
 
@@ -29,9 +29,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (idCar)
     await updateCar(idCar, {name: updateInputValue, color: updateColorValue}, HttpMethod.PUT)
-    const care = await getCar(idCar);
-    drawCar(care);
-    console.log(care)
+    const blockCar = document.querySelector(`.generated-car[data-id="${idCar}"]`);
+
+    const updatedCar = await getCar(idCar);
+    if (blockCar && blockCar.parentNode) {
+      const parentElem = blockCar.parentNode
+      const newCarElement = Car(updatedCar)
+
+      parentElem.replaceChild(newCarElement, blockCar);
+    }
     getinputValue.value = '';
     getColorValue.value = '';
   })

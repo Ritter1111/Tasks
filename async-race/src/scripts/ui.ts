@@ -172,7 +172,7 @@ wrappCars.className = 'wrapp-cars'
 
 export const drawCar = (car: DataCar) => {
   const a = ` 
-<div class="generated-car">
+<div class="generated-car" data-id=${car.id}>
   <div class="nav-car">
     <button class="btn select" data-id=${car.id} data-name=${car.name} data-color=${car.color}>Select</button>
     <button class="btn remove-car" data-id=${car.id}>Remove</button>
@@ -200,6 +200,37 @@ export const drawCar = (car: DataCar) => {
 
   main.append(wrappCars)
   wrappCars.appendChild(carWrapper)
+}
+
+export const Car = (car: DataCar) => {
+  const a = ` 
+<div class="generated-car" data-id=${car.id}>
+  <div class="nav-car">
+    <button class="btn select" data-id=${car.id} data-name=${car.name} data-color=${car.color}>Select</button>
+    <button class="btn remove-car" data-id=${car.id}>Remove</button>
+    <span class="car-name">${car.name}</span>
+  </div>
+  <div class="container">
+    <div class="container_car">
+      <div class="car-control">
+        <button class="btn">A</button>
+        <button class="btn">B</button>
+      </div>
+      <div class="car">${createSVGImage(car.color)}</div>
+    </div>
+  <span class="flag">
+  <div class="race-flag"></div>
+  </span>
+</div>
+<hr>
+</div>`;
+  // const main = <HTMLElement>document.querySelector('.main')
+
+  const carWrapper = document.createElement('div')
+  carWrapper.className = 'car_wrapper'
+  carWrapper.innerHTML = a
+
+  return carWrapper
 }
 
 export default drawCar

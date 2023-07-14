@@ -48,6 +48,19 @@ const goToTheGaragePage = async () => {
   }
 }
 
+// export const drawGarage = async () => {
+//   const wrapCars = document.querySelector('.wrapp-cars');
+//   if(wrapCars){
+//     wrapCars.innerHTML = '';
+//   }
+
+//   const allCars = await getCars(1, 7)
+
+//   allCars.forEach((carr) => {
+//     drawCar(carr)
+//   })
+// }
+
 export const drawLastCar = async () => {
   const carss = await getCars(1, 7);
 
@@ -84,10 +97,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   drawEveryCar()
 })
-
-
-// document.addEventListener('DOMContentLoaded', async () => {
-
-// })
 
 export default drawEveryCar
