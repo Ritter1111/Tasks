@@ -1,0 +1,27 @@
+const carModels: string[] = [ 
+  "Au",
+  "BW",
+  "C",
+  "D",
+  "Fe",
+  "Fo",
+  "Ho",
+  "Hyi",
+  "Jar",
+  "Jp",
+  "Ka",
+  "La",
+  "L",
+  "Mei",
+  "Ma",
+  "Menz",
+  "Nin",
+  "Poe",
+  "Suu",
+  "Tla",
+  "Toa",
+  "Vogen",
+  "Vo",
+]
+
+export default carModels

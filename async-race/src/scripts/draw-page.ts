@@ -30,6 +30,8 @@ export const drawEveryCar = async () => {
   })
 }
 
+// let currentPage = 1;
+
 const goToTheGaragePage = async () => {
   const allCars = await getCars(1, 7)
 

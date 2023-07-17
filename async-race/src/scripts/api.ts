@@ -3,8 +3,8 @@
 import { DataCar, HttpMethod, NewCar } from "./types/types";
 
 // const requestUrl = 'http://localhost:3000/garage';
-const garageRequest = 'http://localhost:3000/garage';
-// const winnersRequest = 'http://localhost:3000/winners';
+const garageUrl = 'http://localhost:3000/garage';
+// const winnersUrl = 'http://localhost:3000/winners';
 
 
 // function sendRequest(method: HttpMethod, url: string) {
@@ -13,7 +13,7 @@ const garageRequest = 'http://localhost:3000/garage';
 export const getCar = async (id: number): Promise<{
   name:string, color:string, id: number
 }> => 
-(await (fetch(`${garageRequest}/${id}`))).json()
+(await (fetch(`${garageUrl}/${id}`))).json()
 
 // export const getCar = async (): Promise<{id: number}> => {
 // const idd = await (fetch(`${garageRequest}/${id}`))
@@ -31,19 +31,19 @@ export const getCar = async (id: number): Promise<{
 // const createCar = async (method: HttpMethod,)
 
 export const getCountCars = async (page: number, limit: number): Promise<number> => {
-  const res = await fetch(`${garageRequest}?_limit=${limit}&_page=${page}`)
+  const res = await fetch(`${garageUrl}?_limit=${limit}&_page=${page}`)
 
   const countCars = Number(res.headers.get('X-Total-Count'))
   return countCars
 }
 
 export const getCars = async (page: number, limit: number): Promise<DataCar[]> => {
-  const res = await fetch(`${garageRequest}?_limit=${limit}&_page=${page}`)
+  const res = await fetch(`${garageUrl}?_limit=${limit}&_page=${page}`)
   return res.json()
 }
 
-export const createCar = async (body: NewCar, method: HttpMethod.POST): Promise<DataCar[]> => {
-  const response = await fetch(garageRequest, {
+export const createCar = async (body: NewCar, method: HttpMethod.POST): Promise<DataCar> => {
+  const response = await fetch(garageUrl, {
     method,
     body: JSON.stringify(body),
     headers: {
@@ -54,7 +54,7 @@ export const createCar = async (body: NewCar, method: HttpMethod.POST): Promise<
 }
 
 export const removeCar = async (id: number, method: HttpMethod.DELETE): Promise<DataCar[]> => {
-  const response = await fetch(`${garageRequest}/${id}`, {
+  const response = await fetch(`${garageUrl}/${id}`, {
     method
   })
 
@@ -62,7 +62,7 @@ export const removeCar = async (id: number, method: HttpMethod.DELETE): Promise<
 }
 
 export const updateCar = async (id: number, body: NewCar, method: HttpMethod.PUT): Promise<DataCar[]> => {
-  const response = await fetch(`${garageRequest}/${id}`, {
+  const response = await fetch(`${garageUrl}/${id}`, {
     method,
     body: JSON.stringify(body),
     headers: {
@@ -71,6 +71,17 @@ export const updateCar = async (id: number, body: NewCar, method: HttpMethod.PUT
   })
   return response.json()
 }
+
+// const getWinners = async (page: number,
+//    limit: number,
+//   sort: string,
+//    order:string, 
+//    method: HttpMethod.GET): Promise<id: number, > => {
+//     const response = await fetch(`${winnersUrl}?_limit=${limit}&_page=${page}&_sort=${sort}&_order=${order}}`, {
+//       method
+//     })
+//     return response.json()
+// }
 
 export default {getCountCars, getCars, createCar}
 

@@ -1,0 +1,27 @@
+const carMarks: string[] = [ 
+"Audi",
+"BMW",
+"Chevrolet",
+"Dodge",
+"Ferrari",
+"Ford",
+"Honda",
+"Hyundai",
+"Jaguar",
+"Jeep",
+"Kia",
+"Lamborghini",
+"Lexus",
+"Maserati",
+"Mazda",
+"Mercedes-Benz",
+"Nissan",
+"Porsche",
+"Subaru",
+"Tesla",
+"Toyota",
+"Volkswagen",
+"Volvo",
+]
+
+export default carMarks

@@ -128,7 +128,7 @@ export const createMainSection = () => `
   <div class="adjust-btns">
     <button class="race-car">Race</button>
     <button class="reset-car">Reset</button>
-    <button class="generate-car">Generate Cars</button>
+    <button class="generate-cars">Generate Cars</button>
   </div>
 </div>`
 
