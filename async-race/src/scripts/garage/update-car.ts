@@ -2,7 +2,7 @@ import   { Car, createMainSection } from "../ui";
 import { getCar, updateCar } from "../api";
 import { HttpMethod } from "../types/types";
 
-document.addEventListener('DOMContentLoaded', async () => {
+function updateCarListener() {
   const getinputValue = <HTMLInputElement>document.querySelector('.update_input');
   const getColorValue = <HTMLInputElement>document.querySelector('.update-color');
   const updateBtn = <HTMLInputElement>document.querySelector('.btn-update');
@@ -41,4 +41,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     getinputValue.value = '';
     getColorValue.value = '';
   })
-})
+}
+
+export default updateCarListener

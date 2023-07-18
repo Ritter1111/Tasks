@@ -2,7 +2,6 @@ import { removeCar } from "../api";
 import { HttpMethod } from "../types/types";
 import { updateCarsNumber } from "./garage";
 
-document.addEventListener('DOMContentLoaded', async () => {
   document.addEventListener('click', async (e) => {
     const removeCarBtn = e.target as HTMLButtonElement;
     if (removeCarBtn.classList.contains('remove-car')) {
@@ -14,4 +13,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateCarsNumber()
     }
   });
-})

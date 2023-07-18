@@ -2,7 +2,17 @@ export enum HttpMethod {
   GET = 'GET',
   POST = 'POST',
   DELETE = 'DELETE',
-  PUT = 'PUT'
+  PUT = 'PUT',
+  PATCH = 'PATCH'
+}
+
+// export interface EngineMode {
+
+// }
+
+export interface DriveData {
+  velocity: number,
+  distance: number
 }
 
 export interface DataCar {

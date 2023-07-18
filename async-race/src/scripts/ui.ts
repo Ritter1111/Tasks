@@ -159,8 +159,8 @@ export const winnersPage = () =>
 </div>`;
 
 export const pagination = () => `
-<button class="btn">prev</button>
-<button class="btn">next</button>
+<button class="btn previous-page" disabled="true">prev</button>
+<button class="btn next-page" >next</button>
 `
 
 export const drawGarageHeader = () =>
@@ -169,6 +169,7 @@ export const drawGarageHeader = () =>
 
 const wrappCars = document.createElement('div');
 wrappCars.className = 'wrapp-cars'
+const carElements: { [id: number]: HTMLElement } = {};
 
 export const drawCar = (car: DataCar) => {
   const a = ` 
@@ -200,6 +201,9 @@ export const drawCar = (car: DataCar) => {
 
   main.append(wrappCars)
   wrappCars.appendChild(carWrapper)
+
+  carElements[car.id] = carWrapper;
+  // console.log(carElements)
 }
 
 export const Car = (car: DataCar) => {
@@ -232,5 +236,19 @@ export const Car = (car: DataCar) => {
 
   return carWrapper
 }
+
+// export const updateCarInfo = (carId: number, newColor: string, newName: string) => {
+//   const carElement = carElements[carId];
+//   if (carElement) {
+//     const carColorElement = carElement.querySelector('.car-color') as HTMLElement;
+//     const carNameElement = carElement.querySelector('.car-name') as HTMLElement;
+//     if (carColorElement) {
+//       carColorElement.style.backgroundColor = newColor;
+//     }
+//     if (carNameElement) {
+//       carNameElement.textContent = newName;
+//     }
+//   }
+// };
 
 export default drawCar

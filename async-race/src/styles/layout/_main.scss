@@ -117,3 +117,14 @@ hr {
 .car_wrapper {
   margin: 40px 0;
 }
+
+button:disabled,
+button[disabled]{
+  border: 2px solid #999999;
+  color: #999999;
+  cursor: auto;
+}
+
+button:disabled:hover {
+  background-color:#323232;
+}

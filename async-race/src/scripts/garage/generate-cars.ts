@@ -33,7 +33,7 @@ const generateOneHundredCars = async (): Promise<NewCar[]> => {
   return Promise.all(result)
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function generateCars() {
 const generateCarsBtn = <HTMLElement>document.querySelector('.generate-cars');
 
   if (generateCarsBtn) {
@@ -41,4 +41,5 @@ const generateCarsBtn = <HTMLElement>document.querySelector('.generate-cars');
       await generateOneHundredCars()
   });
 }
-})
+}
+export default generateCars

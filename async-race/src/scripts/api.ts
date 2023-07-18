@@ -1,9 +1,10 @@
 // import { HttpMethod } from "./types/types";
 
-import { DataCar, HttpMethod, NewCar } from "./types/types";
+import { DataCar, DriveData, HttpMethod, NewCar } from "./types/types";
 
 // const requestUrl = 'http://localhost:3000/garage';
 const garageUrl = 'http://localhost:3000/garage';
+const engineUrl = 'http://localhost:3000/engine';
 // const winnersUrl = 'http://localhost:3000/winners';
 
 
@@ -71,6 +72,31 @@ export const updateCar = async (id: number, body: NewCar, method: HttpMethod.PUT
   })
   return response.json()
 }
+
+export const startEngine = async (id: number, method: HttpMethod.PATCH): Promise<DriveData> => {
+  const response = await fetch(`${engineUrl}?id=${id}&status=started`, {
+    method
+  })
+  return response.json()
+}
+
+export const stopEngine = async (id: number, method: HttpMethod.PATCH): Promise<DriveData> => {
+  const response = await fetch(`${engineUrl}?id=${id}&status=stopped`, {
+    method
+  })
+  return response.json()
+}
+
+export const switchToDriveMode = async (id: number, method: HttpMethod.PATCH): Promise<{success: boolean}> => {
+  const response = await fetch(`${engineUrl}?id=${id}&status=drive`, {
+    method
+  })
+  return response.json()
+}
+
+// console.log(startEngine(1, HttpMethod.PATCH));
+// console.log(stopEngine(1, HttpMethod.PATCH));
+// console.log(switchToDriveMode(2, HttpMethod.PATCH));
 
 // const getWinners = async (page: number,
 //    limit: number,

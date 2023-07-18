@@ -1,5 +1,9 @@
 import { getCars } from "./api";
+import  createCarListener from "./garage/create-car";
 import { updateCarsNumber } from "./garage/garage";
+import generateCars from "./garage/generate-cars";
+import updateCarListener from "./garage/update-car";
+// import { updateCarsNumber } from "./garage/garage";
 import { drawCar, 
   createHeader, 
   createMainSection, 
@@ -16,7 +20,7 @@ main.className = 'main'
 const paginationElem = document.createElement('div');
 paginationElem.className = 'nav-pages';
 paginationElem.innerHTML = pagination()
-main.append(paginationElem)
+// main.append(paginationElem)
 
 document.body.append(header, main)
 
@@ -63,15 +67,6 @@ const goToTheGaragePage = async () => {
 //   })
 // }
 
-export const drawLastCar = async () => {
-  const carss = await getCars(1, 7);
-
-  const lastCar = carss[carss.length - 1];
-  if (lastCar) {
-    drawCar(lastCar);
-  }
-  updateCarsNumber()
-};
 
 (function navToWinnersPage() {
   const navigateToWinnersPage = () => {
@@ -87,6 +82,9 @@ export const drawLastCar = async () => {
   const navigateToGaragePage = () => {
     main.innerHTML = createMainSection() + drawGarageHeader()
     goToTheGaragePage()
+    createCarListener()
+    updateCarListener()
+    updateCarsNumber()
     main.append(paginationElem);
   };
   
@@ -94,10 +92,12 @@ export const drawLastCar = async () => {
   garageButton.addEventListener('click', navigateToGaragePage);
 })()
 
-document.addEventListener('DOMContentLoaded', async () => {
   main.innerHTML = createMainSection() + drawGarageHeader()
 
+  createCarListener();
+  updateCarListener()
   drawEveryCar()
-})
+  generateCars()
+  main.append(paginationElem);
 
 export default drawEveryCar
