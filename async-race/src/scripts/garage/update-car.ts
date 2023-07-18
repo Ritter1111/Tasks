@@ -1,4 +1,4 @@
-import   { Car, createMainSection } from "../ui";
+import { Car, createMainSection } from "../ui";
 import { getCar, updateCar } from "../api";
 import { HttpMethod } from "../types/types";
 
@@ -8,10 +8,10 @@ function updateCarListener() {
   const updateBtn = <HTMLInputElement>document.querySelector('.btn-update');
   let idCar: number;
 
-    document.addEventListener('click', async (e) => {
+  document.addEventListener('click', async (e) => {
     const updateCarBtn = e.target as HTMLButtonElement;
     if (updateCarBtn.classList.contains('select')) {
-    createMainSection()
+      createMainSection()
 
       const { id, name, color } = updateCarBtn.dataset
       idCar = Number(id)
@@ -28,7 +28,7 @@ function updateCarListener() {
     const updateColorValue = getColorValue.value
 
     if (idCar)
-    await updateCar(idCar, {name: updateInputValue, color: updateColorValue}, HttpMethod.PUT)
+      await updateCar(idCar, { name: updateInputValue, color: updateColorValue }, HttpMethod.PUT)
     const blockCar = document.querySelector(`.generated-car[data-id="${idCar}"]`);
 
     const updatedCar = await getCar(idCar);

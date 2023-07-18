@@ -16,14 +16,14 @@ export interface DriveData {
 }
 
 export interface DataCar {
-  name:string, 
-  color:string, 
+  name: string,
+  color: string,
   id: number
 }
 
 export type NewCar = {
-  name:string, 
-  color:string, 
-} 
+  name: string,
+  color: string,
+}
 
-export default { HttpMethod}
+export default { HttpMethod }

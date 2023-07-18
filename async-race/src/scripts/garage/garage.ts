@@ -1,6 +1,6 @@
 import { getCountCars } from "../api";
 
-let length:number = 0
+let length: number = 0
 
 export async function updateCarsNumber() {
   const result = await getCountCars(1, 7);
@@ -15,10 +15,10 @@ export async function updateCarsNumber() {
 export const getCountCar = async (): Promise<number> => {
   const result = await getCountCars(1, 7);
   length = result;
-  return length 
+  return length
 }
-console.log( getCountCar());
+console.log(getCountCar());
 
 
 export default
-updateCarsNumber();
+  updateCarsNumber();

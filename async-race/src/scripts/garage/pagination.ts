@@ -1,50 +1,38 @@
-import { getCars } from "../api";
-import { Car } from "../ui";
-import { getCountCar } from "./garage";
+import { getCars } from '../api'
+import { Car } from '../ui'
+import { getCountCar } from './garage'
 
-const prevPageBtn = <HTMLButtonElement>document.querySelector('.previous-page');
-const nextPageBtn = <HTMLButtonElement>document.querySelector('.next-page');
+const prevPageBtn = <HTMLButtonElement>document.querySelector('.previous-page')
+const nextPageBtn = <HTMLButtonElement>document.querySelector('.next-page')
 let currPage = 1
 
 function disableButtons() {
-  if(currPage > 1 ) {
+  if (currPage > 1) {
     prevPageBtn.disabled = false
-  }else {
+  } else {
     prevPageBtn.disabled = true
   }
 }
 
 prevPageBtn.addEventListener('click', async () => {
-  // const wrapCars = document.querySelector('.wrapp-cars');
   currPage -= 1
   disableButtons()
-  const wrapCars = document.querySelector('.wrapp-cars');
+  const wrapCars = document.querySelector('.wrapp-cars')
   if (wrapCars) {
- const allCars = await getCars(currPage, 7);
+    const allCars = await getCars(currPage, 7)
 
- while (wrapCars.firstChild) {
-   wrapCars.removeChild(wrapCars.firstChild);
- }
+    while (wrapCars.firstChild) {
+      wrapCars.removeChild(wrapCars.firstChild)
+    }
 
- allCars.forEach((carr) => {
-   const newCarElement = Car(carr);
-   wrapCars.appendChild(newCarElement);
- });
-}
-  // if(wrapCars){
-  //   wrapCars.innerHTML = '';
-  // }
-  // const allCars = await getCars(currPage, 7)
-
-  // allCars.forEach((carr) => {
-  //   drawCar(carr)
-  // })
-  // await getCars(currPage, 7)
-  
+    allCars.forEach((carr) => {
+      const newCarElement = Car(carr)
+      wrapCars.appendChild(newCarElement)
+    })
+  }
 })
 
 nextPageBtn.addEventListener('click', async () => {
-
   currPage += 1
   const count = await getCountCar()
 
@@ -54,21 +42,20 @@ nextPageBtn.addEventListener('click', async () => {
   // }
 
   disableButtons()
-  if(7 * currPage > count) {
+  if (7 * currPage > count) {
     nextPageBtn.disabled = true
   }
-  const wrapCars = document.querySelector('.wrapp-cars');
-   if (wrapCars) {
-  const allCars = await getCars(currPage, 7);
+  const wrapCars = document.querySelector('.wrapp-cars')
+  if (wrapCars) {
+    const allCars = await getCars(currPage, 7)
 
-  while (wrapCars.firstChild) {
-    wrapCars.removeChild(wrapCars.firstChild);
+    while (wrapCars.firstChild) {
+      wrapCars.removeChild(wrapCars.firstChild)
+    }
+
+    allCars.forEach((carr) => {
+      const newCarElement = Car(carr)
+      wrapCars.appendChild(newCarElement)
+    })
   }
-
-  allCars.forEach((carr) => {
-    const newCarElement = Car(carr);
-    wrapCars.appendChild(newCarElement);
-  });
-}
-
 })

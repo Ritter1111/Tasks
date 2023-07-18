@@ -12,9 +12,9 @@ const engineUrl = 'http://localhost:3000/engine';
 //   return fetch(url).then(response => response.text())
 // }
 export const getCar = async (id: number): Promise<{
-  name:string, color:string, id: number
-}> => 
-(await (fetch(`${garageUrl}/${id}`))).json()
+  name: string, color: string, id: number
+}> =>
+  (await (fetch(`${garageUrl}/${id}`))).json()
 
 // export const getCar = async (): Promise<{id: number}> => {
 // const idd = await (fetch(`${garageRequest}/${id}`))
@@ -87,7 +87,7 @@ export const stopEngine = async (id: number, method: HttpMethod.PATCH): Promise<
   return response.json()
 }
 
-export const switchToDriveMode = async (id: number, method: HttpMethod.PATCH): Promise<{success: boolean}> => {
+export const switchToDriveMode = async (id: number, method: HttpMethod.PATCH): Promise<{ success: boolean }> => {
   const response = await fetch(`${engineUrl}?id=${id}&status=drive`, {
     method
   })
@@ -109,7 +109,7 @@ export const switchToDriveMode = async (id: number, method: HttpMethod.PATCH): P
 //     return response.json()
 // }
 
-export default {getCountCars, getCars, createCar}
+export default { getCountCars, getCars, createCar }
 
 // sendRequest(HttpMethod.GET, garageRequest)
 // .then(data => console.log(data))

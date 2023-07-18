@@ -27,19 +27,19 @@ const generateNewCarData = (): NewCar => ({
 const generateOneHundredCars = async (): Promise<NewCar[]> => {
   const allCars = 100;
   const result: Promise<DataCar>[] = []
-  for(let i=0; i<allCars; i += 1) {
+  for (let i = 0; i < allCars; i += 1) {
     result.push(createCar(generateNewCarData(), HttpMethod.POST))
   }
   return Promise.all(result)
 }
 
 function generateCars() {
-const generateCarsBtn = <HTMLElement>document.querySelector('.generate-cars');
+  const generateCarsBtn = <HTMLElement>document.querySelector('.generate-cars');
 
   if (generateCarsBtn) {
-  generateCarsBtn.addEventListener('click', async () => {
+    generateCarsBtn.addEventListener('click', async () => {
       await generateOneHundredCars()
-  });
-}
+    });
+  }
 }
 export default generateCars
