@@ -160,12 +160,12 @@ export const winnersPage = () =>
 
 export const pagination = () => `
 <button class="btn previous-page" disabled="true">prev</button>
-<button class="btn next-page" >next</button>
+<button class="btn next-page">next</button>
 `
 
 export const drawGarageHeader = () =>
   `<h2 class="garage-name">Garage (<span class="count-cars"></span>)</h2>
-<h3 class="number-page">Page #1</h3>`
+<h3 class="page">Page #<span class='page-number'>1</span></h3>`
 
 const wrappCars = document.createElement('div');
 wrappCars.className = 'wrapp-cars'

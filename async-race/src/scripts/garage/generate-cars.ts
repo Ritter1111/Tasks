@@ -2,6 +2,8 @@ import { createCar } from "../api";
 import carMarks from "../cars/marks";
 import carModels from "../cars/models";
 import { DataCar, HttpMethod, NewCar } from "../types/types";
+import { updateAllCars } from "./car-utils";
+import { updateCarsNumber } from "./garage";
 
 const getRandomCar = () => {
   const randomCar = Math.floor(Math.random() * carMarks.length)
@@ -33,12 +35,15 @@ const generateOneHundredCars = async (): Promise<NewCar[]> => {
   return Promise.all(result)
 }
 
+
 function generateCars() {
   const generateCarsBtn = <HTMLElement>document.querySelector('.generate-cars');
 
   if (generateCarsBtn) {
     generateCarsBtn.addEventListener('click', async () => {
       await generateOneHundredCars()
+      updateAllCars()
+      updateCarsNumber()
     });
   }
 }

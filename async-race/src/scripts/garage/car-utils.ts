@@ -1,6 +1,6 @@
 import { getCars } from "../api";
 import { updateCarsNumber } from "./garage";
-import { drawCar } from "../ui";
+import { Car, drawCar } from "../ui";
 
 const drawLastCar = async () => {
   const carss = await getCars(1, 7);
@@ -11,4 +11,21 @@ const drawLastCar = async () => {
   }
   updateCarsNumber()
 };
+
+export const updateAllCars = async () => {
+  const wrapCars = document.querySelector('.wrapp-cars')
+  if (wrapCars) {
+    const allCars = await getCars(1, 7)
+
+    while (wrapCars.firstChild) {
+      wrapCars.removeChild(wrapCars.firstChild)
+    }
+
+    allCars.forEach((carr) => {
+      const newCarElement = Car(carr)
+      wrapCars.appendChild(newCarElement)
+    })
+  }
+}
+
 export default drawLastCar
