@@ -6,9 +6,15 @@ export enum HttpMethod {
   PATCH = 'PATCH'
 }
 
-// export interface EngineMode {
+export enum EngineMode {
+  started = 'started',
+  stopped = 'stopped',
+  drive = 'drive'
+}
 
-// }
+export interface DriveMode {
+  success: boolean
+}
 
 export interface DriveData {
   velocity: number,

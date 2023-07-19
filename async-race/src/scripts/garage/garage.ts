@@ -17,7 +17,7 @@ export const getCountCar = async (): Promise<number> => {
   length = result;
   return length
 }
-console.log(getCountCar());
+// console.log(getCountCar());
 
 
 export default

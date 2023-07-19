@@ -3,7 +3,7 @@ import carMarks from "../cars/marks";
 import carModels from "../cars/models";
 import { DataCar, HttpMethod, NewCar } from "../types/types";
 import { updateAllCars } from "./car-utils";
-import { updateCarsNumber } from "./garage";
+// import { updateCarsNumber } from "./garage";
 
 const getRandomCar = () => {
   const randomCar = Math.floor(Math.random() * carMarks.length)
@@ -42,8 +42,8 @@ function generateCars() {
   if (generateCarsBtn) {
     generateCarsBtn.addEventListener('click', async () => {
       await generateOneHundredCars()
-      updateAllCars()
-      updateCarsNumber()
+      updateAllCars(1)
+      // updateCarsNumber()
     });
   }
 }

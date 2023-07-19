@@ -1,45 +1,22 @@
-// import { HttpMethod } from "./types/types";
+import { DataCar, DriveData, DriveMode, EngineMode, HttpMethod, NewCar } from "./types/types";
 
-import { DataCar, DriveData, HttpMethod, NewCar } from "./types/types";
-
-// const requestUrl = 'http://localhost:3000/garage';
 const garageUrl = 'http://localhost:3000/garage';
 const engineUrl = 'http://localhost:3000/engine';
 // const winnersUrl = 'http://localhost:3000/winners';
 
-
-// function sendRequest(method: HttpMethod, url: string) {
-//   return fetch(url).then(response => response.text())
-// }
-export const getCar = async (id: number): Promise<{
-  name: string, color: string, id: number
-}> =>
+export const getCar = async (id: number): Promise<DataCar> =>
   (await (fetch(`${garageUrl}/${id}`))).json()
-
-// export const getCar = async (): Promise<{id: number}> => {
-// const idd = await (fetch(`${garageRequest}/${id}`))
-//   return idd.json()
-// }
-
-// console.log(getCar(4))
-
-// async function obj() {
-//   const objResult = await getCar(2)
-//   console.log(objResult.name)
-//   return objResult.name
-// }
-
-// const createCar = async (method: HttpMethod,)
 
 export const getCountCars = async (page: number, limit: number): Promise<number> => {
   const res = await fetch(`${garageUrl}?_limit=${limit}&_page=${page}`)
-
   const countCars = Number(res.headers.get('X-Total-Count'))
+
   return countCars
 }
 
 export const getCars = async (page: number, limit: number): Promise<DataCar[]> => {
   const res = await fetch(`${garageUrl}?_limit=${limit}&_page=${page}`)
+
   return res.json()
 }
 
@@ -51,10 +28,11 @@ export const createCar = async (body: NewCar, method: HttpMethod.POST): Promise<
       'Content-Type': 'application/json'
     }
   })
+
   return response.json()
 }
 
-export const removeCar = async (id: number, method: HttpMethod.DELETE): Promise<DataCar[]> => {
+export const removeCar = async (id: number, method: HttpMethod.DELETE): Promise<DataCar> => {
   const response = await fetch(`${garageUrl}/${id}`, {
     method
   })
@@ -62,7 +40,7 @@ export const removeCar = async (id: number, method: HttpMethod.DELETE): Promise<
   return response.json()
 }
 
-export const updateCar = async (id: number, body: NewCar, method: HttpMethod.PUT): Promise<DataCar[]> => {
+export const updateCar = async (id: number, body: NewCar, method: HttpMethod.PUT): Promise<DataCar> => {
   const response = await fetch(`${garageUrl}/${id}`, {
     method,
     body: JSON.stringify(body),
@@ -70,33 +48,43 @@ export const updateCar = async (id: number, body: NewCar, method: HttpMethod.PUT
       'Content-Type': 'application/json'
     }
   })
+
   return response.json()
 }
 
-export const startEngine = async (id: number, method: HttpMethod.PATCH): Promise<DriveData> => {
-  const response = await fetch(`${engineUrl}?id=${id}&status=started`, {
+export const startEngine = async (id: number,status: EngineMode.started, method: HttpMethod.PATCH): Promise<DriveData> => {
+  const response = await fetch(`${engineUrl}?id=${id}&status=${status}`, {
     method
   })
   return response.json()
 }
 
-export const stopEngine = async (id: number, method: HttpMethod.PATCH): Promise<DriveData> => {
-  const response = await fetch(`${engineUrl}?id=${id}&status=stopped`, {
+export const stopEngine = async (id: number, status: EngineMode.stopped, method: HttpMethod.PATCH): Promise<DriveData> => {
+  const response = await fetch(`${engineUrl}?id=${id}&status=${status}`, {
     method
-  })
+  });
+
   return response.json()
 }
 
-export const switchToDriveMode = async (id: number, method: HttpMethod.PATCH): Promise<{ success: boolean }> => {
-  const response = await fetch(`${engineUrl}?id=${id}&status=drive`, {
-    method
-  })
-  return response.json()
+export const switchToDriveMode = async (id: number, status: EngineMode.drive, method: HttpMethod.PATCH): Promise<DriveMode> => {
+    const response = await fetch(`${engineUrl}?id=${id}&status=${status}`, {
+      method
+    }).catch()
+
+    if(response.status === 400 ) {
+      console.error('Wrong parameters: "id" should be any positive number, "status" should be "started", "stopped" or "drive"')
+      return {success: false}
+    }if (response.status === 404) {
+      console.error('Car with such id was not found in the garage.')
+      return {success: false}
+    }
+      return response.json();
 }
 
-// console.log(startEngine(1, HttpMethod.PATCH));
-// console.log(stopEngine(1, HttpMethod.PATCH));
-// console.log(switchToDriveMode(2, HttpMethod.PATCH));
+// console.log(startEngine(3, EngineMode.started, HttpMethod.PATCH));
+// console.log(stopEngine(3, EngineMode.stopped, HttpMethod.PATCH));
+// console.log(switchToDriveMode(3, EngineMode.drive, HttpMethod.PATCH));
 
 // const getWinners = async (page: number,
 //    limit: number,
@@ -110,16 +98,4 @@ export const switchToDriveMode = async (id: number, method: HttpMethod.PATCH): P
 // }
 
 export default { getCountCars, getCars, createCar }
-
-// sendRequest(HttpMethod.GET, garageRequest)
-// .then(data => console.log(data))
-
-// const getObjectsCount = async () => {
-//     const response = await fetch(garageRequest);
-//     const data = await response.json();
-//     const totalObjects = data.length;
-//     console.log(`Total objects: ${totalObjects}`);
-// };
-
-// getObjectsCount();
 

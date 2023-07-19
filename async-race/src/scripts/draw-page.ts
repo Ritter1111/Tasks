@@ -1,4 +1,5 @@
 import { getCars } from "./api";
+import { disableNextBtn } from "./garage/car-utils";
 import createCarListener from "./garage/create-car";
 import { updateCarsNumber } from "./garage/garage";
 import generateCars from "./garage/generate-cars";
@@ -32,6 +33,8 @@ export const drawEveryCar = async () => {
   allCars.forEach((carr) => {
     drawCar(carr)
   })
+  disableNextBtn()
+
 }
 
 // let currentPage = 1;
@@ -79,17 +82,6 @@ export const goToTheGaragePage = async () => {
 })()
 
 main.innerHTML = createMainSection() + drawGarageHeader()
-// const nextPageBtn = <HTMLButtonElement>document.querySelector('.next-page')
-
-// async function disableBtn() {
-//   const count = await getCountCar()
-//   console.log(count)
-//   if (nextPageBtn){
-//     if(count > 7) {
-//       nextPageBtn.disabled = false
-//     }
-//   }
-// }
 
 createCarListener();
 updateCarListener()
@@ -97,7 +89,5 @@ drawEveryCar()
 generateCars()
 
 main.append(paginationElem);
-// disableBtn()
-
 
 export default drawEveryCar

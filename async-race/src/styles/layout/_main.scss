@@ -1,14 +1,14 @@
 body {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: #323232;
-  color: rgb(232, 232, 232);
+  background-color: $dark;
+  color: $lite-white;
   font-size: 17px;
 }
 
 hr {
   border: none;
   margin: 0;
-  border-top: 3px dotted rgb(0, 0, 0);
+  border-top: 3px dotted $black;
 }
 
 .flag {
@@ -64,14 +64,14 @@ hr {
 .btn {
   padding: 3px 12px;
   margin-right: 15px;
-  border: 2px inset white;
+  border: 2px inset $white;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
   transition: 0.5s ease;
 
   &:hover {
-    background-color: rgb(106, 106, 106);
+    background-color: $white-grey;
     transition: 0.5 ease;
   }
 }
@@ -79,14 +79,14 @@ hr {
 .race-car, .reset-car, .generate-cars {
   margin-right: 21px;
   padding: 3px 12px;
-  border: 2px inset white;
+  border: 2px inset $white;
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
   transition: 0.5s ease;
 
   &:hover {
-    background-color: rgb(106, 106, 106);
+    background-color: $white-grey;
     transition: 0.5 ease;
   }
 }
@@ -120,11 +120,11 @@ hr {
 
 button:disabled,
 button[disabled]{
-  border: 2px solid #999999;
-  color: #999999;
+  border: 2px solid $grey;
+  color: $grey;
   cursor: auto;
 }
 
 button:disabled:hover {
-  background-color:#323232;
+  background-color: $dark;
 }
