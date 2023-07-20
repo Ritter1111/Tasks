@@ -1,14 +1,18 @@
 body {
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: $dark;
+  font-family: "VT323", monospace;
+  background-color: #232121e0;
+  background-image: url(./assets/race-bgr.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
   color: $lite-white;
-  font-size: 17px;
+  font-size: 1rem;
 }
 
 hr {
   border: none;
   margin: 0;
-  border-top: 3px dotted $black;
+  border-top: 3px dotted $white;
 }
 
 .flag {
@@ -19,6 +23,7 @@ hr {
 .container {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 
   &_car {
     display: flex;
@@ -62,12 +67,12 @@ hr {
 }
 
 .btn {
-  padding: 3px 12px;
+  padding: 1px 12px;
   margin-right: 15px;
   border: 2px inset $white;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
+  font: inherit;
   transition: 0.5s ease;
 
   &:hover {
@@ -83,6 +88,7 @@ hr {
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
+  font: inherit;
   transition: 0.5s ease;
 
   &:hover {
@@ -94,6 +100,7 @@ hr {
 .car {
   display: flex;
   align-items: end;
+
 }
 
 .race-flag {
@@ -126,5 +133,5 @@ button[disabled]{
 }
 
 button:disabled:hover {
-  background-color: $dark;
+  background-color: rgba(0, 0, 0, 0);
 }

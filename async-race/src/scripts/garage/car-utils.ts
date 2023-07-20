@@ -45,4 +45,27 @@ export const updateAllCars = async (page: number) => {
   // disableNextBtn()
 }
 
+export const addDisabledToStart = (id: number) => {
+  const startDriveButton = document.querySelector(`.start-drive[data-id="${id}"]`) as HTMLButtonElement;
+  startDriveButton.disabled = true;
+  startDriveButton.classList.add('disabled');
+}
+
+export const addDisabledToStop = (id: number) => {
+  const stopDriveButton = document.querySelector(`.stop-drive[data-id="${id}"]`) as HTMLButtonElement;
+  stopDriveButton.disabled = true;
+  stopDriveButton.classList.add('disabled');
+}
+
+export const romoveDisabledToStart = (id: number) => {
+  const startDriveButton = document.querySelector(`.start-drive[data-id="${id}"]`) as HTMLButtonElement;
+  startDriveButton.disabled = false;
+}
+
+export const removeDisabledToStop = (id: number) => {
+  const stopDriveButton = document.querySelector(`.stop-drive[data-id="${id}"]`) as HTMLButtonElement;
+  stopDriveButton.disabled = false;
+  stopDriveButton.classList.remove('disabled');
+}
+
 export default drawLastCar

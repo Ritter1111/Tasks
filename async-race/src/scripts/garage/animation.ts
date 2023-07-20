@@ -1,5 +1,6 @@
 import { getCars, startEngine, stopEngine, switchToDriveMode } from "../api";
 import { EngineMode, HttpMethod } from "../types/types";
+import { addDisabledToStart, addDisabledToStop, removeDisabledToStop, romoveDisabledToStart } from "./car-utils";
 import { currentPage } from "./pagination";
 
 let animationId: number = 0;
@@ -28,6 +29,7 @@ const startDrivingCar = async (id: number, car: HTMLElement, flag: HTMLElement) 
   const { velocity, distance } = await startEngine(id, EngineMode.started, HttpMethod.PATCH);
   const duration = distance / velocity;
 
+
   animateCar(car, flag, duration);
 
   const response = await switchToDriveMode(id, EngineMode.drive, HttpMethod.PATCH);
@@ -39,33 +41,35 @@ const startDrivingCar = async (id: number, car: HTMLElement, flag: HTMLElement) 
 
 const stopDrivingCar = async (id: number, car: HTMLElement) => {
   await stopEngine(id, EngineMode.stopped, HttpMethod.PATCH);
-  if(animationId !== 0){
-  cancelAnimationFrame(animationId)
+  if (animationId !== 0) {
+    cancelAnimationFrame(animationId)
+
   }
   car.style.transform = `translateX(${0}px)`
 }
 
 const startRace = async () => {
   const cars = await getCars(currentPage(), 7);
-  // console.log(cars);
-  console.log(currentPage());
-  
-  
- cars.forEach((car) => {
-  const carElem = document.querySelector(`.car${car.id}`) as HTMLElement
-  const flag = document.querySelector('.flag') as HTMLElement;
+
+  cars.forEach((car) => {
+    addDisabledToStart(car.id)
+    removeDisabledToStop(car.id)
+    const carElem = document.querySelector(`.car${car.id}`) as HTMLElement
+    const flag = document.querySelector('.flag') as HTMLElement;
     startDrivingCar(car.id, carElem, flag)
- })
+  })
 }
 
 const resetRace = async () => {
   const cars = await getCars(currentPage(), 7);
 
- cars.forEach((car) => {
-  const carElem = document.querySelector(`.car${car.id}`) as HTMLElement
+  cars.forEach((car) => {
+    romoveDisabledToStart(car.id)
+    addDisabledToStop(car.id)
+    const carElem = document.querySelector(`.car${car.id}`) as HTMLElement
 
     stopDrivingCar(car.id, carElem)
- })
+  })
 
 }
 
@@ -74,10 +78,13 @@ document.addEventListener('click', async (e) => {
 
   if (target.classList.contains('start-drive')) {
     const { id } = target.dataset
+
     const car = document.querySelector(`.car${id}`) as HTMLElement
     const flag = document.querySelector('.flag') as HTMLElement;
 
     if (id) {
+      addDisabledToStart(+id)
+      removeDisabledToStop(+id)
       startDrivingCar(+id, car, flag)
     }
   }
@@ -85,14 +92,17 @@ document.addEventListener('click', async (e) => {
     const { id } = target.dataset
     const car = document.querySelector(`.car${id}`) as HTMLElement
 
-    if (id){
+    if (id) {
+      romoveDisabledToStart(+id)
+      addDisabledToStop(+id)
       stopDrivingCar(+id, car)
     }
   }
-  if(target.classList.contains('race-car')) {
-      startRace()
+  if (target.classList.contains('race-car')) {
+
+    startRace()
   }
-  if(target.classList.contains('reset-car')) {
+  if (target.classList.contains('reset-car')) {
     resetRace()
-}
+  }
 });

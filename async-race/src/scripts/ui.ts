@@ -2,7 +2,7 @@ import { DataCar } from "./types/types";
 
 const createSVGImage = (color: string) =>
   ` <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-    width="13vh" viewBox="0 0 1280.000000 640.000000"
+    width="10vh" viewBox="0 0 1280.000000 640.000000"
     preserveAspectRatio="xMidYMid meet">
    <metadata>
    Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -106,11 +106,14 @@ const createSVGImage = (color: string) =>
 
 export const createHeader = () =>
   `<div class="container_header">
+  <div class="header-right">
     <div class="flag-img"></div>
     <div>
       <button class="garage btns_header">To Garage</button>
       <button class="winners btns_header">To Winners</button>
     </div> 
+    </div>
+    <div><span class="title-header">ASYNC RASE</span></div>
   </div>`;
 
 export const createMainSection = () => `
@@ -183,7 +186,7 @@ export const drawCar = (car: DataCar) => {
     <div class="container_car">
       <div class="car-control">
         <button class="btn start-drive" data-id=${car.id}>A</button>
-        <button class="btn stop-drive" data-id=${car.id}>B</button>
+        <button class="btn stop-drive" data-id=${car.id} disabled="true">B</button>
       </div>
       <div class="car${car.id}">${createSVGImage(car.color)}</div>
     </div>
