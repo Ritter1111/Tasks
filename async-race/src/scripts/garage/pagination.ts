@@ -10,6 +10,10 @@ const pageNumber = <HTMLElement>document.querySelector('.page-number')
 let currPage = 1
 const limitCarOnPage = 7
 
+export function currentPage() {
+  return currPage
+}
+
 function disableButtons() {
   if (currPage > 1) {
     prevPageBtn.disabled = false

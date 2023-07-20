@@ -14,5 +14,4 @@ document.addEventListener('click', async (e) => {
     updateCarsNumber()
     updateAllCars(1)
   }
-
 });

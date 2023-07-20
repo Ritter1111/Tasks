@@ -57,11 +57,6 @@ export const startEngine = async (id: number, status: EngineMode.started, method
     method
   }).catch()
 
-  if(response.status === 400 ) {
-    console.error('Wrong parameters: "id" should be any positive number, "status" should be "started", "stopped" or "drive"')
-  }if (response.status === 404) {
-    console.error('Car with such id was not found in the garage.')
-  }
   return response.json()
 }
 
@@ -69,12 +64,6 @@ export const stopEngine = async (id: number, status: EngineMode.stopped, method:
   const response = await fetch(`${engineUrl}?id=${id}&status=${status}`, {
     method
   }).catch()
-
-  if(response.status === 400 ) {
-    console.error('Wrong parameters: "id" should be any positive number, "status" should be "started", "stopped" or "drive"')
-  }if (response.status === 404) {
-    console.error('Car with such id was not found in the garage.')
-  }
 
   return response.json()
 }
@@ -85,24 +74,16 @@ export const switchToDriveMode = async (id: number, status: EngineMode.drive, me
     }).catch()
 
     if(response.status === 400 ) {
-      console.error('Wrong parameters: "id" should be any positive number, "status" should be "started", "stopped" or "drive"')
       return {success: false}
     }if (response.status === 404) {
-      console.error('Car with such id was not found in the garage.')
       return {success: false}
     }if (response.status === 500) {
-      console.error('Car has been stopped suddenly. It is engine was broken down.')
       return {success: false}
     }if (response.status === 429) {
-      console.error('Drive already in progress. You cant run drive for the same car twice while it is not stopped.')
       return {success: false}
     }
       return response.json();
 }
-
-// console.log(startEngine(3, EngineMode.started, HttpMethod.PATCH));
-// console.log(stopEngine(3, EngineMode.stopped, HttpMethod.PATCH));
-// console.log(switchToDriveMode(3, EngineMode.drive, HttpMethod.PATCH));
 
 // const getWinners = async (page: number,
 //    limit: number,

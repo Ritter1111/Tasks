@@ -220,7 +220,7 @@ export const Car = (car: DataCar) => {
         <button class="btn">A</button>
         <button class="btn">B</button>
       </div>
-      <div class="car">${createSVGImage(car.color)}</div>
+      <div class="car${car.id}">${createSVGImage(car.color)}</div>
     </div>
   <span class="flag">
   <div class="race-flag"></div>
