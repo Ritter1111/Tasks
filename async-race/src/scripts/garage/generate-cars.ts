@@ -2,7 +2,8 @@ import { createCar } from "../api";
 import carMarks from "../cars/marks";
 import carModels from "../cars/models";
 import { DataCar, HttpMethod, NewCar } from "../types/types";
-import { updateAllCars } from "./car-utils";
+import { disableNextBtn, updateAllCars } from "./car-utils";
+// import { getCountCar } from "./garage";
 // import { updateCarsNumber } from "./garage";
 
 const getRandomCar = () => {
@@ -43,7 +44,17 @@ function generateCars() {
     generateCarsBtn.addEventListener('click', async () => {
       await generateOneHundredCars()
       updateAllCars(1)
+      disableNextBtn()
       // updateCarsNumber()
+    // const nextPageBtn = <HTMLButtonElement>document.querySelector('.next-page')
+
+    //   const count = await getCountCar()
+    //   // console.log(count)
+    //   if (nextPageBtn){
+    //     if(count > 7) {
+    //       nextPageBtn.disabled = false
+    //     }
+    //   }
     });
   }
 }

@@ -1,5 +1,6 @@
 import { removeCar } from "../api";
-import { HttpMethod } from "../types/types";
+import {HttpMethod } from "../types/types";
+import { updateAllCars } from "./car-utils";
 import { updateCarsNumber } from "./garage";
 
 document.addEventListener('click', async (e) => {
@@ -11,5 +12,7 @@ document.addEventListener('click', async (e) => {
     await removeCar(Number(id), HttpMethod.DELETE);
     carWrapper.remove();
     updateCarsNumber()
+    updateAllCars(1)
   }
+
 });

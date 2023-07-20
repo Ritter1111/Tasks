@@ -6,6 +6,7 @@ function updateCarListener() {
   const getinputValue = <HTMLInputElement>document.querySelector('.update_input');
   const getColorValue = <HTMLInputElement>document.querySelector('.update-color');
   const updateBtn = <HTMLInputElement>document.querySelector('.btn-update');
+
   let idCar: number;
 
   document.addEventListener('click', async (e) => {
@@ -41,6 +42,7 @@ function updateCarListener() {
     getinputValue.value = '';
     getColorValue.value = '';
   })
+
 }
 
 export default updateCarListener

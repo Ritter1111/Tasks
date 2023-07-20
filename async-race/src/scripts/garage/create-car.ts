@@ -1,7 +1,7 @@
 import { createCar } from "../api";
 import { HttpMethod } from "../types/types";
-import  { updateAllCars } from "./car-utils";
-import { getCountCar } from "./garage";
+import  { disableNextBtn, updateAllCars } from "./car-utils";
+// import { getCountCar } from "./garage";
 
 function createCarListener() {
   const createCarBtn = <HTMLElement>document.querySelector('.btn-create');
@@ -14,15 +14,16 @@ function createCarListener() {
 
     await createCar({ name: inputValue, color: colorValue }, HttpMethod.POST)
     updateAllCars(1)
-    const nextPageBtn = <HTMLButtonElement>document.querySelector('.next-page')
+    disableNextBtn()
+    // const nextPageBtn = <HTMLButtonElement>document.querySelector('.next-page')
 
-    const count = await getCountCar()
-    // console.log(count)
-    if (nextPageBtn){
-      if(count > 7) {
-        nextPageBtn.disabled = false
-      }
-    }
+    // const count = await getCountCar()
+    // // console.log(count)
+    // if (nextPageBtn){
+    //   if(count > 7) {
+    //     nextPageBtn.disabled = false
+    //   }
+    // }
 
     getinputValue.value = '';
     getColorValue.value = '';

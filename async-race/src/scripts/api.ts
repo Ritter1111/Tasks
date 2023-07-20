@@ -52,17 +52,29 @@ export const updateCar = async (id: number, body: NewCar, method: HttpMethod.PUT
   return response.json()
 }
 
-export const startEngine = async (id: number,status: EngineMode.started, method: HttpMethod.PATCH): Promise<DriveData> => {
+export const startEngine = async (id: number, status: EngineMode.started, method: HttpMethod.PATCH): Promise<DriveData> => {
   const response = await fetch(`${engineUrl}?id=${id}&status=${status}`, {
     method
-  })
+  }).catch()
+
+  if(response.status === 400 ) {
+    console.error('Wrong parameters: "id" should be any positive number, "status" should be "started", "stopped" or "drive"')
+  }if (response.status === 404) {
+    console.error('Car with such id was not found in the garage.')
+  }
   return response.json()
 }
 
 export const stopEngine = async (id: number, status: EngineMode.stopped, method: HttpMethod.PATCH): Promise<DriveData> => {
   const response = await fetch(`${engineUrl}?id=${id}&status=${status}`, {
     method
-  });
+  }).catch()
+
+  if(response.status === 400 ) {
+    console.error('Wrong parameters: "id" should be any positive number, "status" should be "started", "stopped" or "drive"')
+  }if (response.status === 404) {
+    console.error('Car with such id was not found in the garage.')
+  }
 
   return response.json()
 }
@@ -77,6 +89,12 @@ export const switchToDriveMode = async (id: number, status: EngineMode.drive, me
       return {success: false}
     }if (response.status === 404) {
       console.error('Car with such id was not found in the garage.')
+      return {success: false}
+    }if (response.status === 500) {
+      console.error('Car has been stopped suddenly. It is engine was broken down.')
+      return {success: false}
+    }if (response.status === 429) {
+      console.error('Drive already in progress. You cant run drive for the same car twice while it is not stopped.')
       return {success: false}
     }
       return response.json();

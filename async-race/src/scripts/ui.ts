@@ -182,10 +182,10 @@ export const drawCar = (car: DataCar) => {
   <div class="container">
     <div class="container_car">
       <div class="car-control">
-        <button class="btn">A</button>
-        <button class="btn">B</button>
+        <button class="btn start-drive" data-id=${car.id}>A</button>
+        <button class="btn stop-drive" data-id=${car.id}>B</button>
       </div>
-      <div class="car">${createSVGImage(car.color)}</div>
+      <div class="car${car.id}">${createSVGImage(car.color)}</div>
     </div>
   <span class="flag">
   <div class="race-flag"></div>

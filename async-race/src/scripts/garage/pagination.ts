@@ -44,6 +44,10 @@ prevPageBtn.addEventListener('click', async () => {
   currPage -= 1
   disableButtons()
   // renderAllCars()
+   const countPages = await countAllPages()
+  if(countPages > 1){
+    nextPageBtn.disabled = false
+  }
   updateAllCars(currPage)
   pageNumber.innerHTML = `${currPage}`
 
@@ -52,17 +56,20 @@ prevPageBtn.addEventListener('click', async () => {
 nextPageBtn.addEventListener('click', async () => {
   currPage += 1
   const count = await getCountCar()
-  const countPages = await countAllPages()
-  if(countPages > 1){
-    nextPageBtn.disabled = false
-  }
+  // const countPages = await countAllPages()
+  // if(countPages > 1){
+  //   nextPageBtn.disabled = false
+  // }
+  // else 
   disableButtons()
-  updateAllCars(currPage)
 
-  // renderAllCars()
   if (7 * currPage > count) {
     nextPageBtn.disabled = true
   }
+  updateAllCars(currPage)
+
+  // renderAllCars()
+
   pageNumber.innerHTML = `${currPage}`
 })
 

@@ -42,7 +42,7 @@ export const updateAllCars = async (page: number) => {
     })
   }
   updateCarsNumber()
-  disableNextBtn()
+  // disableNextBtn()
 }
 
 export default drawLastCar

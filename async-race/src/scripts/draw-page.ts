@@ -1,4 +1,5 @@
 import { getCars } from "./api";
+// import startDriving from "./garage/animation";
 import { disableNextBtn } from "./garage/car-utils";
 import createCarListener from "./garage/create-car";
 import { updateCarsNumber } from "./garage/garage";
@@ -87,6 +88,7 @@ createCarListener();
 updateCarListener()
 drawEveryCar()
 generateCars()
+// startDriving()
 
 main.append(paginationElem);
 
