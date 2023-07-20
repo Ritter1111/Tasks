@@ -4,6 +4,7 @@ import { addDisabledToStart, addDisabledToStop, removeDisabledToStop, romoveDisa
 import { currentPage } from "./pagination";
 
 let animationId: number = 0;
+// const finishedCars: Set<number> = new Set(); 
 
 function animateCar(car: HTMLElement, flag: HTMLElement, duration: number) {
   const currentPositionCar = car.offsetLeft;
@@ -52,11 +53,13 @@ const startRace = async () => {
   const cars = await getCars(currentPage(), 7);
 
   cars.forEach((car) => {
+
     addDisabledToStart(car.id)
     removeDisabledToStop(car.id)
     const carElem = document.querySelector(`.car${car.id}`) as HTMLElement
     const flag = document.querySelector('.flag') as HTMLElement;
     startDrivingCar(car.id, carElem, flag)
+    
   })
 }
 
@@ -64,9 +67,10 @@ const resetRace = async () => {
   const cars = await getCars(currentPage(), 7);
 
   cars.forEach((car) => {
+    const carElem = document.querySelector(`.car${car.id}`) as HTMLElement
+
     romoveDisabledToStart(car.id)
     addDisabledToStop(car.id)
-    const carElem = document.querySelector(`.car${car.id}`) as HTMLElement
 
     stopDrivingCar(car.id, carElem)
   })

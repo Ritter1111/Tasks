@@ -17,7 +17,7 @@ export const disableNextBtn = async () => {
   const nextPageBtn = <HTMLButtonElement>document.querySelector('.next-page')
 
   const count = await getCountCar()
-  // console.log(count)
+
   if (nextPageBtn){
     if(count > 7) {
       nextPageBtn.disabled = false
@@ -42,7 +42,6 @@ export const updateAllCars = async (page: number) => {
     })
   }
   updateCarsNumber()
-  // disableNextBtn()
 }
 
 export const addDisabledToStart = (id: number) => {

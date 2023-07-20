@@ -2,7 +2,7 @@ import { getCars } from "./api";
 // import startDriving from "./garage/animation";
 import { disableNextBtn } from "./garage/car-utils";
 import createCarListener from "./garage/create-car";
-import { updateCarsNumber } from "./garage/garage";
+// import { updateCarsNumber } from "./garage/garage";
 import generateCars from "./garage/generate-cars";
 import updateCarListener from "./garage/update-car";
 import {
@@ -11,7 +11,7 @@ import {
   createMainSection,
   drawGarageHeader,
   pagination,
-  winnersPage
+  winnersPage,
 } from "./ui";
 
 const header = document.createElement('header');
@@ -58,38 +58,41 @@ export const goToTheGaragePage = async () => {
   }
 }
 
-(function navToWinnersPage() {
-  const navigateToWinnersPage = () => {
-    main.innerHTML = winnersPage();
-    main.append(paginationElem);
-  };
-
+function navToWinnersPage(winn: HTMLElement) {
   const winnersButton = <HTMLElement>document.querySelector('.winners');
-  winnersButton.addEventListener('click', navigateToWinnersPage);
-})();
+  winnersButton.addEventListener('click', () => {
+    winn.style.display = 'block'
+    main.style.display = 'none'
 
-(function navToGarage() {
-  const navigateToGaragePage = () => {
-    main.innerHTML = createMainSection() + drawGarageHeader()
-    goToTheGaragePage()
-    createCarListener()
-    updateCarListener()
-    updateCarsNumber()
-    main.append(paginationElem);
-  };
+  });
+}
 
+function navToGarage(winn: HTMLElement) {
   const garageButton = <HTMLElement>document.querySelector('.garage');
-  garageButton.addEventListener('click', navigateToGaragePage);
+  garageButton.addEventListener('click', () => {
+    main.style.display = 'block'
+    winn.style.display = 'none'
+  });
+}
+
+(function createMainPage() {
+  main.innerHTML = createMainSection() + drawGarageHeader()
+  const winnersSection = document.createElement('section')
+  winnersSection.innerHTML = winnersPage()
+  document.body.append(winnersSection)
+  
+  createCarListener();
+  updateCarListener()
+  drawEveryCar()
+  generateCars()
+  main.append(paginationElem);
+  
+  const winPage = <HTMLElement>document.querySelector('.winners-page') as HTMLElement;
+  winPage.style.display = 'none'
+
+  navToWinnersPage(winPage)
+  navToGarage(winPage)
 })()
 
-main.innerHTML = createMainSection() + drawGarageHeader()
-
-createCarListener();
-updateCarListener()
-drawEveryCar()
-generateCars()
-// startDriving()
-
-main.append(paginationElem);
 
 export default drawEveryCar

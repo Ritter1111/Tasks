@@ -3,8 +3,6 @@ import carMarks from "../cars/marks";
 import carModels from "../cars/models";
 import { DataCar, HttpMethod, NewCar } from "../types/types";
 import { disableNextBtn, updateAllCars } from "./car-utils";
-// import { getCountCar } from "./garage";
-// import { updateCarsNumber } from "./garage";
 
 const getRandomCar = () => {
   const randomCar = Math.floor(Math.random() * carMarks.length)
@@ -45,16 +43,6 @@ function generateCars() {
       await generateOneHundredCars()
       updateAllCars(1)
       disableNextBtn()
-      // updateCarsNumber()
-    // const nextPageBtn = <HTMLButtonElement>document.querySelector('.next-page')
-
-    //   const count = await getCountCar()
-    //   // console.log(count)
-    //   if (nextPageBtn){
-    //     if(count > 7) {
-    //       nextPageBtn.disabled = false
-    //     }
-    //   }
     });
   }
 }

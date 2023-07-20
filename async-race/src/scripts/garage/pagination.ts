@@ -1,5 +1,3 @@
-// import { getCars } from '../api'
-// import { Car } from '../ui'
 import { updateAllCars } from './car-utils'
 import { getCountCar } from './garage'
 
@@ -23,21 +21,6 @@ function disableButtons() {
   }
 }
 
-// export async function renderAllCars() {
-//   const wrapCars = document.querySelector('.wrapp-cars')
-//   if (wrapCars) {
-//     const allCars = await getCars(currPage, limitCarOnPage)
-
-//     while (wrapCars.firstChild) {
-//       wrapCars.removeChild(wrapCars.firstChild)
-//     }
-
-//     allCars.forEach((carr) => {
-//       const newCarElement = Car(carr)
-//       wrapCars.appendChild(newCarElement)
-//     })
-//   }
-// }
 export const countAllPages = async () => {
   const count = await getCountCar()
   const allPages = Math.ceil(count / limitCarOnPage)
@@ -47,8 +30,8 @@ export const countAllPages = async () => {
 prevPageBtn.addEventListener('click', async () => {
   currPage -= 1
   disableButtons()
-  // renderAllCars()
-   const countPages = await countAllPages()
+
+  const countPages = await countAllPages()
   if(countPages > 1){
     nextPageBtn.disabled = false
   }
@@ -60,19 +43,13 @@ prevPageBtn.addEventListener('click', async () => {
 nextPageBtn.addEventListener('click', async () => {
   currPage += 1
   const count = await getCountCar()
-  // const countPages = await countAllPages()
-  // if(countPages > 1){
-  //   nextPageBtn.disabled = false
-  // }
-  // else 
+
   disableButtons()
 
   if (7 * currPage > count) {
     nextPageBtn.disabled = true
   }
   updateAllCars(currPage)
-
-  // renderAllCars()
 
   pageNumber.innerHTML = `${currPage}`
 })
