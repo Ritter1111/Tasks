@@ -1,8 +1,6 @@
-import { getCars } from "./api";
-// import startDriving from "./garage/animation";
+import { getCars, getWinners } from "./api";
 import { disableNextBtn } from "./garage/car-utils";
 import createCarListener from "./garage/create-car";
-// import { updateCarsNumber } from "./garage/garage";
 import generateCars from "./garage/generate-cars";
 import updateCarListener from "./garage/update-car";
 import {
@@ -11,8 +9,8 @@ import {
   createMainSection,
   drawGarageHeader,
   pagination,
-  winnersPage,
 } from "./ui";
+import { winnersPage } from "./winners/draw-winners";
 
 const header = document.createElement('header');
 header.innerHTML = createHeader()
@@ -35,10 +33,15 @@ export const drawEveryCar = async () => {
     drawCar(carr)
   })
   disableNextBtn()
-
 }
 
-// let currentPage = 1;
+export const drawWinners = async () => {
+  const winners = await getWinners(1, 4, 'dfj', 'order')
+
+  winners.forEach((item) => {
+    winnersPage(item)
+  })
+}
 
 export const goToTheGaragePage = async () => {
   const allCars = await getCars(1, 7)
@@ -58,41 +61,16 @@ export const goToTheGaragePage = async () => {
   }
 }
 
-function navToWinnersPage(winn: HTMLElement) {
-  const winnersButton = <HTMLElement>document.querySelector('.winners');
-  winnersButton.addEventListener('click', () => {
-    winn.style.display = 'block'
-    main.style.display = 'none'
-
-  });
-}
-
-function navToGarage(winn: HTMLElement) {
-  const garageButton = <HTMLElement>document.querySelector('.garage');
-  garageButton.addEventListener('click', () => {
-    main.style.display = 'block'
-    winn.style.display = 'none'
-  });
-}
-
 (function createMainPage() {
   main.innerHTML = createMainSection() + drawGarageHeader()
-  const winnersSection = document.createElement('section')
-  winnersSection.innerHTML = winnersPage()
-  document.body.append(winnersSection)
   
   createCarListener();
   updateCarListener()
   drawEveryCar()
   generateCars()
   main.append(paginationElem);
-  
-  const winPage = <HTMLElement>document.querySelector('.winners-page') as HTMLElement;
-  winPage.style.display = 'none'
-
-  navToWinnersPage(winPage)
-  navToGarage(winPage)
+  drawWinners()
+    
 })()
-
 
 export default drawEveryCar

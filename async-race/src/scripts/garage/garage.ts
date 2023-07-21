@@ -19,4 +19,4 @@ export const getCountCar = async (): Promise<number> => {
 }
 
 export default
-  updateCarsNumber();
+updateCarsNumber();

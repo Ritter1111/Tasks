@@ -135,32 +135,6 @@ export const createMainSection = () => `
   </div>
 </div>`
 
-export const winnersPage = () =>
-  `  <div class="winners-page">
-  <div class="garage-name">Winners (3)</div>
-  <div class="number-page">Page #1</div>
-  <table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Car</th>
-      <th>Name</th>
-      <th>Wins</th>
-      <th>Best Time (seconds)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>car</td>
-      <td>Tesla</td>
-      <td>1</td>
-      <td>10</td>
-    </tr>
-  </tbody>
-</table>
-</div>`;
-
 export const pagination = () => `
 <button class="btn previous-page" disabled="true">prev</button>
 <button class="btn next-page" disabled="true">next</button>
@@ -175,7 +149,7 @@ wrappCars.className = 'wrapp-cars'
 // const carElements: { [id: number]: HTMLElement } = {};
 
 export const drawCar = (car: DataCar) => {
-  const a = ` 
+  const carsContent = ` 
 <div class="generated-car" data-id=${car.id}>
   <div class="nav-car">
     <button class="btn select" data-id=${car.id} data-name=${car.name} data-color=${car.color}>Select</button>
@@ -188,7 +162,7 @@ export const drawCar = (car: DataCar) => {
         <button class="btn start-drive" data-id=${car.id}>A</button>
         <button class="btn stop-drive" data-id=${car.id} disabled="true">B</button>
       </div>
-      <div class="car${car.id}">${createSVGImage(car.color)}</div>
+      <div class="car${car.id}" data-name=${car.name}>${createSVGImage(car.color)}</div>
     </div>
   <span class="flag">
   <div class="race-flag"></div>
@@ -200,7 +174,7 @@ export const drawCar = (car: DataCar) => {
 
   const carWrapper = document.createElement('div')
   carWrapper.className = 'car_wrapper'
-  carWrapper.innerHTML = a
+  carWrapper.innerHTML = carsContent
 
   main.append(wrappCars)
   wrappCars.appendChild(carWrapper)
@@ -223,7 +197,7 @@ export const Car = (car: DataCar) => {
         <button class="btn">A</button>
         <button class="btn">B</button>
       </div>
-      <div class="car${car.id}">${createSVGImage(car.color)}</div>
+      <div class="car${car.id}" data-name=${car.name}>${createSVGImage(car.color)}</div>
     </div>
   <span class="flag">
   <div class="race-flag"></div>

@@ -4,7 +4,7 @@ import { addDisabledToStart, addDisabledToStop, removeDisabledToStop, romoveDisa
 import { currentPage } from "./pagination";
 
 let animationId: number = 0;
-// const finishedCars: Set<number> = new Set(); 
+const finishedCars: number[] = []; 
 
 function animateCar(car: HTMLElement, flag: HTMLElement, duration: number) {
   const currentPositionCar = car.offsetLeft;
@@ -26,6 +26,22 @@ function animateCar(car: HTMLElement, flag: HTMLElement, duration: number) {
   tickAnimate()
 }
 
+const displayWinnerName = (id: number) => {
+  const carElem = document.querySelector(`.car${id}`) as HTMLElement;
+  const carName = carElem.dataset.name;
+ 
+  const winnerElem = document.createElement('h1');
+  winnerElem.innerHTML = `${carName} went first`
+  winnerElem.className = 'winner-text'
+  document.body.append(winnerElem)
+
+  const displayDuration = 3000; 
+
+  setTimeout(() => {
+    winnerElem.remove(); 
+  }, displayDuration);
+};
+
 const startDrivingCar = async (id: number, car: HTMLElement, flag: HTMLElement) => {
   const { velocity, distance } = await startEngine(id, EngineMode.started, HttpMethod.PATCH);
   const duration = distance / velocity;
@@ -37,7 +53,10 @@ const startDrivingCar = async (id: number, car: HTMLElement, flag: HTMLElement) 
 
   if (!response.success) {
     cancelAnimationFrame(animationId)
-  }
+  }else if(finishedCars.length === 0) {
+      finishedCars.push(id)
+      displayWinnerName(finishedCars[0]);
+    }
 }
 
 const stopDrivingCar = async (id: number, car: HTMLElement) => {
@@ -53,7 +72,6 @@ const startRace = async () => {
   const cars = await getCars(currentPage(), 7);
 
   cars.forEach((car) => {
-
     addDisabledToStart(car.id)
     removeDisabledToStop(car.id)
     const carElem = document.querySelector(`.car${car.id}`) as HTMLElement
@@ -103,10 +121,11 @@ document.addEventListener('click', async (e) => {
     }
   }
   if (target.classList.contains('race-car')) {
-
     startRace()
+    finishedCars.length = 0;
   }
   if (target.classList.contains('reset-car')) {
     resetRace()
+    finishedCars.length = 0;
   }
 });

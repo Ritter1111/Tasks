@@ -1,8 +1,8 @@
-import { DataCar, DriveData, DriveMode, EngineMode, HttpMethod, NewCar } from "./types/types";
+import { DataCar, DataWinner, DriveData, DriveMode, EngineMode, HttpMethod, NewCar } from "./types/types";
 
 const garageUrl = 'http://localhost:3000/garage';
 const engineUrl = 'http://localhost:3000/engine';
-// const winnersUrl = 'http://localhost:3000/winners';
+const winnersUrl = 'http://localhost:3000/winners';
 
 export const getCar = async (id: number): Promise<DataCar> =>
   (await (fetch(`${garageUrl}/${id}`))).json()
@@ -69,32 +69,39 @@ export const stopEngine = async (id: number, status: EngineMode.stopped, method:
 }
 
 export const switchToDriveMode = async (id: number, status: EngineMode.drive, method: HttpMethod.PATCH): Promise<DriveMode> => {
-    const response = await fetch(`${engineUrl}?id=${id}&status=${status}`, {
-      method
-    }).catch()
+  const response = await fetch(`${engineUrl}?id=${id}&status=${status}`, {
+    method
+  }).catch()
 
-    if(response.status === 400 ) {
-      return {success: false}
-    }if (response.status === 404) {
-      return {success: false}
-    }if (response.status === 500) {
-      return {success: false}
-    }if (response.status === 429) {
-      return {success: false}
-    }
-      return response.json();
+  if (response.status === 400) {
+    return { success: false }
+  } if (response.status === 404) {
+    return { success: false }
+  } if (response.status === 500) {
+    return { success: false }
+  } if (response.status === 429) {
+    return { success: false }
+  }
+  return response.json();
 }
 
-// const getWinners = async (page: number,
-//    limit: number,
-//   sort: string,
-//    order:string, 
-//    method: HttpMethod.GET): Promise<id: number, > => {
-//     const response = await fetch(`${winnersUrl}?_limit=${limit}&_page=${page}&_sort=${sort}&_order=${order}}`, {
-//       method
-//     })
-//     return response.json()
-// }
+export const getWinnersCount = async (page: number, limit: number, sort: string, order: string): Promise<number> => {
+  const response = await fetch(`${winnersUrl}?_limit=${limit}&_page=${page}&_sort=${sort}&_order=${order}}`);
+
+  const countCars = Number(response.headers.get('X-Total-Count'))
+  return countCars
+}
+
+export const getWinners = async (page: number, limit: number, sort: string, order: string): Promise<DataWinner[]> => {
+  const response = await fetch(`${winnersUrl}?_limit=${limit}&_page=${page}&_sort=${sort}&_order=${order}}`);
+  return response.json()
+}
+
+
+console.log(getWinners(1, 4, 'dfj', 'order'));
+
+
+// {id: number, wins: number, time: number}
 
 export default { getCountCars, getCars, createCar }
 

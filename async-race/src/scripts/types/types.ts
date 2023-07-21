@@ -27,6 +27,12 @@ export interface DataCar {
   id: number
 }
 
+export interface DataWinner {
+  id: number,
+  wins: number,
+  time: number
+}
+
 export type NewCar = {
   name: string,
   color: string,

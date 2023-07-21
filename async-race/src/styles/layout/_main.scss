@@ -134,3 +134,13 @@ button[disabled]{
 button:disabled:hover {
   background-color: rgba(0, 0, 0, 0);
 }
+
+.winner-text {
+  position: absolute;
+  top: 86vh;
+  left: 35%;
+}
+
+.winners-pagination {
+  margin: 20px 0;
+}
