@@ -1,7 +1,7 @@
 import { removeCar } from "../api";
-import {HttpMethod } from "../types/types";
+import { HttpMethod } from "../types/types";
 import { updateAllCars } from "./car-utils";
-import { updateCarsNumber } from "./garage";
+import { updateCarsNumber } from "./count-cars";
 
 document.addEventListener('click', async (e) => {
   const removeCarBtn = e.target as HTMLButtonElement;

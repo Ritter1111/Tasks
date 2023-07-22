@@ -8,7 +8,6 @@ import {
   createHeader,
   createMainSection,
   drawGarageHeader,
-  pagination,
 } from "./ui";
 import { winnersPage } from "./winners/draw-winners";
 
@@ -17,10 +16,6 @@ header.innerHTML = createHeader()
 
 const main = document.createElement('main')
 main.className = 'main'
-
-const paginationElem = document.createElement('div');
-paginationElem.className = 'nav-pages';
-paginationElem.innerHTML = pagination()
 
 document.body.append(header, main)
 
@@ -32,7 +27,7 @@ export const drawEveryCar = async () => {
   allCars.forEach((carr) => {
     drawCar(carr)
   })
-  disableNextBtn()
+  await disableNextBtn()
 }
 
 export const drawWinners = async () => {
@@ -61,16 +56,16 @@ export const goToTheGaragePage = async () => {
   }
 }
 
-(function createMainPage() {
+ (async function createMainPage() {
+  console.log('createMainPage');
+  
   main.innerHTML = createMainSection() + drawGarageHeader()
   
   createCarListener();
   updateCarListener()
-  drawEveryCar()
+  await drawEveryCar()
   generateCars()
-  main.append(paginationElem);
-  drawWinners()
-    
+  await drawWinners()
 })()
 
 export default drawEveryCar

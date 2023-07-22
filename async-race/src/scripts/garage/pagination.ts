@@ -1,5 +1,14 @@
+import { pagination } from '../ui';
 import { updateAllCars } from './car-utils'
-import { getCountCar } from './garage'
+import { getCountCar } from './count-cars'
+
+const paginationElem = document.createElement('div');
+paginationElem.className = 'nav-pages';
+paginationElem.innerHTML = pagination()
+
+const main = document.querySelector('.main') as HTMLElement
+
+main.append(paginationElem);
 
 const prevPageBtn = <HTMLButtonElement>document.querySelector('.previous-page')
 const nextPageBtn = <HTMLButtonElement>document.querySelector('.next-page')
@@ -26,6 +35,9 @@ export const countAllPages = async () => {
   const allPages = Math.ceil(count / limitCarOnPage)
    return allPages
 }
+
+console.log({prevPageBtn});
+
 
 prevPageBtn.addEventListener('click', async () => {
   currPage -= 1

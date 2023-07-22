@@ -1,5 +1,5 @@
 import './style.scss'
-import './scripts/garage/garage'
+import './scripts/garage/count-cars'
 import './scripts/api'
 import './scripts/ui'
 import './scripts/draw-pages'
@@ -11,4 +11,5 @@ import './scripts/garage/pagination'
 import './scripts/garage/animation'
 import './scripts/winners/count-winners'
 import './scripts/winners/draw-winners'
+import './scripts/garage/car-utils'
 

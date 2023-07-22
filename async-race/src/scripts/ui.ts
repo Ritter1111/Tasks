@@ -146,7 +146,6 @@ export const drawGarageHeader = () =>
 
 const wrappCars = document.createElement('div');
 wrappCars.className = 'wrapp-cars'
-// const carElements: { [id: number]: HTMLElement } = {};
 
 export const drawCar = (car: DataCar) => {
   const carsContent = ` 
@@ -178,9 +177,6 @@ export const drawCar = (car: DataCar) => {
 
   main.append(wrappCars)
   wrappCars.appendChild(carWrapper)
-
-  // carElements[car.id] = carWrapper;
-  // console.log(carElements)
 }
 
 export const Car = (car: DataCar) => {
@@ -194,8 +190,8 @@ export const Car = (car: DataCar) => {
   <div class="container">
     <div class="container_car">
       <div class="car-control">
-        <button class="btn">A</button>
-        <button class="btn">B</button>
+        <button class="btn  start-drive" data-id=${car.id}>A</button>
+        <button class="btn stop-drive" data-id=${car.id}>B</button>
       </div>
       <div class="car${car.id}" data-name=${car.name}>${createSVGImage(car.color)}</div>
     </div>
@@ -205,7 +201,6 @@ export const Car = (car: DataCar) => {
 </div>
 <hr>
 </div>`;
-  // const main = <HTMLElement>document.querySelector('.main')
 
   const carWrapper = document.createElement('div')
   carWrapper.className = 'car_wrapper'

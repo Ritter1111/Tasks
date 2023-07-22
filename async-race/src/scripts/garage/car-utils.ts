@@ -1,7 +1,6 @@
 import { getCars } from "../api";
-import { getCountCar, updateCarsNumber } from "./garage";
+import { getCountCar, updateCarsNumber } from "./count-cars";
 import { Car, drawCar } from "../ui";
-
 
 const drawLastCar = async () => {
   const carss = await getCars(1, 7);
@@ -46,25 +45,33 @@ export const updateAllCars = async (page: number) => {
 
 export const addDisabledToStart = (id: number) => {
   const startDriveButton = document.querySelector(`.start-drive[data-id="${id}"]`) as HTMLButtonElement;
+  if(startDriveButton) {
   startDriveButton.disabled = true;
   startDriveButton.classList.add('disabled');
+  }
 }
 
 export const addDisabledToStop = (id: number) => {
   const stopDriveButton = document.querySelector(`.stop-drive[data-id="${id}"]`) as HTMLButtonElement;
+  if(stopDriveButton){
   stopDriveButton.disabled = true;
   stopDriveButton.classList.add('disabled');
+  }
 }
 
 export const romoveDisabledToStart = (id: number) => {
   const startDriveButton = document.querySelector(`.start-drive[data-id="${id}"]`) as HTMLButtonElement;
+  if(startDriveButton){
   startDriveButton.disabled = false;
+  }
 }
 
 export const removeDisabledToStop = (id: number) => {
   const stopDriveButton = document.querySelector(`.stop-drive[data-id="${id}"]`) as HTMLButtonElement;
+  if(stopDriveButton){
   stopDriveButton.disabled = false;
   stopDriveButton.classList.remove('disabled');
+  }
 }
 
 export default drawLastCar

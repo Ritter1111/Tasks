@@ -1,4 +1,3 @@
-// import { navToGarage, navToWinnersPage } from "../draw-page";
 import { DataWinner } from "../types/types";
 
 export function navToWinnersPage(winn: HTMLElement) {
@@ -44,8 +43,8 @@ export const winnersPage = (winner: DataWinner) => {
    </tbody>
  </table>
  <div class="winners-pagination">
- <button class="btn prev-page" disabled="true">prev</button>
- <button class="btn next-page" disabled="true">next</button>
+ <button class="btn pre-page" disabled="true">prev</button>
+ <button class="btn nxt-page" disabled="true">next</button>
  </div>
  </div>
  `;

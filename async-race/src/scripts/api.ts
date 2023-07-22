@@ -97,11 +97,5 @@ export const getWinners = async (page: number, limit: number, sort: string, orde
   return response.json()
 }
 
-
-console.log(getWinners(1, 4, 'dfj', 'order'));
-
-
-// {id: number, wins: number, time: number}
-
 export default { getCountCars, getCars, createCar }
 
