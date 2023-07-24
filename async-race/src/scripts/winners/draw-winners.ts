@@ -30,7 +30,7 @@ export const contentWinners = (winner: DataWinner, color: string, name: string) 
 export const winnersPage = () => {
   const winnersContent = `  <div class="winners-page">
    <h3 class="garage-name">Winners (<span class="count-winners"></span>)</h3>
-   <h4 class="number-page">Page #1</h4>
+   <h4 class="number-page">Page # <span class="number-page-win"></span></h4>
    <table>
    <thead>
      <tr>
@@ -60,6 +60,7 @@ export const winnersPage = () => {
    navToWinnersPage(winPage)
    navToGarage(winPage)
  }
+
  };
 
  export default winnersPage

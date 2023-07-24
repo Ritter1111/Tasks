@@ -24,20 +24,22 @@ export const displayWinnerName = (id: number) => {
 };
 
 export async function createWinners(id: number, duration: number) {
-const time = Number((duration / 1000).toFixed(2))
-let wins = 1
-const allWinners = await getWinners(1, 10, 'id', 'order')
-allWinners.forEach(async (item) => {
-  if(item.id === id) {
-   wins = item.wins + 1
+  let time = Number((duration / 1000).toFixed(2))
+  let wins = 1
+  const allWinners = await getWinners(1, 10, 'id', 'order')
+  allWinners.forEach(async (item) => {
+    if (item.id === id) {
+      wins = item.wins + 1
+    }else if(item.time > time){
+      time = item.time
+    }
+  })
+  if (wins > 1) {
+    await updateWinner(id, { 'id': id, 'wins': wins, 'time': time }, HttpMethod.PUT)
+  } else {
+    await createWinner({ 'id': id, 'wins': wins, 'time': time }, HttpMethod.POST)
   }
-})
-if(wins > 1) {
-  await updateWinner(id, {'id': id, 'wins': wins, 'time': time}, HttpMethod.PUT)
-}else {
-  await createWinner({'id': id, 'wins': wins, 'time': time}, HttpMethod.POST)
-}
-drawWinners()
+  drawWinners()
 }
 
 export function animateCar(car: HTMLElement, flag: HTMLElement, duration: number, id: number) {
@@ -55,7 +57,7 @@ export function animateCar(car: HTMLElement, flag: HTMLElement, duration: number
 
     if (start < distance) {
       animationId = requestAnimationFrame(tickAnimate)
-    }else if (finishedCars.length === 0){
+    } else if (finishedCars.length === 0) {
       finishedCars.push(id)
       createWinners(id, duration)
       displayWinnerName(finishedCars[0]);
@@ -74,7 +76,7 @@ export const startDrivingCar = async (id: number, car: HTMLElement, flag: HTMLEl
 
   if (!response.success) {
     cancelAnimationFrame(animationId)
-  } 
+  }
 }
 
 export const stopDrivingCar = async (id: number, car: HTMLElement) => {
