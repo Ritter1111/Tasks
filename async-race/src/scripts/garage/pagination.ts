@@ -7,7 +7,6 @@ paginationElem.className = 'nav-pages';
 paginationElem.innerHTML = pagination()
 
 const main = document.querySelector('.main') as HTMLElement
-
 main.append(paginationElem);
 
 const prevPageBtn = <HTMLButtonElement>document.querySelector('.previous-page')
@@ -16,10 +15,6 @@ const pageNumber = <HTMLElement>document.querySelector('.page-number')
 
 let currPage = 1
 const limitCarOnPage = 7
-
-export function currentPage() {
-  return currPage
-}
 
 function disableButtons() {
   if (currPage > 1) {
@@ -35,9 +30,6 @@ export const countAllPages = async () => {
   const allPages = Math.ceil(count / limitCarOnPage)
    return allPages
 }
-
-console.log({prevPageBtn});
-
 
 prevPageBtn.addEventListener('click', async () => {
   currPage -= 1
@@ -65,5 +57,9 @@ nextPageBtn.addEventListener('click', async () => {
 
   pageNumber.innerHTML = `${currPage}`
 })
+
+export function currentPage() {
+  return currPage
+}
 
 export default countAllPages

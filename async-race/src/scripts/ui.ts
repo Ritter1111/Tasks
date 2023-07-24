@@ -1,6 +1,6 @@
 import { DataCar } from "./types/types";
 
-const createSVGImage = (color: string) =>
+export const createSVGImage = (color: string) =>
   ` <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
     width="10vh" viewBox="0 0 1280.000000 640.000000"
     preserveAspectRatio="xMidYMid meet">
@@ -191,7 +191,7 @@ export const Car = (car: DataCar) => {
     <div class="container_car">
       <div class="car-control">
         <button class="btn  start-drive" data-id=${car.id}>A</button>
-        <button class="btn stop-drive" data-id=${car.id}>B</button>
+        <button class="btn stop-drive" data-id=${car.id} disabled="true">B</button>
       </div>
       <div class="car${car.id}" data-name=${car.name}>${createSVGImage(car.color)}</div>
     </div>

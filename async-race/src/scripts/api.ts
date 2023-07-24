@@ -97,5 +97,29 @@ export const getWinners = async (page: number, limit: number, sort: string, orde
   return response.json()
 }
 
+export const createWinner = async (body: DataWinner, method: HttpMethod.POST): Promise<DataWinner> => {
+  const response = await fetch(`${winnersUrl}`, {
+    method,
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).catch()
+
+  return response.json()
+}
+
+export const updateWinner = async (id: number, body: DataWinner, method: HttpMethod.PUT): Promise<DataWinner> => {
+  const response = await fetch(`${winnersUrl}/${id}`, {
+    method,
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  return response.json()
+}
+
 export default { getCountCars, getCars, createCar }
 

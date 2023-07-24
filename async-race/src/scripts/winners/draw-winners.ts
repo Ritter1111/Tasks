@@ -1,4 +1,5 @@
 import { DataWinner } from "../types/types";
+import { createSVGImage } from "../ui";
 
 export function navToWinnersPage(winn: HTMLElement) {
   const winnersButton = <HTMLElement>document.querySelector('.winners');
@@ -18,9 +19,17 @@ export function navToGarage(winn: HTMLElement) {
   });
 }
 
-export const winnersPage = (winner: DataWinner) => {
+export const contentWinners = (winner: DataWinner, color: string, name: string) => `
+<td>${winner.id}</td>
+<td>${createSVGImage(color)}</td>
+<td>${name}</td>
+<td>${winner.wins}</td>
+<td>${winner.time}</td>
+`
+
+export const winnersPage = () => {
   const winnersContent = `  <div class="winners-page">
-   <h3 class="garage-name">Winners (<span class="count-winners">3</span>)</h3>
+   <h3 class="garage-name">Winners (<span class="count-winners"></span>)</h3>
    <h4 class="number-page">Page #1</h4>
    <table>
    <thead>
@@ -32,14 +41,7 @@ export const winnersPage = (winner: DataWinner) => {
        <th>Best Time (seconds)</th>
      </tr>
    </thead>
-   <tbody>
-     <tr>
-       <td>1</td>
-       <td>car</td>
-       <td>Tesla</td>
-       <td>${winner.wins}</td>
-       <td>${winner.time}</td>
-     </tr>
+   <tbody  class="winner-table">
    </tbody>
  </table>
  <div class="winners-pagination">
