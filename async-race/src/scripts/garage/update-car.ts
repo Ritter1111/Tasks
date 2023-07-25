@@ -13,6 +13,8 @@ function updateCarListener() {
     const updateCarBtn = e.target as HTMLButtonElement;
     if (updateCarBtn.classList.contains('select')) {
       createMainSection()
+      const select = document.querySelector('.btn-update') as HTMLButtonElement;
+      select.disabled = false
 
       const { id, name, color } = updateCarBtn.dataset
       idCar = Number(id)
@@ -41,6 +43,8 @@ function updateCarListener() {
     }
     getinputValue.value = '';
     getColorValue.value = '';
+    const select = document.querySelector('.btn-update') as HTMLButtonElement;
+    select.disabled = true
   })
 
 }

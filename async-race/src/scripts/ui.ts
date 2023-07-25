@@ -126,11 +126,11 @@ export const createMainSection = () => `
   <div class="update-car">
     <input type="text" class="update_input">
     <input type="color" class="update-color">
-    <button class="btn-update btn">Update</button>
+    <button class="btn-update btn" disabled="true">Update</button>
   </div>
   <div class="adjust-btns">
     <button class="race-car">Race</button>
-    <button class="reset-car">Reset</button>
+    <button class="reset-car" disabled="true">Reset</button>
     <button class="generate-cars">Generate Cars</button>
   </div>
 </div>`

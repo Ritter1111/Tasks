@@ -11,6 +11,10 @@ function createCarListener() {
     const inputValue = getinputValue.value
     const colorValue = getColorValue.value
 
+    if (!inputValue) {
+      return;
+    }
+
     await createCar({ name: inputValue, color: colorValue }, HttpMethod.POST)
     updateAllCars(1)
     disableNextBtn()

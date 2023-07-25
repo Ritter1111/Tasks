@@ -141,10 +141,19 @@ document.addEventListener('click', async (e) => {
   }
   if (target.classList.contains('race-car')) {
     startRace()
+    const reset = document.querySelector('.reset-car') as HTMLButtonElement;
+    const race = document.querySelector('.race-car') as HTMLButtonElement;
+    reset.disabled = false;
+    race.disabled = true
+    
     finishedCars.length = 0;
   }
   if (target.classList.contains('reset-car')) {
     resetRace()
+    const reset = document.querySelector('.reset-car') as HTMLButtonElement;
+    const race = document.querySelector('.race-car') as HTMLButtonElement;
+    reset.disabled = true;
+    race.disabled = false
     finishedCars.length = 0;
   }
 })
