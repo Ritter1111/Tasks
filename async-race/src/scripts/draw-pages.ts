@@ -1,4 +1,4 @@
-import { getCar, getCars, getWinners } from "./api";
+import { getCars } from "./api";
 import { disableNextBtn } from "./garage/car-utils";
 import createCarListener from "./garage/create-car";
 import generateCars from "./garage/generate-cars";
@@ -9,7 +9,7 @@ import {
   createMainSection,
   drawGarageHeader,
 } from "./ui";
-import { winnersPage, contentWinners } from "./winners/draw-winners";
+import { winnersPage } from "./winners/draw-winners";
 import { updataCountWinners } from "./winners/count-winners";
 
 const header = document.createElement('header');
@@ -29,19 +29,6 @@ export const drawEveryCar = async () => {
     drawCar(carr)
   })
   await disableNextBtn()
-}
-
-export const drawWinners = async () => {
-  const winners = await getWinners(1, 10, 'dfj', 'order')
-  const winnerTable = document.querySelector('.winner-table') as HTMLElement
-  winnerTable.innerHTML = ""
-
-  winners.forEach(async (item) => {
-   const car = await getCar(item.id)
-  const wrapperWinner = document.createElement('tr')
-  wrapperWinner.innerHTML = contentWinners(item, car.color, car.name)
-  winnerTable.append(wrapperWinner)
-  })
 }
 
 export const goToTheGaragePage = async () => {
@@ -70,7 +57,6 @@ export const goToTheGaragePage = async () => {
   await drawEveryCar()
   generateCars()
   winnersPage()
-  await drawWinners()
   await updataCountWinners()
 })()
 

@@ -1,4 +1,4 @@
-import { removeCar } from "../api";
+import {  getWinners, removeCar, removeWinner,  } from "../api";
 import { HttpMethod } from "../types/types";
 import { updateAllCars } from "./car-utils";
 import { updateCarsNumber } from "./count-cars";
@@ -10,8 +10,15 @@ document.addEventListener('click', async (e) => {
     const { id } = removeCarBtn.dataset
 
     await removeCar(Number(id), HttpMethod.DELETE);
+
     carWrapper.remove();
-    updateCarsNumber()
+    updateCarsNumber();
     updateAllCars(1)
+    const res = await getWinners(1, 10, 'id', 'order')
+    res.forEach(async (item) => {
+      if (item.id === Number(id)) {
+      await removeWinner(Number(id), HttpMethod.DELETE)
+      }
+    })
   }
 });

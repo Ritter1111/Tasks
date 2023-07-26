@@ -7,6 +7,7 @@ const winnersUrl = 'http://localhost:3000/winners';
 export const getCar = async (id: number): Promise<DataCar> =>
   (await (fetch(`${garageUrl}/${id}`))).json()
 
+  
 export const getCountCars = async (page: number, limit: number): Promise<number> => {
   const res = await fetch(`${garageUrl}?_limit=${limit}&_page=${page}`)
   const countCars = Number(res.headers.get('X-Total-Count'))
@@ -92,6 +93,12 @@ export const getWinnersCount = async (page: number, limit: number, sort: string,
   return countCars
 }
 
+export const getWinner = async (id: number): Promise<DataWinner> => {
+  const response = await (fetch(`${winnersUrl}/${id}`))
+
+  return response.json()
+}
+
 export const getWinners = async (page: number, limit: number, sort: string, order: string): Promise<DataWinner[]> => {
   const response = await fetch(`${winnersUrl}?_limit=${limit}&_page=${page}&_sort=${sort}&_order=${order}}`);
   return response.json()
@@ -117,6 +124,14 @@ export const updateWinner = async (id: number, body: DataWinner, method: HttpMet
       'Content-Type': 'application/json'
     }
   });
+
+  return response.json()
+}
+
+export const removeWinner = async (id: number, method: HttpMethod.DELETE): Promise<DataWinner> => {
+  const response = await fetch(`${winnersUrl}/${id}`, {
+    method
+  })
 
   return response.json()
 }

@@ -1,5 +1,28 @@
+import { getCar, getWinners } from "../api";
 import { DataWinner } from "../types/types";
 import { createSVGImage } from "../ui";
+import { updataCountWinners } from "./count-winners";
+
+export const contentWinners = (winner: DataWinner, color: string, name: string) => `
+<td>${winner.id}</td>
+<td>${createSVGImage(color)}</td>
+<td>${name}</td>
+<td>${winner.wins}</td>
+<td>${winner.time}</td>
+`
+
+export const drawWinners = async () => {
+  const winners = await getWinners(1, 10, 'dfj', 'order')
+  const winnerTable = document.querySelector('.winner-table') as HTMLElement
+  winnerTable.innerHTML = ""
+
+  winners.forEach(async (item) => {
+   const car = await getCar(item.id)
+  const wrapperWinner = document.createElement('tr')
+  wrapperWinner.innerHTML = contentWinners(item, car.color, car.name)
+  winnerTable.append(wrapperWinner)
+  })
+}
 
 export function navToWinnersPage(winn: HTMLElement) {
   const winnersButton = <HTMLElement>document.querySelector('.winners');
@@ -7,6 +30,8 @@ export function navToWinnersPage(winn: HTMLElement) {
   winnersButton.addEventListener('click', () => {
     winn.style.display = 'block'
     main.style.display = 'none'
+    updataCountWinners()
+    drawWinners()
   });
 }
 
@@ -19,18 +44,10 @@ export function navToGarage(winn: HTMLElement) {
   });
 }
 
-export const contentWinners = (winner: DataWinner, color: string, name: string) => `
-<td>${winner.id}</td>
-<td>${createSVGImage(color)}</td>
-<td>${name}</td>
-<td>${winner.wins}</td>
-<td>${winner.time}</td>
-`
-
 export const winnersPage = () => {
   const winnersContent = `  <div class="winners-page">
    <h3 class="garage-name">Winners (<span class="count-winners"></span>)</h3>
-   <h4 class="number-page">Page # <span class="number-page-win"></span></h4>
+   <h4 class="number-page">Page # <span class="number-page-win">1</span></h4>
    <table>
    <thead>
      <tr>
@@ -60,7 +77,6 @@ export const winnersPage = () => {
    navToWinnersPage(winPage)
    navToGarage(winPage)
  }
-
  };
 
  export default winnersPage

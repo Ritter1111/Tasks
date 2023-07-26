@@ -2,7 +2,8 @@ import { createWinner, getCars, getWinners, startEngine, stopEngine, switchToDri
 import { EngineMode, HttpMethod } from "../types/types";
 import { addDisabledToStart, addDisabledToStop, removeDisabledToStop, romoveDisabledToStart } from "./car-utils";
 import { currentPage } from "./pagination";
-import { drawWinners } from "../draw-pages";
+// import { drawWinners } from "../winners/draw-winners";
+
 
 let animationId: number = 0;
 const finishedCars: number[] = [];
@@ -30,7 +31,7 @@ export async function createWinners(id: number, duration: number) {
   allWinners.forEach(async (item) => {
     if (item.id === id) {
       wins = item.wins + 1
-    }else if(item.time > time){
+    }else if(item.time < time){
       time = item.time
     }
   })
@@ -39,7 +40,7 @@ export async function createWinners(id: number, duration: number) {
   } else {
     await createWinner({ 'id': id, 'wins': wins, 'time': time }, HttpMethod.POST)
   }
-  drawWinners()
+  // drawWinners()
 }
 
 export function animateCar(car: HTMLElement, flag: HTMLElement, duration: number, id: number) {
