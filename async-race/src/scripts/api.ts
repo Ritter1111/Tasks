@@ -100,9 +100,12 @@ export const getWinner = async (id: number): Promise<DataWinner> => {
 }
 
 export const getWinners = async (page: number, limit: number, sort: string, order: string): Promise<DataWinner[]> => {
-  const response = await fetch(`${winnersUrl}?_limit=${limit}&_page=${page}&_sort=${sort}&_order=${order}}`);
+  const response = await fetch(`${winnersUrl}?_limit=${limit}&_page=${page}&_sort=${sort}&_order=${order}`);
+
   return response.json()
 }
+
+// getWinners(1, 10, 'wins', 'desc')
 
 export const createWinner = async (body: DataWinner, method: HttpMethod.POST): Promise<DataWinner> => {
   const response = await fetch(`${winnersUrl}`, {
