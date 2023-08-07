@@ -25,8 +25,8 @@ let carsRendered = false;
 export const drawEveryCar = async () => {
   const allCars = await getCars(1, 7)
 
-  allCars.forEach((carr) => {
-    drawCar(carr)
+  allCars.forEach((car) => {
+    drawCar(car)
   })
   await disableNextBtn()
 }
@@ -34,15 +34,15 @@ export const drawEveryCar = async () => {
 export const goToTheGaragePage = async () => {
   const allCars = await getCars(1, 7)
 
-  allCars.forEach((carr) => {
-    drawCar(carr)
+  allCars.forEach((car) => {
+    drawCar(car)
   })
   const wrapCars = document.querySelector('.wrapp-cars')
   if (wrapCars && !carsRendered) {
     wrapCars.innerHTML = '';
 
-    allCars.forEach((carr) => {
-      drawCar(carr);
+    allCars.forEach((car) => {
+      drawCar(car);
     });
 
     carsRendered = false;

@@ -3,9 +3,9 @@ import { getCountCar, updateCarsNumber } from "./count-cars";
 import { Car, drawCar } from "../ui";
 
 const drawLastCar = async () => {
-  const carss = await getCars(1, 7);
+  const cars = await getCars(1, 7);
 
-  const lastCar = carss[carss.length - 1];
+  const lastCar = cars[cars.length - 1];
   if (lastCar) {
     drawCar(lastCar);
   }
@@ -35,8 +35,8 @@ export const updateAllCars = async (page: number) => {
       wrapCars.removeChild(wrapCars.firstChild)
     }
 
-    allCars.forEach((carr) => {
-      const newCarElement = Car(carr)
+    allCars.forEach((car) => {
+      const newCarElement = Car(car)
       wrapCars.appendChild(newCarElement)
     })
   }
