@@ -1,8 +1,5 @@
 # Self_introduction
 
-## Video:
-[YouTube video](https://youtu.be/I_j8geccPIo)
-
 ## Text transcript of video:
 Hello, my name is Angelina. I want to introduce myself and tell you how and why I became interested in programming. 
 I'm 19 years old, and I'm from Ukraine. I moved to Bulgaria about a year ago and have been living here with my family. Currently, I'm in my third year at the Kyiv National Aviation University, where I study computer science.
