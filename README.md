@@ -1,4 +1,4 @@
-Deploy: https://reliable-pie-e20fa4.netlify.app/
+Deploy: https://reliable-pie-e20fa4.netlify.app/ (to see the deploy you need to start the server)
 
 In order for the application to work you first need to start the server
 
